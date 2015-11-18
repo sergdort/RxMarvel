@@ -1,0 +1,41 @@
+PODS:
+  - Alamofire (2.0.2)
+  - Argo (2.1.0)
+  - Curry (1.2.0)
+  - Runes (3.0.0)
+  - RxCocoa (2.0.0-alpha.3):
+    - RxSwift (~> 2.0.0-alpha)
+  - RxSwift (2.0.0-alpha.4)
+  - SDWebImage (3.7.3):
+    - SDWebImage/Core (= 3.7.3)
+  - SDWebImage/Core (3.7.3)
+
+DEPENDENCIES:
+  - Alamofire (~> 2.0)
+  - Argo
+  - Curry
+  - Runes
+  - RxCocoa (from `https://github.com/ReactiveX/RxSwift.git`, branch `rxswift-2.0`)
+  - RxSwift (= 2.0.0-alpha.4)
+  - SDWebImage
+
+EXTERNAL SOURCES:
+  RxCocoa:
+    :branch: rxswift-2.0
+    :git: https://github.com/ReactiveX/RxSwift.git
+
+CHECKOUT OPTIONS:
+  RxCocoa:
+    :commit: 2c4ee7137b9d56b3898a4e68f6a83f42cf29a7b1
+    :git: https://github.com/ReactiveX/RxSwift.git
+
+SPEC CHECKSUMS:
+  Alamofire: 8edbab00802a752bb5240cc2abe70e7e881488ad
+  Argo: f65db7f50301f7a623514cca2b15aa63e147b91a
+  Curry: d0bd819af242d78cf068e1e9e914ae9f476e84ed
+  Runes: b0ffeed58b9577155e53571508b4309c904ef587
+  RxCocoa: 2a45f35cd0eb6a01e081b3d11849c2fcb0bdb6de
+  RxSwift: 76dbcb12e55197533f8ace2af887511d7c9262dc
+  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
+
+COCOAPODS: 0.39.0

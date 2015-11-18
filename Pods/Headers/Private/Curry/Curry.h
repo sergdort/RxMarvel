@@ -1,0 +1,1 @@
+../../../Curry/Source/Resources/Curry.h

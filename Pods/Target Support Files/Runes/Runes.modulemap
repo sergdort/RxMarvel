@@ -1,0 +1,6 @@
+framework module Runes {
+  umbrella header "Runes-umbrella.h"
+
+  export *
+  module * { export * }
+}
