@@ -24,6 +24,14 @@ func JSONArray(j:AnyObject) -> Array<[String : AnyObject]>? {
    return j as? Array<[String : AnyObject]>
 }
 
+func + <T, U>(var lhs: [T: U], rhs: [T: U]) -> [T: U] {
+   for (key, val) in rhs {
+      lhs[key] = val
+   }
+   
+   return lhs
+}
+
 extension String {
    func md5() -> String {
       let str = self.cStringUsingEncoding(NSUTF8StringEncoding)

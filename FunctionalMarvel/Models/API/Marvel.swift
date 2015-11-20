@@ -24,7 +24,7 @@ struct Marvel {
    
    private static let decodeScheduler = SerialDispatchQueueScheduler(internalSerialQueueName: "com.FunctionalMarvel.decode_queue")
    
-   private static func generateDefaultParams() -> [String:AnyObject] {
+   private static var defaultParams:[String:AnyObject] {
       let timeStamp = formatter.stringFromDate(NSDate())
       let hash = "\(timeStamp)\(Keys.privatKey)\(Keys.publicKey)".md5()
       
@@ -36,14 +36,12 @@ struct Marvel {
    }
    
    private static func heroListSignal(params:[String:AnyObject]? = nil) -> Observable<(heroes:Decoded<[Hero]>, batch:Decoded<Batch>)> {
-      var defaultParams = generateDefaultParams()
-
-      params?.forEach({ (tuple) -> () in
-         defaultParams[tuple.0] = tuple.1
-      })
       
       return Alamofire
-         .request(.GET, EndPoint.Characters.path(), parameters: defaultParams)
+         .request(
+            .GET,
+            EndPoint.Characters.path(),
+            parameters: self.defaultParams + (params ?? [:]))
          .rx_responseJSON()
          .observeOn(decodeScheduler)
          .map(HeroDecoder.decode)
@@ -52,17 +50,8 @@ struct Marvel {
    
    static func heroListSignal(offset:Int = 0, limit:Int = 10, nameSearch:String? = nil) -> Observable<(heroes:Decoded<[Hero]>, batch:Decoded<Batch>)> {
       print(offset)
-      let params:[String : AnyObject] = nameSearch != nil ?
-         [
-            ParamKeys.limit : String(limit),
-            ParamKeys.offset : String(offset),
-            ParamKeys.searchName : nameSearch!
-         ]:
-         [
-            ParamKeys.limit : limit,
-            ParamKeys.offset : String(offset),
-         ]
       
+      let params:[String : AnyObject] = [ ParamKeys.limit : limit, ParamKeys.offset : String(offset)] + (nameSearch != nil ? [ParamKeys.searchName : nameSearch!] : [:])
       
       return heroListSignal(params)
    }
@@ -94,14 +83,6 @@ struct Marvel {
    static func heroList(offset:Int = 0, loadNextBatch:Observable<Void>) -> Observable<[Hero]> {
       return recursiveHeroList(offset, loadNextBatch: loadNextBatch)
    }
-   
-   static func thumbnailSignal(path:String) -> Observable<UIImage?> {
-      return Alamofire
-      .request(.GET, path)
-      .rx_response()
-      .map(UIImage.init)
-   }
-   
 }
 
 extension Marvel {

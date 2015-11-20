@@ -17,6 +17,8 @@ infix operator <~ {
 
 }
 
+// Two way binding operator between control property and variable, that's all it takes {
+
 func <-> <T>(property: ControlProperty<T>, variable: Variable<T>) -> Disposable {
    let bindToUIDisposable = variable
       .bindTo(property)
@@ -30,6 +32,8 @@ func <-> <T>(property: ControlProperty<T>, variable: Variable<T>) -> Disposable 
    return StableCompositeDisposable.create(bindToUIDisposable, bindToVariable)
 }
 
+// One way binding operator
+
 func <~ <T>(property: ObserverOf<T>, variable: Variable<T>) -> Disposable {
    return variable
       .bindTo(property)
@@ -40,7 +44,7 @@ extension UIImageView {
       return ObserverOf { [weak self] event in
          switch event {
          case .Next(let value):
-            self?.sd_setImageWithURL(value, completed: { [weak self] (_, _, _, _) -> Void in
+            self?.sd_setImageWithURL(value, completed: { [weak self] _ in
                let transition = CATransition()
                transition.duration = 0.3
                transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
