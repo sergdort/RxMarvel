@@ -48,7 +48,7 @@ struct Marvel {
          .observeOn(MainScheduler.sharedInstance)
    }
    
-   static func heroListSignal(offset:Int = 0, limit:Int = 10, nameSearch:String? = nil) -> Observable<(heroes:Decoded<[Hero]>, batch:Decoded<Batch>)> {
+   static func heroListSignal(offset:Int = 0, limit:Int = 20, nameSearch:String? = nil) -> Observable<(heroes:Decoded<[Hero]>, batch:Decoded<Batch>)> {
       print(offset)
       
       let params:[String : AnyObject] = [ ParamKeys.limit : limit, ParamKeys.offset : String(offset)] + (nameSearch != nil ? [ParamKeys.searchName : nameSearch!] : [:])

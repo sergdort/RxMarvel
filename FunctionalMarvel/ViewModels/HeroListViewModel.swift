@@ -20,13 +20,25 @@ struct HeroListViewModel {
       self.title = Variable(hero.name)
       self.thumbnailPath = Variable(NSURL(string:hero.thumbnail.pathForType(self.thumbnailType))!)
    }
-
-   static func cellReuseId() -> String {
-      return "HeroListCell"
-   }
    
    static func transform(heroes:[Hero]) -> [HeroListViewModel] {
       return heroes.map(HeroListViewModel.init)
    }
    
 }
+
+extension HeroListViewModel:VariableProvidable {
+   var variable:Variable<VariableProvidable> {
+      return Variable(self)
+   }
+}
+
+extension HeroListViewModel:ReuseableViewClassProvidable {
+   var reusableViewClass:ReusableView.Type {
+      return HeroListTableViewCell.self
+   }
+}
+
+
+
+

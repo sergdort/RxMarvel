@@ -1,20 +1,76 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Iik-p2-VWe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="lnS-N1-mDx">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Heroes List View Controller-->
         <scene sceneID="7LY-8Z-ljU">
             <objects>
-                <tableViewController storyboardIdentifier="ViewController" id="Iik-p2-VWe" customClass="ViewController" customModule="FunctionalMarvel" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ViewController" id="Iik-p2-VWe" customClass="HeroesListViewController" customModule="FunctionalMarvel" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="B9h-Zw-MgB">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </tableView>
+                    <navigationItem key="navigationItem" id="soA-cc-x39">
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="keJ-Qx-VjF"/>
+                    </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="rightBarButton" destination="keJ-Qx-VjF" id="9Y1-YM-2lc"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bHv-k1-QPu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1148" y="-51"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Mf8-AV-yqS">
+            <objects>
+                <viewController id="lnS-N1-mDx" customClass="ViewController" customModule="FunctionalMarvel" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Iio-2a-uiZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="JHt-zH-UOh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Y2T-Tx-wMB">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y30-a6-L6K">
+                                <rect key="frame" x="277" y="285" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="y30-a6-L6K" firstAttribute="centerY" secondItem="Y2T-Tx-wMB" secondAttribute="centerY" id="bGI-71-nET"/>
+                            <constraint firstItem="y30-a6-L6K" firstAttribute="centerX" secondItem="Y2T-Tx-wMB" secondAttribute="centerX" id="cTm-BC-hB3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="button" destination="y30-a6-L6K" id="T3O-XI-ddk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pnA-6e-ub1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-299" y="-51"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="pVf-HW-xg3">
+            <objects>
+                <navigationController storyboardIdentifier="HeroListNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="xZ8-7X-fPW" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="a05-0R-AVY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Iik-p2-VWe" kind="relationship" relationship="rootViewController" id="aRF-xS-Cev"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kof-cR-5cZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="336" y="-51"/>
         </scene>

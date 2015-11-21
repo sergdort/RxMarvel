@@ -9,10 +9,7 @@
 import UIKit
 import RxSwift
 
-class RxTableViewCell: UITableViewCell {
-   
-   @IBOutlet weak var cellImageView: UIImageView!
-   @IBOutlet weak var label: UILabel!
+class RxTableViewCell<ViewModelType>: UITableViewCell {
    
    let onPrepareForReuse:Observable<Void> = PublishSubject()
    
@@ -21,5 +18,10 @@ class RxTableViewCell: UITableViewCell {
       (self.onPrepareForReuse as? PublishSubject<Void>)?.on(.Next())
    }
    
+   var rx_viewModel: ObserverOf<ViewModelType> {
+      return ObserverOf { event in
+//         This is base class implementation
+      }
+   }
 }
 

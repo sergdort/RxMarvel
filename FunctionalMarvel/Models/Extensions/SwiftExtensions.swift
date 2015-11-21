@@ -51,3 +51,9 @@ extension String {
       return hash as String
    }
 }
+
+extension UIApplication {
+   static var appDelegate:AppDelegate {
+      return UIApplication.sharedApplication().delegate as! AppDelegate
+   }
+}

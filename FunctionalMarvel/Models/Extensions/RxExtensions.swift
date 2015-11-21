@@ -9,12 +9,15 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import SDWebImage
 
 infix operator <-> {
 }
 
 infix operator <~ {
+}
 
+infix operator ~> {
 }
 
 // Two way binding operator between control property and variable, that's all it takes {
@@ -39,8 +42,13 @@ func <~ <T>(property: ObserverOf<T>, variable: Variable<T>) -> Disposable {
       .bindTo(property)
 }
 
+func ~> <T>(variable: Variable<T>, property: ObserverOf<T>) -> Disposable {
+   return variable
+      .bindTo(property)
+}
+
 extension UIImageView {
-   var rx_URL:ObserverOf<NSURL> {
+   var rx_imageURL:ObserverOf<NSURL> {
       return ObserverOf { [weak self] event in
          switch event {
          case .Next(let value):

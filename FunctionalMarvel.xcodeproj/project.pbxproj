@@ -13,7 +13,7 @@
 		846AE68F1BC5000F000A3739 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 846AE68E1BC5000F000A3739 /* Assets.xcassets */; };
 		846AE6921BC5000F000A3739 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846AE6901BC5000F000A3739 /* LaunchScreen.storyboard */; };
 		846AE69D1BC5000F000A3739 /* FunctionalMarvelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE69C1BC5000F000A3739 /* FunctionalMarvelTests.swift */; };
-		846AE6AD1BC5028F000A3739 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6AC1BC5028F000A3739 /* ViewController.swift */; };
+		846AE6AD1BC5028F000A3739 /* HeroesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6AC1BC5028F000A3739 /* HeroesListViewController.swift */; };
 		846AE6B41BC502DE000A3739 /* SwiftExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6B31BC502DE000A3739 /* SwiftExtensions.swift */; };
 		846AE6BD1BC50D05000A3739 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6BC1BC50D05000A3739 /* Hero.swift */; };
 		846AE6BF1BC50D44000A3739 /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6BE1BC50D44000A3739 /* Thumbnail.swift */; };
@@ -22,10 +22,18 @@
 		846AE6C61BC51E20000A3739 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6C51BC51E20000A3739 /* EndPoint.swift */; };
 		846AE6C81BC5257B000A3739 /* RxExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6C71BC5257B000A3739 /* RxExtensions.swift */; };
 		846AE6CC1BC64A58000A3739 /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6CB1BC64A58000A3739 /* Pagination.swift */; };
-		846AE6CE1BC64D71000A3739 /* HeroListCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6CD1BC64D71000A3739 /* HeroListCellFactory.swift */; };
+		846AE6CE1BC64D71000A3739 /* BindableCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6CD1BC64D71000A3739 /* BindableCellFactory.swift */; };
 		846AE6D01BC64E18000A3739 /* HeroListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6CF1BC64E18000A3739 /* HeroListViewModel.swift */; };
-		846AE6D61BC65632000A3739 /* RxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6D51BC65632000A3739 /* RxTableViewCell.swift */; };
-		846AE6D81BC6ADB6000A3739 /* RxTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846AE6D71BC6ADB6000A3739 /* RxTableViewCell.xib */; };
+		847BE0451BFF53D100D12856 /* UIProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE0441BFF53D100D12856 /* UIProtocols.swift */; };
+		847BE0471BFF550800D12856 /* HeroListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE0461BFF550800D12856 /* HeroListTableViewCell.swift */; };
+		847BE0491BFF551F00D12856 /* HeroListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 847BE0481BFF551F00D12856 /* HeroListTableViewCell.xib */; };
+		847BE04B1BFF5C2000D12856 /* ViewModelProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE04A1BFF5C2000D12856 /* ViewModelProtocols.swift */; };
+		847BE04E1BFFAEAA00D12856 /* RxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE04D1BFFAEAA00D12856 /* RxTableViewCell.swift */; };
+		847BE0501BFFAECF00D12856 /* RxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE04F1BFFAECF00D12856 /* RxViewController.swift */; };
+		847BE0521BFFB28800D12856 /* RxTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE0511BFFB28800D12856 /* RxTableViewController.swift */; };
+		847BE0541BFFB91E00D12856 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE0531BFFB91E00D12856 /* ViewController.swift */; };
+		847BE0571BFFB99600D12856 /* Segue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE0561BFFB99600D12856 /* Segue.swift */; };
+		847BE05A1BFFCACA00D12856 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE0591BFFCACA00D12856 /* ErrorHandler.swift */; };
 		84DCC7CB1BC945060035DD7E /* Batch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DCC7CA1BC945060035DD7E /* Batch.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,7 +59,7 @@
 		846AE6981BC5000F000A3739 /* FunctionalMarvelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FunctionalMarvelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		846AE69C1BC5000F000A3739 /* FunctionalMarvelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalMarvelTests.swift; sourceTree = "<group>"; };
 		846AE69E1BC5000F000A3739 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		846AE6AC1BC5028F000A3739 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		846AE6AC1BC5028F000A3739 /* HeroesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroesListViewController.swift; sourceTree = "<group>"; };
 		846AE6B31BC502DE000A3739 /* SwiftExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftExtensions.swift; sourceTree = "<group>"; };
 		846AE6B51BC50500000A3739 /* FunctionalMarvel-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "FunctionalMarvel-Bridging-Header.h"; path = "Models/Extensions/FunctionalMarvel-Bridging-Header.h"; sourceTree = "<group>"; };
 		846AE6B91BC50B61000A3739 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -62,10 +70,18 @@
 		846AE6C51BC51E20000A3739 /* EndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		846AE6C71BC5257B000A3739 /* RxExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxExtensions.swift; sourceTree = "<group>"; };
 		846AE6CB1BC64A58000A3739 /* Pagination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pagination.swift; sourceTree = "<group>"; };
-		846AE6CD1BC64D71000A3739 /* HeroListCellFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroListCellFactory.swift; sourceTree = "<group>"; };
+		846AE6CD1BC64D71000A3739 /* BindableCellFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindableCellFactory.swift; sourceTree = "<group>"; };
 		846AE6CF1BC64E18000A3739 /* HeroListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroListViewModel.swift; sourceTree = "<group>"; };
-		846AE6D51BC65632000A3739 /* RxTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxTableViewCell.swift; sourceTree = "<group>"; };
-		846AE6D71BC6ADB6000A3739 /* RxTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RxTableViewCell.xib; sourceTree = "<group>"; };
+		847BE0441BFF53D100D12856 /* UIProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIProtocols.swift; sourceTree = "<group>"; };
+		847BE0461BFF550800D12856 /* HeroListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroListTableViewCell.swift; sourceTree = "<group>"; };
+		847BE0481BFF551F00D12856 /* HeroListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeroListTableViewCell.xib; sourceTree = "<group>"; };
+		847BE04A1BFF5C2000D12856 /* ViewModelProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelProtocols.swift; sourceTree = "<group>"; };
+		847BE04D1BFFAEAA00D12856 /* RxTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxTableViewCell.swift; sourceTree = "<group>"; };
+		847BE04F1BFFAECF00D12856 /* RxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxViewController.swift; sourceTree = "<group>"; };
+		847BE0511BFFB28800D12856 /* RxTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxTableViewController.swift; sourceTree = "<group>"; };
+		847BE0531BFFB91E00D12856 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		847BE0561BFFB99600D12856 /* Segue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Segue.swift; sourceTree = "<group>"; };
+		847BE0591BFFCACA00D12856 /* ErrorHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		84DCC7CA1BC945060035DD7E /* Batch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Batch.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +127,9 @@
 		846AE6861BC5000F000A3739 /* FunctionalMarvel */ = {
 			isa = PBXGroup;
 			children = (
+				847BE0551BFFB94400D12856 /* Navigation */,
+				847BE04C1BFFAD6800D12856 /* RxUI */,
+				847BE0431BFF538D00D12856 /* Protocols */,
 				846AE6AB1BC50244000A3739 /* Resources */,
 				846AE6CA1BC64A35000A3739 /* ViewModels */,
 				846AE6A91BC50208000A3739 /* Views */,
@@ -138,7 +157,8 @@
 		846AE6A71BC501FB000A3739 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				846AE6AC1BC5028F000A3739 /* ViewController.swift */,
+				846AE6AC1BC5028F000A3739 /* HeroesListViewController.swift */,
+				847BE0531BFFB91E00D12856 /* ViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -146,6 +166,7 @@
 		846AE6A81BC50202000A3739 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				847BE0581BFFCAAA00D12856 /* Servises */,
 				846AE6C01BC51738000A3739 /* API */,
 				846AE6BB1BC50CDE000A3739 /* Entities */,
 				846AE6B21BC502BF000A3739 /* Extensions */,
@@ -201,7 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				846AE6CB1BC64A58000A3739 /* Pagination.swift */,
-				846AE6CD1BC64D71000A3739 /* HeroListCellFactory.swift */,
+				846AE6CD1BC64D71000A3739 /* BindableCellFactory.swift */,
 				846AE6CF1BC64E18000A3739 /* HeroListViewModel.swift */,
 			);
 			path = ViewModels;
@@ -210,11 +231,46 @@
 		846AE6D11BC655D8000A3739 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				846AE6D51BC65632000A3739 /* RxTableViewCell.swift */,
-				846AE6D71BC6ADB6000A3739 /* RxTableViewCell.xib */,
+				847BE0461BFF550800D12856 /* HeroListTableViewCell.swift */,
+				847BE0481BFF551F00D12856 /* HeroListTableViewCell.xib */,
 			);
 			name = Cell;
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		847BE0431BFF538D00D12856 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				847BE0441BFF53D100D12856 /* UIProtocols.swift */,
+				847BE04A1BFF5C2000D12856 /* ViewModelProtocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		847BE04C1BFFAD6800D12856 /* RxUI */ = {
+			isa = PBXGroup;
+			children = (
+				847BE04D1BFFAEAA00D12856 /* RxTableViewCell.swift */,
+				847BE04F1BFFAECF00D12856 /* RxViewController.swift */,
+				847BE0511BFFB28800D12856 /* RxTableViewController.swift */,
+			);
+			path = RxUI;
+			sourceTree = "<group>";
+		};
+		847BE0551BFFB94400D12856 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				847BE0561BFFB99600D12856 /* Segue.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		847BE0581BFFCAAA00D12856 /* Servises */ = {
+			isa = PBXGroup;
+			children = (
+				847BE0591BFFCACA00D12856 /* ErrorHandler.swift */,
+			);
+			name = Servises;
 			sourceTree = "<group>";
 		};
 		E7A2BB418A1B76A81BB6C238 /* Pods */ = {
@@ -319,7 +375,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				846AE6921BC5000F000A3739 /* LaunchScreen.storyboard in Resources */,
-				846AE6D81BC6ADB6000A3739 /* RxTableViewCell.xib in Resources */,
+				847BE0491BFF551F00D12856 /* HeroListTableViewCell.xib in Resources */,
 				846AE68F1BC5000F000A3739 /* Assets.xcassets in Resources */,
 				846AE68D1BC5000F000A3739 /* Main.storyboard in Resources */,
 			);
@@ -389,17 +445,25 @@
 			files = (
 				84DCC7CB1BC945060035DD7E /* Batch.swift in Sources */,
 				846AE6C41BC51D74000A3739 /* RxAlamofire.swift in Sources */,
-				846AE6AD1BC5028F000A3739 /* ViewController.swift in Sources */,
+				846AE6AD1BC5028F000A3739 /* HeroesListViewController.swift in Sources */,
+				847BE0471BFF550800D12856 /* HeroListTableViewCell.swift in Sources */,
 				846AE6881BC5000F000A3739 /* AppDelegate.swift in Sources */,
 				846AE6B41BC502DE000A3739 /* SwiftExtensions.swift in Sources */,
 				846AE6D01BC64E18000A3739 /* HeroListViewModel.swift in Sources */,
-				846AE6CE1BC64D71000A3739 /* HeroListCellFactory.swift in Sources */,
-				846AE6D61BC65632000A3739 /* RxTableViewCell.swift in Sources */,
+				846AE6CE1BC64D71000A3739 /* BindableCellFactory.swift in Sources */,
 				846AE6C81BC5257B000A3739 /* RxExtensions.swift in Sources */,
+				847BE04B1BFF5C2000D12856 /* ViewModelProtocols.swift in Sources */,
+				847BE0541BFFB91E00D12856 /* ViewController.swift in Sources */,
 				846AE6BF1BC50D44000A3739 /* Thumbnail.swift in Sources */,
+				847BE04E1BFFAEAA00D12856 /* RxTableViewCell.swift in Sources */,
+				847BE0521BFFB28800D12856 /* RxTableViewController.swift in Sources */,
 				846AE6C61BC51E20000A3739 /* EndPoint.swift in Sources */,
+				847BE05A1BFFCACA00D12856 /* ErrorHandler.swift in Sources */,
 				846AE6CC1BC64A58000A3739 /* Pagination.swift in Sources */,
+				847BE0501BFFAECF00D12856 /* RxViewController.swift in Sources */,
 				846AE6C21BC51784000A3739 /* Marvel.swift in Sources */,
+				847BE0451BFF53D100D12856 /* UIProtocols.swift in Sources */,
+				847BE0571BFFB99600D12856 /* Segue.swift in Sources */,
 				846AE6BD1BC50D05000A3739 /* Hero.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
