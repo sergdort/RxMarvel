@@ -9,7 +9,7 @@
 import Foundation
 
 /**
-Abstracts the work that needs to be peformed on a specific `dispatch_queue_t`. You can also pass a serial dispatch queue, it shouldn't cause any problems.
+Abstracts the work that needs to be performed on a specific `dispatch_queue_t`. You can also pass a serial dispatch queue, it shouldn't cause any problems.
 
 This scheduler is suitable when some work needs to be performed in background.
 */
@@ -17,7 +17,7 @@ public class ConcurrentDispatchQueueScheduler: SchedulerType {
     public typealias TimeInterval = NSTimeInterval
     public typealias Time = NSDate
     
-    private let queue : dispatch_queue_t
+    private let _queue : dispatch_queue_t
     
     public var now : NSDate {
         get {
@@ -26,7 +26,7 @@ public class ConcurrentDispatchQueueScheduler: SchedulerType {
     }
     
     // leeway for scheduling timers
-    var leeway: Int64 = 0
+    private var _leeway: Int64 = 0
     
     /**
     Constructs new `ConcurrentDispatchQueueScheduler` that wraps `queue`.
@@ -34,7 +34,7 @@ public class ConcurrentDispatchQueueScheduler: SchedulerType {
     - parameter queue: Target dispatch queue.
     */
     public init(queue: dispatch_queue_t) {
-        self.queue = queue
+        _queue = queue
     }
     
     /**
@@ -77,7 +77,7 @@ public class ConcurrentDispatchQueueScheduler: SchedulerType {
     func scheduleInternal<StateType>(state: StateType, action: StateType -> Disposable) -> Disposable {
         let cancel = SingleAssignmentDisposable()
         
-        dispatch_async(self.queue) {
+        dispatch_async(_queue) {
             if cancel.disposed {
                 return
             }
@@ -97,7 +97,7 @@ public class ConcurrentDispatchQueueScheduler: SchedulerType {
     - returns: The disposable object used to cancel the scheduled action (best effort).
     */
     public final func scheduleRelative<StateType>(state: StateType, dueTime: NSTimeInterval, action: (StateType) -> Disposable) -> Disposable {
-        let timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, self.queue)
+        let timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, _queue)
         
         let dispatchInterval = MainScheduler.convertTimeIntervalToDispatchTime(dueTime)
         
@@ -129,7 +129,7 @@ public class ConcurrentDispatchQueueScheduler: SchedulerType {
     - returns: The disposable object used to cancel the scheduled action (best effort).
     */
     public func schedulePeriodic<StateType>(state: StateType, startAfter: TimeInterval, period: TimeInterval, action: (StateType) -> StateType) -> Disposable {
-        let timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, self.queue)
+        let timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, _queue)
         
         let initial = MainScheduler.convertTimeIntervalToDispatchTime(startAfter)
         let dispatchInterval = MainScheduler.convertTimeIntervalToDispatchInterval(period)

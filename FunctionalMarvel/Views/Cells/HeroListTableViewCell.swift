@@ -13,8 +13,8 @@ class HeroListTableViewCell: RxTableViewCell<VariableProvidable> {
    @IBOutlet weak var cellImageView: UIImageView!
    @IBOutlet weak var label: UILabel!
    
-   override var rx_viewModel: ObserverOf<VariableProvidable> {
-      return ObserverOf { [weak self] event in
+   override var rx_viewModel: AnyObserver<VariableProvidable> {
+      return AnyObserver { [weak self] event in
          MainScheduler.ensureExecutingOnScheduler()
          
          switch event {

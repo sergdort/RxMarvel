@@ -48,10 +48,10 @@ class HeroesListViewController: RxTableViewController {
       let nextPageTriger = Pagination.nextPageTriger(tableView)
       Marvel.heroList(heroViewModels.value.count,loadNextBatch: nextPageTriger)
          .map(HeroListViewModel.transform)
-         .subscribe(next: { [weak self] (heroes) -> Void in
+         .subscribe(onNext: { [weak self] (heroes) -> Void in
             self?.heroViewModels.value.appendContentsOf(heroes)
             },
-            error: ErrorHandler.showAlert)
+            onError: ErrorHandler.showAlert)
          .addDisposableTo(disposableBag)
    }
    

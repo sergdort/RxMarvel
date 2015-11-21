@@ -13,34 +13,54 @@ let RxCompositeFailures = "RxCompositeFailures"
 
 /**
 Generic Rx error codes.
-
-- Unknown: Unknown error occured
-- Cast: Error during Casting
-- Disposed: Performing an action on disposed object
 */
-public enum RxErrorCode : Int {
-    case Unknown   = 0
-    case Cast      = 2
-    case Disposed  = 3
+public enum RxError
+    : ErrorType
+    , CustomDebugStringConvertible {
+    /**
+    Unknown error occured.
+    */
+    case Unknown
+    /**
+    Performing an action on disposed object.
+    */
+    case Disposed(object: AnyObject)
+    /**
+    Aritmetic overflow error.
+    */
+    case Overflow
+    /**
+    Argument out of range error.
+    */
+    case ArgumentOutOfRange
+    /**
+    Sequence doesn't contain any element.
+    */
+    case NoElements
+    /**
+    Sequence contains more then one element.
+    */
+    case MoreThanOneElement
 }
 
-/**
-Singleton instances of RxErrors
-*/
-public struct RxError {
+public extension RxError {
     /**
-    Singleton instance of Unknown Error
+     A textual representation of `self`, suitable for debugging.
     */
-    public static let UnknownError  = NSError(domain: RxErrorDomain, code: RxErrorCode.Unknown.rawValue, userInfo: nil)
-
-    /**
-    Singleton instance of error during casting
-    */
-    public static let CastError     = NSError(domain: RxErrorDomain, code: RxErrorCode.Cast.rawValue, userInfo: nil)
-
-    /**
-    Singleton instance of doing something on a disposed object
-    */
-    public static let DisposedError = NSError(domain: RxErrorDomain, code: RxErrorCode.Disposed.rawValue, userInfo: nil)
-
+    public var debugDescription: String {
+        switch self {
+        case .Unknown:
+            return "Unknown error occured."
+        case .Disposed(let object):
+            return "Object `\(object)` was already disposed."
+        case .Overflow:
+            return "Arithmetic overflow occured."
+        case .ArgumentOutOfRange:
+            return "Argument out of range."
+        case .NoElements:
+            return "Sequence doesn't contain any element."
+        case .MoreThanOneElement:
+            return "Sequence contains more then one element."
+        }
+    }
 }

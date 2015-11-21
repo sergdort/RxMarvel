@@ -5,10 +5,10 @@ use_frameworks!
 inhibit_all_warnings!
 
 target 'FunctionalMarvel' do
-pod 'Alamofire', '~> 2.0'
+pod 'RxAlamofire', '= 0.3.3'
 pod 'Argo'
-pod 'RxSwift', '= 2.0.0-alpha.4'
-pod 'RxCocoa', :git => 'https://github.com/ReactiveX/RxSwift.git', :branch => 'rxswift-2.0'
+pod 'RxSwift', '= 2.0.0-beta.3'
+pod 'RxCocoa', '= 2.0.0-beta.3'
 pod 'Curry'
 pod 'Runes'
 pod 'SDWebImage'

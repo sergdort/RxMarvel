@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import RxAlamofire
 import RxSwift
 import Runes
 import Argo
@@ -42,7 +43,7 @@ struct Marvel {
             .GET,
             EndPoint.Characters.path(),
             parameters: self.defaultParams + (params ?? [:]))
-         .rx_responseJSON()
+         .rx_JSON()
          .observeOn(decodeScheduler)
          .map(HeroDecoder.decode)
          .observeOn(MainScheduler.sharedInstance)

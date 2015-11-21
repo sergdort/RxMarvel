@@ -18,49 +18,74 @@ and pending work.
 
 That means that enqueued work could possibly be executed later on a different thread.
 */
-class AsyncLock : Disposable {
+class AsyncLock<I: InvocableType>
+    : Disposable
+    , Lock
+    , SynchronizedDisposeType {
     typealias Action = () -> Void
     
-    private var lock = NSRecursiveLock()
+    var _lock = SpinLock()
     
-    private var queue: Queue<Action> = Queue(capacity: 2)
-    private var isAcquired: Bool = false
-    private var hasFaulted: Bool = false
-    
-    init() {
-        
+    private var _queue: Queue<I> = Queue(capacity: 0)
+
+    private var _isExecuting: Bool = false
+    private var _hasFaulted: Bool = false
+
+    // lock {
+    func lock() {
+        _lock.lock()
     }
-    
-    func wait(action: Action) {
-        let isOwner = lock.calculateLocked { () -> Bool in
-            if self.hasFaulted {
-                return false
+
+    func unlock() {
+        _lock.unlock()
+    }
+    // }
+
+    private func enqueue(action: I) -> I? {
+        _lock.lock(); defer { _lock.unlock() } // {
+            if _hasFaulted {
+                return nil
             }
-            
-            self.queue.enqueue(action)
-            let isOwner = !self.isAcquired
-            self.isAcquired = true
-            
-            return isOwner
-        }
+
+            if _isExecuting {
+                _queue.enqueue(action)
+                return nil
+            }
+
+            _isExecuting = true
+
+            return action
+        // }
+    }
+
+    private func dequeue() -> I? {
+        _lock.lock(); defer { _lock.unlock() } // {
+            if _queue.count > 0 {
+                return _queue.dequeue()
+            }
+            else {
+                _isExecuting = false
+                return nil
+            }
+        // }
+    }
+
+    func invoke(action: I) {
+        let firstEnqueuedAction = enqueue(action)
         
-        if !isOwner {
+        if let firstEnqueuedAction = firstEnqueuedAction {
+            firstEnqueuedAction.invoke()
+        }
+        else {
+            // action is enqueued, it's somebody else's concern now
             return
         }
         
         while true {
-            let nextAction = lock.calculateLocked { () -> Action? in
-                if self.queue.count > 0 {
-                    return self.queue.dequeue()
-                }
-                else {
-                    self.isAcquired = false
-                    return nil
-                }
-            }
-            
+            let nextAction = dequeue()
+
             if let nextAction = nextAction {
-                nextAction()
+                nextAction.invoke()
             }
             else {
                 return
@@ -69,9 +94,11 @@ class AsyncLock : Disposable {
     }
     
     func dispose() {
-        lock.performLocked { oldState in
-            self.queue = Queue(capacity: 0)
-            self.hasFaulted = true
-        }
+        synchronizedDispose()
+    }
+
+    func _synchronized_dispose() {
+        _queue = Queue(capacity: 0)
+        _hasFaulted = true
     }
 }

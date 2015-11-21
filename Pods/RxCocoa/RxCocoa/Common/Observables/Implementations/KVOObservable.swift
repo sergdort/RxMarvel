@@ -11,8 +11,11 @@ import Foundation
 import RxSwift
 #endif
 
-class KVOObservable<Element> : _Producer<Element?>
-                             , KVOObservableProtocol {
+class KVOObservable<Element>
+    : ObservableType
+    , KVOObservableProtocol {
+    typealias E = Element?
+
     unowned var target: AnyObject
     var strongTarget: AnyObject?
     
@@ -30,7 +33,7 @@ class KVOObservable<Element> : _Producer<Element?>
         }
     }
     
-    override func run<O : ObserverType where O.E == Element?>(observer: O, cancel: Disposable, setSink: (Disposable) -> Void) -> Disposable {
+    func subscribe<O : ObserverType where O.E == Element?>(observer: O) -> Disposable {
         let observer = KVOObserver(parent: self) { (value) in
             if value as? NSNull != nil {
                 observer.on(.Next(nil))
@@ -99,7 +102,7 @@ func observeWeaklyKeyPathFor(
     
     let property = class_getProperty(object_getClass(target), propertyName);
     if property == nil {
-        return failWith(rxError(.KeyPathInvalid, "Object \(target) doesn't have property named `\(propertyName)`"))
+        return failWith(RxCocoaError.InvalidPropertyName(object: target, propertyName: propertyName))
     }
     let propertyAttributes = property_getAttributes(property);
     
@@ -109,7 +112,7 @@ func observeWeaklyKeyPathFor(
     
     // KVO recursion for value changes
     return propertyObservable
-        .map { (nextTarget: AnyObject?) -> Observable<AnyObject?> in
+        .flatMapLatest { (nextTarget: AnyObject?) -> Observable<AnyObject?> in
             if nextTarget == nil {
                return just(nil)
             }
@@ -118,7 +121,7 @@ func observeWeaklyKeyPathFor(
             let strongTarget: AnyObject? = weakTarget
             
             if nextObject == nil {
-                return failWith(rxError(.KeyPathInvalid, "Observed \(nextTarget) as property `\(propertyName)` on `\(strongTarget)` which is not `NSObject`."))
+                return failWith(RxCocoaError.InvalidObjectOnKeyPath(object: nextTarget!, sourceObject: strongTarget ?? NSNull(), propertyName: propertyName))
             }
 
             // if target is alive, then send change
@@ -139,7 +142,6 @@ func observeWeaklyKeyPathFor(
                 return nextElementsObservable
             }
         }
-        .switchLatest()
 }
 #endif
 

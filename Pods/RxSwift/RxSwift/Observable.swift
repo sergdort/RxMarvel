@@ -19,14 +19,14 @@ public class Observable<Element> : ObservableType {
     */
     public typealias E = Element
     
-    public init() {
+    init() {
 #if TRACE_RESOURCES
         OSAtomicIncrement32(&resourceCount)
 #endif
     }
     
     public func subscribe<O: ObserverType where O.E == E>(observer: O) -> Disposable {
-        return abstractMethod()
+        abstractMethod()
     }
     
     public func asObservable() -> Observable<E> {
@@ -37,5 +37,15 @@ public class Observable<Element> : ObservableType {
 #if TRACE_RESOURCES
         OSAtomicDecrement32(&resourceCount)
 #endif
+    }
+
+    // this is kind of ugly I know :(
+    // Swift compiler reports "Not supported yet" when trying to override protocol extensions, so ¯\_(ツ)_/¯
+
+    /**
+    Optimizations for map operator
+    */
+    internal func composeMap<R>(selector: Element throws -> R) -> Observable<R> {
+        return Map(source: self, selector: selector)
     }
 }

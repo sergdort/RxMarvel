@@ -18,7 +18,6 @@
 		846AE6BD1BC50D05000A3739 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6BC1BC50D05000A3739 /* Hero.swift */; };
 		846AE6BF1BC50D44000A3739 /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6BE1BC50D44000A3739 /* Thumbnail.swift */; };
 		846AE6C21BC51784000A3739 /* Marvel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6C11BC51784000A3739 /* Marvel.swift */; };
-		846AE6C41BC51D74000A3739 /* RxAlamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6C31BC51D74000A3739 /* RxAlamofire.swift */; };
 		846AE6C61BC51E20000A3739 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6C51BC51E20000A3739 /* EndPoint.swift */; };
 		846AE6C81BC5257B000A3739 /* RxExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6C71BC5257B000A3739 /* RxExtensions.swift */; };
 		846AE6CC1BC64A58000A3739 /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6CB1BC64A58000A3739 /* Pagination.swift */; };
@@ -66,7 +65,6 @@
 		846AE6BC1BC50D05000A3739 /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
 		846AE6BE1BC50D44000A3739 /* Thumbnail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
 		846AE6C11BC51784000A3739 /* Marvel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Marvel.swift; sourceTree = "<group>"; };
-		846AE6C31BC51D74000A3739 /* RxAlamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxAlamofire.swift; sourceTree = "<group>"; };
 		846AE6C51BC51E20000A3739 /* EndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		846AE6C71BC5257B000A3739 /* RxExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxExtensions.swift; sourceTree = "<group>"; };
 		846AE6CB1BC64A58000A3739 /* Pagination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pagination.swift; sourceTree = "<group>"; };
@@ -192,7 +190,6 @@
 		846AE6B21BC502BF000A3739 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				846AE6C31BC51D74000A3739 /* RxAlamofire.swift */,
 				846AE6B31BC502DE000A3739 /* SwiftExtensions.swift */,
 				846AE6C71BC5257B000A3739 /* RxExtensions.swift */,
 			);
@@ -444,7 +441,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				84DCC7CB1BC945060035DD7E /* Batch.swift in Sources */,
-				846AE6C41BC51D74000A3739 /* RxAlamofire.swift in Sources */,
 				846AE6AD1BC5028F000A3739 /* HeroesListViewController.swift in Sources */,
 				847BE0471BFF550800D12856 /* HeroListTableViewCell.swift in Sources */,
 				846AE6881BC5000F000A3739 /* AppDelegate.swift in Sources */,

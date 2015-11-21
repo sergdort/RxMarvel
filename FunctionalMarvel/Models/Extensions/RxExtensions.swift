@@ -26,9 +26,9 @@ func <-> <T>(property: ControlProperty<T>, variable: Variable<T>) -> Disposable 
    let bindToUIDisposable = variable
       .bindTo(property)
    let bindToVariable = property
-      .subscribe(next: { n in
+      .subscribe(onNext: { n in
          variable.value = n
-         }, completed:  {
+         }, onCompleted:  {
             bindToUIDisposable.dispose()
       })
    
@@ -37,19 +37,19 @@ func <-> <T>(property: ControlProperty<T>, variable: Variable<T>) -> Disposable 
 
 // One way binding operator
 
-func <~ <T>(property: ObserverOf<T>, variable: Variable<T>) -> Disposable {
+func <~ <T>(property: AnyObserver<T>, variable: Variable<T>) -> Disposable {
    return variable
       .bindTo(property)
 }
 
-func ~> <T>(variable: Variable<T>, property: ObserverOf<T>) -> Disposable {
+func ~> <T>(variable: Variable<T>, property: AnyObserver<T>) -> Disposable {
    return variable
       .bindTo(property)
 }
 
 extension UIImageView {
-   var rx_imageURL:ObserverOf<NSURL> {
-      return ObserverOf { [weak self] event in
+   var rx_imageURL:AnyObserver<NSURL> {
+      return AnyObserver { [weak self] event in
          switch event {
          case .Next(let value):
             self?.sd_setImageWithURL(value, completed: { [weak self] _ in

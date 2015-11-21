@@ -18,8 +18,8 @@ class RxTableViewCell<ViewModelType>: UITableViewCell {
       (self.onPrepareForReuse as? PublishSubject<Void>)?.on(.Next())
    }
    
-   var rx_viewModel: ObserverOf<ViewModelType> {
-      return ObserverOf { event in
+   var rx_viewModel: AnyObserver<ViewModelType> {
+      return AnyObserver { event in
 //         This is base class implementation
       }
    }

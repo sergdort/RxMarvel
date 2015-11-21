@@ -1,5 +1,5 @@
 //
-//  ObserverOf.swift
+//  AnyObserver.swift
 //  Rx
 //
 //  Created by Krunoslav Zaher on 2/28/15.
@@ -13,7 +13,7 @@ A type-erased `ObserverType`.
 
 Forwards operations to an arbitrary underlying observer with the same `Element` type, hiding the specifics of the underlying observer type.
 */
-public struct ObserverOf<Element> : ObserverType {
+public struct AnyObserver<Element> : ObserverType {
     /**
     The type of elements in sequence that observer can observe.
     */
@@ -41,9 +41,7 @@ public struct ObserverOf<Element> : ObserverType {
     - parameter observer: Observer that receives sequence events.
     */
     public init<O : ObserverType where O.E == Element>(_ observer: O) {
-        self.observer = { e in
-            return observer.on(e)
-        }
+        self.observer = observer.on
     }
     
     /**
@@ -54,6 +52,15 @@ public struct ObserverOf<Element> : ObserverType {
     public func on(event: Event<Element>) {
         return self.observer(event)
     }
+
+    /**
+     Erases type of observer and returns canonical observer.
+
+     - returns: type erased observer.
+     */
+    func asObserver() -> AnyObserver<E> {
+        return self
+    }
 }
 
 extension ObserverType {
@@ -62,7 +69,7 @@ extension ObserverType {
     
     - returns: type erased observer.
     */
-    func asObserver() -> ObserverOf<E> {
-        return ObserverOf(self)
+    func asObserver() -> AnyObserver<E> {
+        return AnyObserver(self)
     }
 }
