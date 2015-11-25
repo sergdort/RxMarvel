@@ -48,13 +48,15 @@ func ~> <T>(variable: Variable<T>, property: AnyObserver<T>) -> Disposable {
 }
 
 extension UIImageView {
-   var rx_imageURL:AnyObserver<NSURL> {
+
+   var rxex_imageURL:AnyObserver<NSURL> {
       return AnyObserver { [weak self] event in
          switch event {
          case .Next(let value):
             self?.sd_setImageWithURL(value, completed: { [weak self] _ in
                let transition = CATransition()
                transition.duration = 0.3
+               
                transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
                self?.layer.addAnimation(transition, forKey: kCATransition)
             })
@@ -62,6 +64,17 @@ extension UIImageView {
             break
          }
 
+      }
+   }
+}
+
+extension UITableView {
+   var rxex_nextPageTriger:Observable<Void> {
+      return self
+         .rx_contentOffset
+         .flatMap { [unowned self] (offset) -> Observable<Void> in
+            let shouldTriger = offset.y + self.frame.size.height + 40 > self.contentSize.height
+            return shouldTriger ? just() : empty()
       }
    }
 }

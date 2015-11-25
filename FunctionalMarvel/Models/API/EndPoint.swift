@@ -13,7 +13,7 @@ enum EndPoint:String {
    
    case Characters = "characters"
    
-   func path() -> String {
+   var path:String {
       switch self {
       case .Characters :
          return EndPoint.baseURL + self.rawValue

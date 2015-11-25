@@ -33,11 +33,32 @@ extension HeroListViewModel:VariableProvidable {
    }
 }
 
-extension HeroListViewModel:ReuseableViewClassProvidable {
-   var reusableViewClass:ReusableView.Type {
+extension HeroListViewModel:ReuseableViewClassProvider {
+   var reusableViewType:ReusableView.Type {
       return HeroListTableViewCell.self
    }
 }
+
+extension HeroListViewModel:NibProvidableClassProvider {
+   var nibProvidableType:NibProvidable.Type {
+      return HeroListTableViewCell.self
+   }
+}
+
+extension HeroListViewModel:Hashable {
+   var hashValue: Int {
+      return title.value.hash + thumbnailPath.value.hash
+   }
+   
+}
+
+func ==(lhs: HeroListViewModel, rhs: HeroListViewModel) -> Bool {
+   return lhs.thumbnailPath.value == rhs.thumbnailPath.value
+      && lhs.title.value == rhs.title.value
+      && lhs.thumbnailType == rhs.thumbnailType
+}
+
+
 
 
 

@@ -20,9 +20,9 @@ class HeroListTableViewCell: RxTableViewCell<VariableProvidable> {
          switch event {
          case .Next(let value):
             if let strong = self,
-               viewModel = value as? HeroListViewModel {
-               strong.label.rx_text <~ viewModel.title
-               strong.cellImageView.rx_imageURL <~ viewModel.thumbnailPath
+               vm = value as? HeroListViewModel {
+               strong.label.rx_text <~ vm.title
+               strong.cellImageView.rxex_imageURL <~ vm.thumbnailPath
             }
          default:
             break
@@ -30,6 +30,7 @@ class HeroListTableViewCell: RxTableViewCell<VariableProvidable> {
       }
    }
 }
+
 
 extension HeroListTableViewCell:ReusableView {
 }

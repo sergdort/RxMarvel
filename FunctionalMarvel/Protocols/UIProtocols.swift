@@ -7,9 +7,15 @@
 //
 
 import UIKit
+import RxSwift
 
 protocol ReusableView {
    static var reuseIdentifier:String {get}
+}
+
+protocol BindableView {
+   typealias V
+   var rx_viewModel: AnyObserver<V> {get}
 }
 
 extension ReusableView {

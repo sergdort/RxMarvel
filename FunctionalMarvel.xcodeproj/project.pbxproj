@@ -20,7 +20,6 @@
 		846AE6C21BC51784000A3739 /* Marvel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6C11BC51784000A3739 /* Marvel.swift */; };
 		846AE6C61BC51E20000A3739 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6C51BC51E20000A3739 /* EndPoint.swift */; };
 		846AE6C81BC5257B000A3739 /* RxExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6C71BC5257B000A3739 /* RxExtensions.swift */; };
-		846AE6CC1BC64A58000A3739 /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6CB1BC64A58000A3739 /* Pagination.swift */; };
 		846AE6CE1BC64D71000A3739 /* BindableCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6CD1BC64D71000A3739 /* BindableCellFactory.swift */; };
 		846AE6D01BC64E18000A3739 /* HeroListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6CF1BC64E18000A3739 /* HeroListViewModel.swift */; };
 		847BE0451BFF53D100D12856 /* UIProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE0441BFF53D100D12856 /* UIProtocols.swift */; };
@@ -33,7 +32,13 @@
 		847BE0541BFFB91E00D12856 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE0531BFFB91E00D12856 /* ViewController.swift */; };
 		847BE0571BFFB99600D12856 /* Segue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE0561BFFB99600D12856 /* Segue.swift */; };
 		847BE05A1BFFCACA00D12856 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE0591BFFCACA00D12856 /* ErrorHandler.swift */; };
+		847BE07D1C00A92400D12856 /* AppendableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE07C1C00A92400D12856 /* AppendableDataSource.swift */; };
+		847BE07F1C00C73200D12856 /* RxCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE07E1C00C73200D12856 /* RxCollectionViewCell.swift */; };
+		847BE0811C00CA3A00D12856 /* RxCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE0801C00CA3A00D12856 /* RxCollectionReusableView.swift */; };
 		84DCC7CB1BC945060035DD7E /* Batch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DCC7CA1BC945060035DD7E /* Batch.swift */; };
+		84E037121C044FC900AADF10 /* ModelProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E037111C044FC900AADF10 /* ModelProtocols.swift */; };
+		84E037251C04B61A00AADF10 /* HeroAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E037241C04B61A00AADF10 /* HeroAPI.swift */; };
+		84E037271C04BACF00AADF10 /* ParamKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E037261C04BACF00AADF10 /* ParamKeys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +72,6 @@
 		846AE6C11BC51784000A3739 /* Marvel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Marvel.swift; sourceTree = "<group>"; };
 		846AE6C51BC51E20000A3739 /* EndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		846AE6C71BC5257B000A3739 /* RxExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxExtensions.swift; sourceTree = "<group>"; };
-		846AE6CB1BC64A58000A3739 /* Pagination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pagination.swift; sourceTree = "<group>"; };
 		846AE6CD1BC64D71000A3739 /* BindableCellFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindableCellFactory.swift; sourceTree = "<group>"; };
 		846AE6CF1BC64E18000A3739 /* HeroListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroListViewModel.swift; sourceTree = "<group>"; };
 		847BE0441BFF53D100D12856 /* UIProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIProtocols.swift; sourceTree = "<group>"; };
@@ -80,7 +84,13 @@
 		847BE0531BFFB91E00D12856 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		847BE0561BFFB99600D12856 /* Segue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Segue.swift; sourceTree = "<group>"; };
 		847BE0591BFFCACA00D12856 /* ErrorHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
+		847BE07C1C00A92400D12856 /* AppendableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppendableDataSource.swift; sourceTree = "<group>"; };
+		847BE07E1C00C73200D12856 /* RxCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxCollectionViewCell.swift; sourceTree = "<group>"; };
+		847BE0801C00CA3A00D12856 /* RxCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxCollectionReusableView.swift; sourceTree = "<group>"; };
 		84DCC7CA1BC945060035DD7E /* Batch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Batch.swift; sourceTree = "<group>"; };
+		84E037111C044FC900AADF10 /* ModelProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelProtocols.swift; sourceTree = "<group>"; };
+		84E037241C04B61A00AADF10 /* HeroAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroAPI.swift; sourceTree = "<group>"; };
+		84E037261C04BACF00AADF10 /* ParamKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParamKeys.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,7 +138,6 @@
 				847BE0551BFFB94400D12856 /* Navigation */,
 				847BE04C1BFFAD6800D12856 /* RxUI */,
 				847BE0431BFF538D00D12856 /* Protocols */,
-				846AE6AB1BC50244000A3739 /* Resources */,
 				846AE6CA1BC64A35000A3739 /* ViewModels */,
 				846AE6A91BC50208000A3739 /* Views */,
 				846AE6A81BC50202000A3739 /* Models */,
@@ -180,13 +189,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		846AE6AB1BC50244000A3739 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		846AE6B21BC502BF000A3739 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +213,8 @@
 			children = (
 				846AE6C11BC51784000A3739 /* Marvel.swift */,
 				846AE6C51BC51E20000A3739 /* EndPoint.swift */,
+				84E037261C04BACF00AADF10 /* ParamKeys.swift */,
+				84E037241C04B61A00AADF10 /* HeroAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -218,9 +222,9 @@
 		846AE6CA1BC64A35000A3739 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				846AE6CB1BC64A58000A3739 /* Pagination.swift */,
 				846AE6CD1BC64D71000A3739 /* BindableCellFactory.swift */,
 				846AE6CF1BC64E18000A3739 /* HeroListViewModel.swift */,
+				847BE07C1C00A92400D12856 /* AppendableDataSource.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -240,6 +244,7 @@
 			children = (
 				847BE0441BFF53D100D12856 /* UIProtocols.swift */,
 				847BE04A1BFF5C2000D12856 /* ViewModelProtocols.swift */,
+				84E037111C044FC900AADF10 /* ModelProtocols.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -248,6 +253,8 @@
 			isa = PBXGroup;
 			children = (
 				847BE04D1BFFAEAA00D12856 /* RxTableViewCell.swift */,
+				847BE07E1C00C73200D12856 /* RxCollectionViewCell.swift */,
+				847BE0801C00CA3A00D12856 /* RxCollectionReusableView.swift */,
 				847BE04F1BFFAECF00D12856 /* RxViewController.swift */,
 				847BE0511BFFB28800D12856 /* RxTableViewController.swift */,
 			);
@@ -444,22 +451,27 @@
 				846AE6AD1BC5028F000A3739 /* HeroesListViewController.swift in Sources */,
 				847BE0471BFF550800D12856 /* HeroListTableViewCell.swift in Sources */,
 				846AE6881BC5000F000A3739 /* AppDelegate.swift in Sources */,
+				847BE07F1C00C73200D12856 /* RxCollectionViewCell.swift in Sources */,
 				846AE6B41BC502DE000A3739 /* SwiftExtensions.swift in Sources */,
 				846AE6D01BC64E18000A3739 /* HeroListViewModel.swift in Sources */,
 				846AE6CE1BC64D71000A3739 /* BindableCellFactory.swift in Sources */,
+				84E037121C044FC900AADF10 /* ModelProtocols.swift in Sources */,
 				846AE6C81BC5257B000A3739 /* RxExtensions.swift in Sources */,
 				847BE04B1BFF5C2000D12856 /* ViewModelProtocols.swift in Sources */,
 				847BE0541BFFB91E00D12856 /* ViewController.swift in Sources */,
 				846AE6BF1BC50D44000A3739 /* Thumbnail.swift in Sources */,
 				847BE04E1BFFAEAA00D12856 /* RxTableViewCell.swift in Sources */,
+				847BE0811C00CA3A00D12856 /* RxCollectionReusableView.swift in Sources */,
 				847BE0521BFFB28800D12856 /* RxTableViewController.swift in Sources */,
 				846AE6C61BC51E20000A3739 /* EndPoint.swift in Sources */,
 				847BE05A1BFFCACA00D12856 /* ErrorHandler.swift in Sources */,
-				846AE6CC1BC64A58000A3739 /* Pagination.swift in Sources */,
+				847BE07D1C00A92400D12856 /* AppendableDataSource.swift in Sources */,
 				847BE0501BFFAECF00D12856 /* RxViewController.swift in Sources */,
 				846AE6C21BC51784000A3739 /* Marvel.swift in Sources */,
 				847BE0451BFF53D100D12856 /* UIProtocols.swift in Sources */,
 				847BE0571BFFB99600D12856 /* Segue.swift in Sources */,
+				84E037271C04BACF00AADF10 /* ParamKeys.swift in Sources */,
+				84E037251C04B61A00AADF10 /* HeroAPI.swift in Sources */,
 				846AE6BD1BC50D05000A3739 /* Hero.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

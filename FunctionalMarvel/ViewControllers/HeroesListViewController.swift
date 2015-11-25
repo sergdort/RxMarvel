@@ -7,15 +7,17 @@
 //
 
 import UIKit
-import Alamofire
-import Argo
-import Runes
 import RxCocoa
 import RxSwift
 
 class HeroesListViewController: RxTableViewController {
+   private(set) lazy var dataSource:AppendableDataSource<HeroListViewModel> = {
+      return AppendableDataSource(items: [],
+         tableView: self.tableView,
+         cellFactory: BindableCellFactory.cell)
+   }()
    
-   let heroViewModels = Variable([HeroListViewModel]())
+   lazy var api:HeroAutoLoad.Type = HeroAPI.self
    
    @IBOutlet var rightBarButton: UIBarButtonItem!
    
@@ -36,22 +38,14 @@ class HeroesListViewController: RxTableViewController {
    
    private func setupTableView() {
       tableView.delegate = nil
-      tableView.dataSource = nil
-      tableView.registerNib(HeroListTableViewCell.nib,
-         forCellReuseIdentifier: HeroListTableViewCell.reuseIdentifier)
-      tableView
-         .rx_itemsWithCellFactory(heroViewModels)(cellFactory: BindableCellFactory.cell)
-         .addDisposableTo(disposableBag)
+      tableView.dataSource = dataSource
    }
    
    private func loadData() {
-      let nextPageTriger = Pagination.nextPageTriger(tableView)
-      Marvel.heroList(heroViewModels.value.count,loadNextBatch: nextPageTriger)
+      api.getItems(dataSource.items.count, limit: 40, search: nil,loadNextBatch: tableView.rxex_nextPageTriger)
          .map(HeroListViewModel.transform)
-         .subscribe(onNext: { [weak self] (heroes) -> Void in
-            self?.heroViewModels.value.appendContentsOf(heroes)
-            },
-            onError: ErrorHandler.showAlert)
+         .asDriver(onErrorJustReturn: [])
+         .driveNext(dataSource.appendItems(.Top))
          .addDisposableTo(disposableBag)
    }
    
