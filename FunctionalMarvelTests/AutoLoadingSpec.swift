@@ -26,9 +26,11 @@ class AutoLoadingSpec: QuickSpec {
       beforeSuite { () -> () in
          self.api.getableApi = HeroesGETMock.self
       }
+      
       afterSuite { () -> () in
          self.api.getableApi = Marvel.self
       }
+      
       describe("Load users") { () -> Void in
          
          it("should load users", closure: { () -> () in
@@ -47,9 +49,9 @@ class AutoLoadingSpec: QuickSpec {
                self.triger.onNext(())
             })
             
-            expect(heroes.count).toEventually(equal(2), timeout: 10)
+            expect(heroes.count)
+               .toEventually(equal(2), timeout: 10)
          })
-         
       }
    }
    

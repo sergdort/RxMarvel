@@ -12,6 +12,11 @@
 		84062B351C070E71009A44B9 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84062B341C070E71009A44B9 /* TestHelpers.swift */; };
 		84062B421C0717B9009A44B9 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE0591BFFCACA00D12856 /* ErrorHandler.swift */; };
 		84062B451C071907009A44B9 /* HeroesGETMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84062B441C071907009A44B9 /* HeroesGETMock.swift */; };
+		84062B511C074F2A009A44B9 /* DecodeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84062B501C074F29009A44B9 /* DecodeSpec.swift */; };
+		84062B531C074FA2009A44B9 /* Hero.json in Resources */ = {isa = PBXBuildFile; fileRef = 84062B521C074FA2009A44B9 /* Hero.json */; };
+		84062B561C07538B009A44B9 /* Batch.json in Resources */ = {isa = PBXBuildFile; fileRef = 84062B551C07538B009A44B9 /* Batch.json */; };
+		84062B581C07557E009A44B9 /* EndPointSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84062B571C07557E009A44B9 /* EndPointSpec.swift */; };
+		84062B5A1C07567A009A44B9 /* ParamsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84062B591C07567A009A44B9 /* ParamsKeys.swift */; };
 		846AE6881BC5000F000A3739 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6871BC5000F000A3739 /* AppDelegate.swift */; };
 		846AE68D1BC5000F000A3739 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846AE68B1BC5000F000A3739 /* Main.storyboard */; };
 		846AE68F1BC5000F000A3739 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 846AE68E1BC5000F000A3739 /* Assets.xcassets */; };
@@ -63,6 +68,11 @@
 		84062B321C070E55009A44B9 /* Heroes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Heroes.json; sourceTree = "<group>"; };
 		84062B341C070E71009A44B9 /* TestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		84062B441C071907009A44B9 /* HeroesGETMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroesGETMock.swift; sourceTree = "<group>"; };
+		84062B501C074F29009A44B9 /* DecodeSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecodeSpec.swift; sourceTree = "<group>"; };
+		84062B521C074FA2009A44B9 /* Hero.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Hero.json; sourceTree = "<group>"; };
+		84062B551C07538B009A44B9 /* Batch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Batch.json; sourceTree = "<group>"; };
+		84062B571C07557E009A44B9 /* EndPointSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPointSpec.swift; sourceTree = "<group>"; };
+		84062B591C07567A009A44B9 /* ParamsKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParamsKeys.swift; sourceTree = "<group>"; };
 		846AE6841BC5000F000A3739 /* FunctionalMarvel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FunctionalMarvel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		846AE6871BC5000F000A3739 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		846AE68C1BC5000F000A3739 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -131,6 +141,16 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
+		84062B541C074FBA009A44B9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				84062B321C070E55009A44B9 /* Heroes.json */,
+				84062B521C074FA2009A44B9 /* Hero.json */,
+				84062B551C07538B009A44B9 /* Batch.json */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		846AE67B1BC5000F000A3739 = {
 			isa = PBXGroup;
 			children = (
@@ -174,11 +194,14 @@
 		846AE69B1BC5000F000A3739 /* FunctionalMarvelTests */ = {
 			isa = PBXGroup;
 			children = (
+				84062B541C074FBA009A44B9 /* Resources */,
 				84062B431C0718DA009A44B9 /* Mocks */,
 				846AE69C1BC5000F000A3739 /* AutoLoadingSpec.swift */,
+				84062B501C074F29009A44B9 /* DecodeSpec.swift */,
 				846AE69E1BC5000F000A3739 /* Info.plist */,
-				84062B321C070E55009A44B9 /* Heroes.json */,
 				84062B341C070E71009A44B9 /* TestHelpers.swift */,
+				84062B571C07557E009A44B9 /* EndPointSpec.swift */,
+				84062B591C07567A009A44B9 /* ParamsKeys.swift */,
 			);
 			path = FunctionalMarvelTests;
 			sourceTree = "<group>";
@@ -418,6 +441,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				84062B331C070E55009A44B9 /* Heroes.json in Resources */,
+				84062B531C074FA2009A44B9 /* Hero.json in Resources */,
+				84062B561C07538B009A44B9 /* Batch.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,6 +581,9 @@
 			files = (
 				84062B451C071907009A44B9 /* HeroesGETMock.swift in Sources */,
 				846AE69D1BC5000F000A3739 /* AutoLoadingSpec.swift in Sources */,
+				84062B511C074F2A009A44B9 /* DecodeSpec.swift in Sources */,
+				84062B5A1C07567A009A44B9 /* ParamsKeys.swift in Sources */,
+				84062B581C07557E009A44B9 /* EndPointSpec.swift in Sources */,
 				84062B351C070E71009A44B9 /* TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
