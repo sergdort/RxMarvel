@@ -16,5 +16,14 @@ end
 
 target 'FunctionalMarvelTests' do
 
+pod 'Quick'
+pod 'Nimble'
+pod 'RxAlamofire', '= 0.3.3'
+pod 'Argo'
+pod 'RxSwift', '= 2.0.0-beta.3'
+pod 'RxCocoa', '= 2.0.0-beta.3'
+pod 'Curry'
+pod 'Runes'
+
 end
 

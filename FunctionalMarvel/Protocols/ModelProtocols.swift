@@ -14,7 +14,7 @@ protocol HeroAutoLoad {
 
 
 
-protocol JsonGETable {
+protocol JsonGET {
    static func getData(endpoint:EndPoint)(parameters:[String: AnyObject]?) -> Observable<AnyObject>
 }
 

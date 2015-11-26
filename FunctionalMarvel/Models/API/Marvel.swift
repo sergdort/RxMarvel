@@ -41,7 +41,7 @@ struct Marvel {
    }
 }
 
-extension Marvel:JsonGETable {
+extension Marvel:JsonGET{
    static func getData(endpoint: EndPoint)(parameters: [String : AnyObject]?) -> Observable<AnyObject> {
       return Alamofire
          .request(

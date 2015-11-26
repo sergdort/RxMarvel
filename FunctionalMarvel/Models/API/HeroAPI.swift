@@ -11,6 +11,7 @@ import RxSwift
 import Argo
 
 struct HeroAPI {
+   static var getableApi:JsonGET.Type = Marvel.self
    private static let decodeScheduler = SerialDispatchQueueScheduler(internalSerialQueueName: "com.FunctionalMarvel.HeroAPI.decode_queue")
    typealias HeroListResult = (heroes:Decoded<[Hero]>, batch:Decoded<Batch>)
    
@@ -48,7 +49,7 @@ struct HeroAPI {
    
    static func heroListSignal(params:[String:AnyObject]? = nil) -> Observable<HeroListResult> {
       
-      return Marvel
+      return getableApi
          .getData(.Characters)(parameters: params)
          .observeOn(decodeScheduler)
          .map(HeroDecoder.decode)

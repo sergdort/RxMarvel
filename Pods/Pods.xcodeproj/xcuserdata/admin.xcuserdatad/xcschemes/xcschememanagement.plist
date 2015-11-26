@@ -19,7 +19,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Nimble.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-FunctionalMarvel.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-FunctionalMarvelTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Quick.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -57,6 +72,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>2EDC2D19C08D16F1B9A5DE7328E36EF9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>385CDB7AB10E14BD9478E91AF266A2C0</key>
 		<dict>
 			<key>primary</key>
@@ -68,6 +88,11 @@
 			<true/>
 		</dict>
 		<key>432ECC54282C84882B482CCB4CF227FC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>53F7886B6DF810C48BD44238DA15AD0C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -88,6 +113,11 @@
 			<true/>
 		</dict>
 		<key>91D17935E8BB3E49EB7E4AEFD9886D28</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C5DB5104FED3C10F78978AFC810982B9</key>
 		<dict>
 			<key>primary</key>
 			<true/>

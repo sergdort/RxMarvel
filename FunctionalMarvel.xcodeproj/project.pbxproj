@@ -8,11 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		28F8F52AC20277A5336976DE /* Pods_FunctionalMarvel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FABA78C97E4F806B6A540F9 /* Pods_FunctionalMarvel.framework */; };
+		84062B331C070E55009A44B9 /* Heroes.json in Resources */ = {isa = PBXBuildFile; fileRef = 84062B321C070E55009A44B9 /* Heroes.json */; };
+		84062B351C070E71009A44B9 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84062B341C070E71009A44B9 /* TestHelpers.swift */; };
+		84062B421C0717B9009A44B9 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE0591BFFCACA00D12856 /* ErrorHandler.swift */; };
+		84062B451C071907009A44B9 /* HeroesGETMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84062B441C071907009A44B9 /* HeroesGETMock.swift */; };
 		846AE6881BC5000F000A3739 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6871BC5000F000A3739 /* AppDelegate.swift */; };
 		846AE68D1BC5000F000A3739 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846AE68B1BC5000F000A3739 /* Main.storyboard */; };
 		846AE68F1BC5000F000A3739 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 846AE68E1BC5000F000A3739 /* Assets.xcassets */; };
 		846AE6921BC5000F000A3739 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846AE6901BC5000F000A3739 /* LaunchScreen.storyboard */; };
-		846AE69D1BC5000F000A3739 /* FunctionalMarvelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE69C1BC5000F000A3739 /* FunctionalMarvelTests.swift */; };
+		846AE69D1BC5000F000A3739 /* AutoLoadingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE69C1BC5000F000A3739 /* AutoLoadingSpec.swift */; };
 		846AE6AD1BC5028F000A3739 /* HeroesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6AC1BC5028F000A3739 /* HeroesListViewController.swift */; };
 		846AE6B41BC502DE000A3739 /* SwiftExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6B31BC502DE000A3739 /* SwiftExtensions.swift */; };
 		846AE6BD1BC50D05000A3739 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6BC1BC50D05000A3739 /* Hero.swift */; };
@@ -31,7 +35,6 @@
 		847BE0521BFFB28800D12856 /* RxTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE0511BFFB28800D12856 /* RxTableViewController.swift */; };
 		847BE0541BFFB91E00D12856 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE0531BFFB91E00D12856 /* ViewController.swift */; };
 		847BE0571BFFB99600D12856 /* Segue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE0561BFFB99600D12856 /* Segue.swift */; };
-		847BE05A1BFFCACA00D12856 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE0591BFFCACA00D12856 /* ErrorHandler.swift */; };
 		847BE07D1C00A92400D12856 /* AppendableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE07C1C00A92400D12856 /* AppendableDataSource.swift */; };
 		847BE07F1C00C73200D12856 /* RxCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE07E1C00C73200D12856 /* RxCollectionViewCell.swift */; };
 		847BE0811C00CA3A00D12856 /* RxCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE0801C00CA3A00D12856 /* RxCollectionReusableView.swift */; };
@@ -39,6 +42,7 @@
 		84E037121C044FC900AADF10 /* ModelProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E037111C044FC900AADF10 /* ModelProtocols.swift */; };
 		84E037251C04B61A00AADF10 /* HeroAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E037241C04B61A00AADF10 /* HeroAPI.swift */; };
 		84E037271C04BACF00AADF10 /* ParamKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E037261C04BACF00AADF10 /* ParamKeys.swift */; };
+		F283DADFDB664F5F6A4C6289 /* Pods_FunctionalMarvelTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D77559F559C54CABDED94BCC /* Pods_FunctionalMarvelTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,15 +57,19 @@
 
 /* Begin PBXFileReference section */
 		05F7C1500E51A0A64E086581 /* Pods-FunctionalMarvel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FunctionalMarvel.release.xcconfig"; path = "Pods/Target Support Files/Pods-FunctionalMarvel/Pods-FunctionalMarvel.release.xcconfig"; sourceTree = "<group>"; };
+		29D911650BC301760CA68082 /* Pods-FunctionalMarvelTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FunctionalMarvelTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FunctionalMarvelTests/Pods-FunctionalMarvelTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5FABA78C97E4F806B6A540F9 /* Pods_FunctionalMarvel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FunctionalMarvel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D9EA6F6E0AED78D8A9F8E3E /* Pods-FunctionalMarvel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FunctionalMarvel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FunctionalMarvel/Pods-FunctionalMarvel.debug.xcconfig"; sourceTree = "<group>"; };
+		84062B321C070E55009A44B9 /* Heroes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Heroes.json; sourceTree = "<group>"; };
+		84062B341C070E71009A44B9 /* TestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
+		84062B441C071907009A44B9 /* HeroesGETMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroesGETMock.swift; sourceTree = "<group>"; };
 		846AE6841BC5000F000A3739 /* FunctionalMarvel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FunctionalMarvel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		846AE6871BC5000F000A3739 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		846AE68C1BC5000F000A3739 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		846AE68E1BC5000F000A3739 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		846AE6911BC5000F000A3739 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		846AE6981BC5000F000A3739 /* FunctionalMarvelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FunctionalMarvelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		846AE69C1BC5000F000A3739 /* FunctionalMarvelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalMarvelTests.swift; sourceTree = "<group>"; };
+		846AE69C1BC5000F000A3739 /* AutoLoadingSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLoadingSpec.swift; sourceTree = "<group>"; };
 		846AE69E1BC5000F000A3739 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		846AE6AC1BC5028F000A3739 /* HeroesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroesListViewController.swift; sourceTree = "<group>"; };
 		846AE6B31BC502DE000A3739 /* SwiftExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftExtensions.swift; sourceTree = "<group>"; };
@@ -91,6 +99,8 @@
 		84E037111C044FC900AADF10 /* ModelProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelProtocols.swift; sourceTree = "<group>"; };
 		84E037241C04B61A00AADF10 /* HeroAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroAPI.swift; sourceTree = "<group>"; };
 		84E037261C04BACF00AADF10 /* ParamKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParamKeys.swift; sourceTree = "<group>"; };
+		A5DC2EDE7FFC8EC0F2C66B9D /* Pods-FunctionalMarvelTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FunctionalMarvelTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FunctionalMarvelTests/Pods-FunctionalMarvelTests.release.xcconfig"; sourceTree = "<group>"; };
+		D77559F559C54CABDED94BCC /* Pods_FunctionalMarvelTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FunctionalMarvelTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,12 +116,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F283DADFDB664F5F6A4C6289 /* Pods_FunctionalMarvelTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		84062B431C0718DA009A44B9 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				84062B441C071907009A44B9 /* HeroesGETMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		846AE67B1BC5000F000A3739 = {
 			isa = PBXGroup;
 			children = (
@@ -155,8 +174,11 @@
 		846AE69B1BC5000F000A3739 /* FunctionalMarvelTests */ = {
 			isa = PBXGroup;
 			children = (
-				846AE69C1BC5000F000A3739 /* FunctionalMarvelTests.swift */,
+				84062B431C0718DA009A44B9 /* Mocks */,
+				846AE69C1BC5000F000A3739 /* AutoLoadingSpec.swift */,
 				846AE69E1BC5000F000A3739 /* Info.plist */,
+				84062B321C070E55009A44B9 /* Heroes.json */,
+				84062B341C070E71009A44B9 /* TestHelpers.swift */,
 			);
 			path = FunctionalMarvelTests;
 			sourceTree = "<group>";
@@ -282,6 +304,8 @@
 			children = (
 				6D9EA6F6E0AED78D8A9F8E3E /* Pods-FunctionalMarvel.debug.xcconfig */,
 				05F7C1500E51A0A64E086581 /* Pods-FunctionalMarvel.release.xcconfig */,
+				29D911650BC301760CA68082 /* Pods-FunctionalMarvelTests.debug.xcconfig */,
+				A5DC2EDE7FFC8EC0F2C66B9D /* Pods-FunctionalMarvelTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -290,6 +314,7 @@
 			isa = PBXGroup;
 			children = (
 				5FABA78C97E4F806B6A540F9 /* Pods_FunctionalMarvel.framework */,
+				D77559F559C54CABDED94BCC /* Pods_FunctionalMarvelTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -321,9 +346,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 846AE6A41BC5000F000A3739 /* Build configuration list for PBXNativeTarget "FunctionalMarvelTests" */;
 			buildPhases = (
+				D04D3EE78A12FCB04C289A2D /* Check Pods Manifest.lock */,
 				846AE6941BC5000F000A3739 /* Sources */,
 				846AE6951BC5000F000A3739 /* Frameworks */,
 				846AE6961BC5000F000A3739 /* Resources */,
+				ED27F0488BBBFE8BEE1CE41C /* Embed Pods Frameworks */,
+				6CA4EBEA3C85AB716A0977A6 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -389,6 +417,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84062B331C070E55009A44B9 /* Heroes.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +437,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6CA4EBEA3C85AB716A0977A6 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FunctionalMarvelTests/Pods-FunctionalMarvelTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B580F69B94969A82603CFC5E /* Copy Pods Resources */ = {
@@ -440,6 +484,36 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FunctionalMarvel/Pods-FunctionalMarvel-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D04D3EE78A12FCB04C289A2D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		ED27F0488BBBFE8BEE1CE41C /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FunctionalMarvelTests/Pods-FunctionalMarvelTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -452,6 +526,7 @@
 				847BE0471BFF550800D12856 /* HeroListTableViewCell.swift in Sources */,
 				846AE6881BC5000F000A3739 /* AppDelegate.swift in Sources */,
 				847BE07F1C00C73200D12856 /* RxCollectionViewCell.swift in Sources */,
+				84062B421C0717B9009A44B9 /* ErrorHandler.swift in Sources */,
 				846AE6B41BC502DE000A3739 /* SwiftExtensions.swift in Sources */,
 				846AE6D01BC64E18000A3739 /* HeroListViewModel.swift in Sources */,
 				846AE6CE1BC64D71000A3739 /* BindableCellFactory.swift in Sources */,
@@ -464,7 +539,6 @@
 				847BE0811C00CA3A00D12856 /* RxCollectionReusableView.swift in Sources */,
 				847BE0521BFFB28800D12856 /* RxTableViewController.swift in Sources */,
 				846AE6C61BC51E20000A3739 /* EndPoint.swift in Sources */,
-				847BE05A1BFFCACA00D12856 /* ErrorHandler.swift in Sources */,
 				847BE07D1C00A92400D12856 /* AppendableDataSource.swift in Sources */,
 				847BE0501BFFAECF00D12856 /* RxViewController.swift in Sources */,
 				846AE6C21BC51784000A3739 /* Marvel.swift in Sources */,
@@ -480,7 +554,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				846AE69D1BC5000F000A3739 /* FunctionalMarvelTests.swift in Sources */,
+				84062B451C071907009A44B9 /* HeroesGETMock.swift in Sources */,
+				846AE69D1BC5000F000A3739 /* AutoLoadingSpec.swift in Sources */,
+				84062B351C070E71009A44B9 /* TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,6 +702,7 @@
 		};
 		846AE6A51BC5000F000A3739 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 29D911650BC301760CA68082 /* Pods-FunctionalMarvelTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = FunctionalMarvelTests/Info.plist;
@@ -638,6 +715,7 @@
 		};
 		846AE6A61BC5000F000A3739 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A5DC2EDE7FFC8EC0F2C66B9D /* Pods-FunctionalMarvelTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = FunctionalMarvelTests/Info.plist;
