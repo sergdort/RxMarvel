@@ -19,8 +19,6 @@ class TableSearchAdapter<Element, U:BindableCellViewModel> {
    
    typealias TableSearchAdapterSearchMap = (offset:Int, limit:Int, search:String, nexBatchTriger:Observable<Void>) -> Observable<[Element]>
    
-   typealias SearchTutple = (query:String, Observable<[U]>)
-   
    lazy var searchController:UISearchController = {
       return UISearchController(searchResultsController: self.searchContentController)
    }()
@@ -38,7 +36,7 @@ class TableSearchAdapter<Element, U:BindableCellViewModel> {
          .distinctUntilChanged()
          .flatMapLatest { [unowned self] (search) -> Observable<[U]> in
             if search.isEmpty {
-              return empty()
+               return empty()
             }
             return self.searchMap(offset: 0,
                limit: 40,
@@ -46,8 +44,20 @@ class TableSearchAdapter<Element, U:BindableCellViewModel> {
                nexBatchTriger:self.searchContentController.tableView.rxex_nextPageTriger)
                .map(self.toViewModelMap)
       }
-
-      searchSignal.asDriver(onErrorJustReturn: [])
+      
+      searchSignal
+         .filter({ items -> Bool in
+            return self.searchContentController.dataSource.items.isEmpty
+         })
+         .asDriver(onErrorJustReturn: [])
+         .driveNext(searchContentController.dataSource.appendItems(.Top))
+         .addDisposableTo(bag)
+      
+      searchSignal
+         .filter({ items -> Bool in
+            return self.searchContentController.dataSource.items.isEmpty == false
+         })
+         .asDriver(onErrorJustReturn: [])
          .driveNext(searchContentController.dataSource.setItems(.Top))
          .addDisposableTo(bag)
       

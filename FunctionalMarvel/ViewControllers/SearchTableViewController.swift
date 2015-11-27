@@ -17,6 +17,12 @@ class SearchTableViewController<T:BindableCellViewModel>: UITableViewController 
    
    override init(style: UITableViewStyle) {
       super.init(style: style)
+      self.edgesForExtendedLayout = .All
+   }
+   
+   override func viewWillAppear(animated: Bool) {
+      super.viewWillAppear(animated)
+      tableView.dataSource = dataSource
    }
    
 }

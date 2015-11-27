@@ -44,7 +44,7 @@ class HeroesListViewController: RxTableViewController {
       tableView.delegate = nil
       tableView.dataSource = dataSource
       tableView.tableHeaderView = searchAdapter.searchController.searchBar
-      searchAdapter.searchContentController.tableView.dataSource = searchAdapter.searchContentController.dataSource
+//      searchAdapter.searchContentController.tableView.dataSource = searchAdapter.searchContentController.dataSource
    }
    
    private func loadData() {
