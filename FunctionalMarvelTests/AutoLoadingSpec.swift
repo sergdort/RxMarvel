@@ -37,7 +37,7 @@ class AutoLoadingSpec: QuickSpec {
             var heroes:[Hero] = []
             
             self.api
-               .getItems(heroes.count, limit: 1, search: nil, loadNextBatch:self.triger)
+               .getItems(heroes.count, limit: 1, loadNextBatch:self.triger)
                .subscribeNext({ (h) -> Void in
                   heroes.appendContentsOf(h)
                })

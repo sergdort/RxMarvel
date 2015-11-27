@@ -17,6 +17,10 @@ class HeroesListViewController: RxTableViewController {
          cellFactory: BindableCellFactory.cell)
    }()
    
+   lazy var searchAdapter = {
+      return TableSearchAdapter<Hero,HeroListViewModel>(searchMaper: HeroAPI.getItems,
+         toViewModelMap:HeroListViewModel.transform)
+   }()
    lazy var api:HeroAutoLoad.Type = HeroAPI.self
    
    @IBOutlet var rightBarButton: UIBarButtonItem!
@@ -39,10 +43,12 @@ class HeroesListViewController: RxTableViewController {
    private func setupTableView() {
       tableView.delegate = nil
       tableView.dataSource = dataSource
+      tableView.tableHeaderView = searchAdapter.searchController.searchBar
+      searchAdapter.searchContentController.tableView.dataSource = searchAdapter.searchContentController.dataSource
    }
    
    private func loadData() {
-      api.getItems(dataSource.items.count, limit: 40, search: nil,loadNextBatch: tableView.rxex_nextPageTriger)
+      api.getItems(dataSource.items.count, limit: 40,loadNextBatch: tableView.rxex_nextPageTriger)
          .map(HeroListViewModel.transform)
          .asDriver(onErrorJustReturn: [])
          .driveNext(dataSource.appendItems(.Top))

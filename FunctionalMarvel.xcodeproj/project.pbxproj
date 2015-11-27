@@ -17,6 +17,9 @@
 		84062B561C07538B009A44B9 /* Batch.json in Resources */ = {isa = PBXBuildFile; fileRef = 84062B551C07538B009A44B9 /* Batch.json */; };
 		84062B581C07557E009A44B9 /* EndPointSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84062B571C07557E009A44B9 /* EndPointSpec.swift */; };
 		84062B5A1C07567A009A44B9 /* ParamsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84062B591C07567A009A44B9 /* ParamsKeys.swift */; };
+		84062B5E1C0865E4009A44B9 /* TableSearchAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84062B5D1C0865E4009A44B9 /* TableSearchAdapter.swift */; };
+		84062B601C08692C009A44B9 /* SearchTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84062B5F1C08692C009A44B9 /* SearchTableDataSource.swift */; };
+		84062B621C086E11009A44B9 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84062B611C086E11009A44B9 /* SearchTableViewController.swift */; };
 		846AE6881BC5000F000A3739 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6871BC5000F000A3739 /* AppDelegate.swift */; };
 		846AE68D1BC5000F000A3739 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846AE68B1BC5000F000A3739 /* Main.storyboard */; };
 		846AE68F1BC5000F000A3739 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 846AE68E1BC5000F000A3739 /* Assets.xcassets */; };
@@ -73,6 +76,9 @@
 		84062B551C07538B009A44B9 /* Batch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Batch.json; sourceTree = "<group>"; };
 		84062B571C07557E009A44B9 /* EndPointSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPointSpec.swift; sourceTree = "<group>"; };
 		84062B591C07567A009A44B9 /* ParamsKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParamsKeys.swift; sourceTree = "<group>"; };
+		84062B5D1C0865E4009A44B9 /* TableSearchAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableSearchAdapter.swift; sourceTree = "<group>"; };
+		84062B5F1C08692C009A44B9 /* SearchTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableDataSource.swift; sourceTree = "<group>"; };
+		84062B611C086E11009A44B9 /* SearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		846AE6841BC5000F000A3739 /* FunctionalMarvel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FunctionalMarvel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		846AE6871BC5000F000A3739 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		846AE68C1BC5000F000A3739 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -209,6 +215,8 @@
 		846AE6A71BC501FB000A3739 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				84062B5D1C0865E4009A44B9 /* TableSearchAdapter.swift */,
+				84062B611C086E11009A44B9 /* SearchTableViewController.swift */,
 				846AE6AC1BC5028F000A3739 /* HeroesListViewController.swift */,
 				847BE0531BFFB91E00D12856 /* ViewController.swift */,
 			);
@@ -270,6 +278,7 @@
 				846AE6CD1BC64D71000A3739 /* BindableCellFactory.swift */,
 				846AE6CF1BC64E18000A3739 /* HeroListViewModel.swift */,
 				847BE07C1C00A92400D12856 /* AppendableDataSource.swift */,
+				84062B5F1C08692C009A44B9 /* SearchTableDataSource.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -549,6 +558,7 @@
 				84DCC7CB1BC945060035DD7E /* Batch.swift in Sources */,
 				846AE6AD1BC5028F000A3739 /* HeroesListViewController.swift in Sources */,
 				847BE0471BFF550800D12856 /* HeroListTableViewCell.swift in Sources */,
+				84062B601C08692C009A44B9 /* SearchTableDataSource.swift in Sources */,
 				846AE6881BC5000F000A3739 /* AppDelegate.swift in Sources */,
 				847BE07F1C00C73200D12856 /* RxCollectionViewCell.swift in Sources */,
 				84062B421C0717B9009A44B9 /* ErrorHandler.swift in Sources */,
@@ -559,10 +569,12 @@
 				846AE6C81BC5257B000A3739 /* RxExtensions.swift in Sources */,
 				847BE04B1BFF5C2000D12856 /* ViewModelProtocols.swift in Sources */,
 				847BE0541BFFB91E00D12856 /* ViewController.swift in Sources */,
+				84062B5E1C0865E4009A44B9 /* TableSearchAdapter.swift in Sources */,
 				846AE6BF1BC50D44000A3739 /* Thumbnail.swift in Sources */,
 				847BE04E1BFFAEAA00D12856 /* RxTableViewCell.swift in Sources */,
 				847BE0811C00CA3A00D12856 /* RxCollectionReusableView.swift in Sources */,
 				847BE0521BFFB28800D12856 /* RxTableViewController.swift in Sources */,
+				84062B621C086E11009A44B9 /* SearchTableViewController.swift in Sources */,
 				846AE6C61BC51E20000A3739 /* EndPoint.swift in Sources */,
 				847BE07D1C00A92400D12856 /* AppendableDataSource.swift in Sources */,
 				847BE0501BFFAECF00D12856 /* RxViewController.swift in Sources */,

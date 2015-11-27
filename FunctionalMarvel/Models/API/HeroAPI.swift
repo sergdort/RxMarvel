@@ -15,12 +15,52 @@ struct HeroAPI {
    private static let decodeScheduler = SerialDispatchQueueScheduler(internalSerialQueueName: "com.FunctionalMarvel.HeroAPI.decode_queue")
    typealias HeroListResult = (heroes:Decoded<[Hero]>, batch:Decoded<Batch>)
    
+   private static func recursiveHeroSearch(loadedSoFar:[Hero],
+      offset:Int = 0,
+      limit:Int,
+      search:String,
+      loadNextBatch:Observable<Void>) -> Observable<[Hero]> {
+         
+         let params:[String : AnyObject] = [
+            ParamKeys.limit : limit,
+            ParamKeys.offset : String(offset),
+            ParamKeys.searchName : search
+         ]
+         
+         return heroListSignal(params)
+            .flatMap { (tuple) -> Observable<[Hero]>  in
+               
+               guard let heroes = tuple.heroes.value,
+                  let batch = tuple.batch.value  else {
+                     return empty()
+               }
+               
+               var loadedHeroes = loadedSoFar
+               loadedHeroes.appendContentsOf(heroes)
+               
+               if batch.offset == batch.total
+                  || batch.offset + batch.count == batch.total {
+                     //                     Here we've downloaded all data
+                     return just(loadedHeroes)
+               }
+               
+               return [
+                  just(loadedHeroes),
+                  never().takeUntil(loadNextBatch),
+                  recursiveHeroSearch(loadedHeroes,
+                     offset: batch.count + batch.offset,
+                     limit: batch.limit,
+                     search: search,
+                     loadNextBatch: loadNextBatch),
+                  ].concat()
+         }
+   }
+   
    private static func recursiveHeroList(offset:Int = 0,
       limit:Int,
-      search:String?,
       loadNextBatch:Observable<Void>) -> Observable<[Hero]>  {
          
-         let params:[String : AnyObject] = [ ParamKeys.limit : limit, ParamKeys.offset : String(offset)] + (search != nil ? [ParamKeys.searchName : search!] : [:])
+         let params:[String : AnyObject] = [ ParamKeys.limit : limit, ParamKeys.offset : String(offset)]
          
       return heroListSignal(params)
          .flatMap { (tuple) -> Observable<[Hero]>  in
@@ -33,7 +73,7 @@ struct HeroAPI {
             if batch.offset == batch.total
                || batch.offset + batch.count == batch.total {
                   //                     Here we've downloaded all data
-                  return empty()
+                  return just(heroes)
             }
             
             return [
@@ -41,7 +81,6 @@ struct HeroAPI {
                never().takeUntil(loadNextBatch),
                recursiveHeroList(batch.count + batch.offset,
                   limit: batch.limit,
-                  search: search,
                   loadNextBatch: loadNextBatch)
                ].concat()
       }
@@ -70,11 +109,20 @@ extension HeroAPI {
 }
 
 extension HeroAPI:HeroAutoLoad {
+   
+   static func getItems(offset: Int = 0, limit: Int, loadNextBatch: Observable<Void>) -> Observable<[Hero]> {
+      return recursiveHeroList(offset, limit: limit, loadNextBatch: loadNextBatch)
+   }
+   
    static func getItems(offset: Int = 0,
       limit:Int = 40,
-      search:String?,
+      search:String,
       loadNextBatch: Observable<Void>) -> Observable<[Hero]> {
-      return recursiveHeroList(offset, limit: limit, search:search, loadNextBatch: loadNextBatch)
+         return recursiveHeroSearch([],
+            offset: offset,
+            limit: limit,
+            search: search,
+            loadNextBatch: loadNextBatch)
    }
 }
 
