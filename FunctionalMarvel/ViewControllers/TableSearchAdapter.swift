@@ -31,7 +31,8 @@ class TableSearchAdapter<Element, U:BindableCellViewModel> {
    init(searchMaper:TableSearchAdapterSearchMap, toViewModelMap:[Element] -> [U]) {
       searchMap = searchMaper
       self.toViewModelMap = toViewModelMap
-      let searchSignal = searchController.searchBar.rx_text
+      let searchSignal = searchController.searchBar
+         .rx_text
          .throttle(0.3, MainScheduler.sharedInstance)
          .distinctUntilChanged()
          .flatMapLatest { [unowned self] (search) -> Observable<[U]> in
@@ -39,7 +40,7 @@ class TableSearchAdapter<Element, U:BindableCellViewModel> {
                return empty()
             }
             return self.searchMap(offset: 0,
-               limit: 40,
+               limit: 10,
                search: search,
                nexBatchTriger:self.searchContentController.tableView.rxex_nextPageTriger)
                .map(self.toViewModelMap)

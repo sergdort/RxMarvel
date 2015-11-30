@@ -13,7 +13,7 @@ typealias BindableCellViewModel = protocol <VariableProvidable, ReuseableViewCla
 
 
 struct BindableCellFactory<CellType:RxTableViewCell<VariableProvidable>, V:BindableCellViewModel> {
-   static func cell(tableView:UITableView, indexPath:NSIndexPath, viewModel:V) -> UITableViewCell {
+   static func cell(tableView:UITableView, indexPath:NSIndexPath, viewModel:V) -> CellType {
       if let cell = tableView.dequeueReusableCellWithIdentifier(viewModel.reusableViewType.reuseIdentifier) as? CellType {
          cell.rx_viewModel <~ viewModel.variable
          return cell
