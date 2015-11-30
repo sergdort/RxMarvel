@@ -719,6 +719,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = FunctionalMarvel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				"OTHER_SWIFT_FLAGS[arch=*]" = "\"-D\" \"TRACE_RESOURCES\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sergdort.FunctionalMarvel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "FunctionalMarvel/Models/Extensions/FunctionalMarvel-Bridging-Header.h";

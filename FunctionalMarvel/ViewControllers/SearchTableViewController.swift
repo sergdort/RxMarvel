@@ -25,4 +25,8 @@ class SearchTableViewController<T:BindableCellViewModel>: UITableViewController 
       tableView.dataSource = dataSource
    }
    
+   deinit {
+      print("deinit \(self)")
+   }
+   
 }

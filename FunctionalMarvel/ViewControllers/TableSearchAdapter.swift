@@ -29,7 +29,7 @@ class TableSearchAdapter<Element, U:BindableCellViewModel> {
    let bag = DisposeBag()
    
    init(searchMaper:TableSearchAdapterSearchMap, toViewModelMap:[Element] -> [U]) {
-      searchMap = searchMaper
+      self.searchMap = searchMaper
       self.toViewModelMap = toViewModelMap
       let searchSignal = searchController.searchBar
          .rx_text
@@ -47,7 +47,7 @@ class TableSearchAdapter<Element, U:BindableCellViewModel> {
       }
       
       searchSignal
-         .filter({ items -> Bool in
+         .filter({ [unowned self] items -> Bool in
             return self.searchContentController.dataSource.items.isEmpty
          })
          .asDriver(onErrorJustReturn: [])
@@ -55,13 +55,17 @@ class TableSearchAdapter<Element, U:BindableCellViewModel> {
          .addDisposableTo(bag)
       
       searchSignal
-         .filter({ items -> Bool in
+         .filter({ [unowned self] items -> Bool in
             return self.searchContentController.dataSource.items.isEmpty == false
          })
          .asDriver(onErrorJustReturn: [])
          .driveNext(searchContentController.dataSource.setItems(.Top))
          .addDisposableTo(bag)
       
+   }
+   
+   deinit {
+      print("deinit \(self)")
    }
    
 }

@@ -13,6 +13,7 @@ class ViewController: RxViewController {
    @IBOutlet var button: UIButton!
    
    override func viewDidLoad() {
+      super.viewDidLoad()
       Segue
          .ShowHeroesList
          .presentationSegueFromViewController(self, triger: button.rx_tap)

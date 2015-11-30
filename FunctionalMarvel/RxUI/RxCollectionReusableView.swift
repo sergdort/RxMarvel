@@ -9,8 +9,8 @@
 import UIKit
 import RxSwift
 
-class RxCollectionReusableView<V>: UICollectionReusableView {
-   
+class RxCollectionReusableView<ViewModelType>: UICollectionReusableView, BindableView {
+   typealias V = ViewModelType
    let onPrepareForReuse:Observable<Void> = PublishSubject()
    
    override func prepareForReuse() {

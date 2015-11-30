@@ -11,6 +11,10 @@ import RxSwift
 
 class RxTableViewController: UITableViewController {
    
+   #if TRACE_RESOURCES
+   private let startResourceCount = RxSwift.resourceCount
+   #endif
+   
    let disposableBag = DisposeBag()
    let rx_viewDidLoad:Observable<Void> = PublishSubject()
    let rx_viewWillAppear:Observable<Void> = PublishSubject()
@@ -20,6 +24,9 @@ class RxTableViewController: UITableViewController {
    
    override func viewDidLoad() {
       super.viewDidLoad()
+      #if TRACE_RESOURCES
+         print("Number of start resources = \(resourceCount)")
+      #endif
       (rx_viewDidLoad as? PublishSubject<Void>)?.on(.Next())
    }
    
@@ -41,6 +48,19 @@ class RxTableViewController: UITableViewController {
    override func viewDidDisappear(animated: Bool) {
       super.viewDidDisappear(animated)
       (rx_viewDidDisappear as? PublishSubject<Void>)?.on(.Next())
+   }
+   
+   deinit {
+      #if TRACE_RESOURCES
+         print("deinit \(self)")
+         print("View controller disposed with \(resourceCount) resources")
+         
+         let numberOfResourcesThatShouldRemain = startResourceCount
+         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC)))
+         dispatch_after(time, dispatch_get_main_queue(), { () -> Void in
+            assert(resourceCount <= numberOfResourcesThatShouldRemain, "Resources weren't cleaned properly \(resourceCount)")
+         })
+      #endif
    }
    
 }
