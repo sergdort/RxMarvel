@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchTableViewController<T:BindableCellViewModel>: UITableViewController {
+class SearchTableViewController<T:BindableCellViewModel>: RxTableViewController {
    lazy var dataSource:SearchTableDataSource<T> = {
       return SearchTableDataSource(items: [],
          tableView: self.tableView,
@@ -23,10 +23,6 @@ class SearchTableViewController<T:BindableCellViewModel>: UITableViewController 
    override func viewWillAppear(animated: Bool) {
       super.viewWillAppear(animated)
       tableView.dataSource = dataSource
-   }
-   
-   deinit {
-      print("deinit \(self)")
    }
    
 }

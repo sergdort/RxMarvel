@@ -20,6 +20,7 @@
 		84062B5E1C0865E4009A44B9 /* TableSearchAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84062B5D1C0865E4009A44B9 /* TableSearchAdapter.swift */; };
 		84062B601C08692C009A44B9 /* SearchTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84062B5F1C08692C009A44B9 /* SearchTableDataSource.swift */; };
 		84062B621C086E11009A44B9 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84062B611C086E11009A44B9 /* SearchTableViewController.swift */; };
+		84062B6B1C0DEBEB009A44B9 /* AppendableDataSourceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84062B6A1C0DEBEB009A44B9 /* AppendableDataSourceSpec.swift */; };
 		846AE6881BC5000F000A3739 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AE6871BC5000F000A3739 /* AppDelegate.swift */; };
 		846AE68D1BC5000F000A3739 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846AE68B1BC5000F000A3739 /* Main.storyboard */; };
 		846AE68F1BC5000F000A3739 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 846AE68E1BC5000F000A3739 /* Assets.xcassets */; };
@@ -46,6 +47,9 @@
 		847BE07D1C00A92400D12856 /* AppendableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE07C1C00A92400D12856 /* AppendableDataSource.swift */; };
 		847BE07F1C00C73200D12856 /* RxCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE07E1C00C73200D12856 /* RxCollectionViewCell.swift */; };
 		847BE0811C00CA3A00D12856 /* RxCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE0801C00CA3A00D12856 /* RxCollectionReusableView.swift */; };
+		84BE9EBD1C107D2B00573ED9 /* SearchTableViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE9EBC1C107D2B00573ED9 /* SearchTableViewControllerSpec.swift */; };
+		84BE9EC31C10909700573ED9 /* BindableCellFactorySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE9EC11C10909700573ED9 /* BindableCellFactorySpec.swift */; };
+		84BE9EC71C10934700573ED9 /* TableSearchAdapterSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE9EC61C10934700573ED9 /* TableSearchAdapterSpec.swift */; };
 		84DCC7CB1BC945060035DD7E /* Batch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DCC7CA1BC945060035DD7E /* Batch.swift */; };
 		84E037121C044FC900AADF10 /* ModelProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E037111C044FC900AADF10 /* ModelProtocols.swift */; };
 		84E037251C04B61A00AADF10 /* HeroAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E037241C04B61A00AADF10 /* HeroAPI.swift */; };
@@ -79,6 +83,7 @@
 		84062B5D1C0865E4009A44B9 /* TableSearchAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableSearchAdapter.swift; sourceTree = "<group>"; };
 		84062B5F1C08692C009A44B9 /* SearchTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableDataSource.swift; sourceTree = "<group>"; };
 		84062B611C086E11009A44B9 /* SearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
+		84062B6A1C0DEBEB009A44B9 /* AppendableDataSourceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppendableDataSourceSpec.swift; sourceTree = "<group>"; };
 		846AE6841BC5000F000A3739 /* FunctionalMarvel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FunctionalMarvel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		846AE6871BC5000F000A3739 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		846AE68C1BC5000F000A3739 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -111,6 +116,9 @@
 		847BE07C1C00A92400D12856 /* AppendableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppendableDataSource.swift; sourceTree = "<group>"; };
 		847BE07E1C00C73200D12856 /* RxCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxCollectionViewCell.swift; sourceTree = "<group>"; };
 		847BE0801C00CA3A00D12856 /* RxCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxCollectionReusableView.swift; sourceTree = "<group>"; };
+		84BE9EBC1C107D2B00573ED9 /* SearchTableViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewControllerSpec.swift; sourceTree = "<group>"; };
+		84BE9EC11C10909700573ED9 /* BindableCellFactorySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindableCellFactorySpec.swift; sourceTree = "<group>"; };
+		84BE9EC61C10934700573ED9 /* TableSearchAdapterSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableSearchAdapterSpec.swift; sourceTree = "<group>"; };
 		84DCC7CA1BC945060035DD7E /* Batch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Batch.swift; sourceTree = "<group>"; };
 		84E037111C044FC900AADF10 /* ModelProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelProtocols.swift; sourceTree = "<group>"; };
 		84E037241C04B61A00AADF10 /* HeroAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroAPI.swift; sourceTree = "<group>"; };
@@ -200,14 +208,10 @@
 		846AE69B1BC5000F000A3739 /* FunctionalMarvelTests */ = {
 			isa = PBXGroup;
 			children = (
+				84BE9EC51C10912300573ED9 /* Specs */,
 				84062B541C074FBA009A44B9 /* Resources */,
 				84062B431C0718DA009A44B9 /* Mocks */,
-				846AE69C1BC5000F000A3739 /* AutoLoadingSpec.swift */,
-				84062B501C074F29009A44B9 /* DecodeSpec.swift */,
 				846AE69E1BC5000F000A3739 /* Info.plist */,
-				84062B341C070E71009A44B9 /* TestHelpers.swift */,
-				84062B571C07557E009A44B9 /* EndPointSpec.swift */,
-				84062B591C07567A009A44B9 /* ParamsKeys.swift */,
 			);
 			path = FunctionalMarvelTests;
 			sourceTree = "<group>";
@@ -329,6 +333,22 @@
 				847BE0591BFFCACA00D12856 /* ErrorHandler.swift */,
 			);
 			name = Servises;
+			sourceTree = "<group>";
+		};
+		84BE9EC51C10912300573ED9 /* Specs */ = {
+			isa = PBXGroup;
+			children = (
+				84BE9EC11C10909700573ED9 /* BindableCellFactorySpec.swift */,
+				846AE69C1BC5000F000A3739 /* AutoLoadingSpec.swift */,
+				84062B501C074F29009A44B9 /* DecodeSpec.swift */,
+				84062B341C070E71009A44B9 /* TestHelpers.swift */,
+				84062B571C07557E009A44B9 /* EndPointSpec.swift */,
+				84062B591C07567A009A44B9 /* ParamsKeys.swift */,
+				84062B6A1C0DEBEB009A44B9 /* AppendableDataSourceSpec.swift */,
+				84BE9EBC1C107D2B00573ED9 /* SearchTableViewControllerSpec.swift */,
+				84BE9EC61C10934700573ED9 /* TableSearchAdapterSpec.swift */,
+			);
+			name = Specs;
 			sourceTree = "<group>";
 		};
 		E7A2BB418A1B76A81BB6C238 /* Pods */ = {
@@ -592,10 +612,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				84062B451C071907009A44B9 /* HeroesGETMock.swift in Sources */,
+				84062B6B1C0DEBEB009A44B9 /* AppendableDataSourceSpec.swift in Sources */,
 				846AE69D1BC5000F000A3739 /* AutoLoadingSpec.swift in Sources */,
 				84062B511C074F2A009A44B9 /* DecodeSpec.swift in Sources */,
+				84BE9EC31C10909700573ED9 /* BindableCellFactorySpec.swift in Sources */,
 				84062B5A1C07567A009A44B9 /* ParamsKeys.swift in Sources */,
 				84062B581C07557E009A44B9 /* EndPointSpec.swift in Sources */,
+				84BE9EC71C10934700573ED9 /* TableSearchAdapterSpec.swift in Sources */,
+				84BE9EBD1C107D2B00573ED9 /* SearchTableViewControllerSpec.swift in Sources */,
 				84062B351C070E71009A44B9 /* TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

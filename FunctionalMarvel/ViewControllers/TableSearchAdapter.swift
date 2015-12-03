@@ -10,27 +10,18 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-struct SearchViewModel<T> {
-   var searchQuery = ""
-   var items = [T]()
-}
-
 class TableSearchAdapter<Element, U:BindableCellViewModel> {
    
-   typealias TableSearchAdapterSearchMap = (offset:Int, limit:Int, search:String, nexBatchTriger:Observable<Void>) -> Observable<[Element]>
+   typealias SearchEvent = (offset:Int, limit:Int, search:String, nexBatchTriger:Observable<Void>) -> Observable<[Element]>
    
    lazy var searchController:UISearchController = {
       return UISearchController(searchResultsController: self.searchContentController)
    }()
    lazy var searchContentController = SearchTableViewController<U>(style:.Plain)
-   private let searchMap:TableSearchAdapterSearchMap
-   private let toViewModelMap:([Element] -> [U])
-   private var query = ""
+   
    let bag = DisposeBag()
    
-   init(searchMaper:TableSearchAdapterSearchMap, toViewModelMap:[Element] -> [U]) {
-      self.searchMap = searchMaper
-      self.toViewModelMap = toViewModelMap
+   init(searchEvent:SearchEvent, viewModelMap:[Element] -> [U]) {
       let searchSignal = searchController.searchBar
          .rx_text
          .throttle(0.3, MainScheduler.sharedInstance)
@@ -39,11 +30,11 @@ class TableSearchAdapter<Element, U:BindableCellViewModel> {
             if search.isEmpty {
                return empty()
             }
-            return self.searchMap(offset: 0,
+            return searchEvent(offset: 0,
                limit: 10,
                search: search,
                nexBatchTriger:self.searchContentController.tableView.rxex_nextPageTriger)
-               .map(self.toViewModelMap)
+               .map(viewModelMap)
       }
       
       searchSignal

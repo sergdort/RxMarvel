@@ -53,12 +53,10 @@ class RxViewController: UIViewController {
    deinit {
       #if TRACE_RESOURCES
          print("deinit \(self)")
-         print("View controller disposed with \(resourceCount) resources")
-         
-         let numberOfResourcesThatShouldRemain = startResourceCount
+         print("View controller disposed with \(RxSwift.resourceCount) resources")
          let time = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC)))
          dispatch_after(time, dispatch_get_main_queue(), { () -> Void in
-            assert(resourceCount <= numberOfResourcesThatShouldRemain, "Resources weren't cleaned properly \(resourceCount)")
+            print("Number of resource after deinit \(RxSwift.resourceCount)")
          })
       #endif
    }

@@ -22,9 +22,8 @@ class HeroesListViewController: RxTableViewController {
          cellFactory: BindableCellFactory.cell)
    }()
    
-   lazy var searchAdapter = {
-      return TableSearchAdapter<Hero,HeroListViewModel>(searchMaper: HeroAPI.getItems,
-         toViewModelMap:HeroListViewModel.transform)
+   lazy var searchAdapter:TableSearchAdapter<Hero,HeroListViewModel> = {
+      return TableSearchAdapter(searchEvent: self.api.getItems, viewModelMap: HeroListViewModel.transform)
    }()
    
    lazy var api:HeroAutoLoad.Type = HeroAPI.self
