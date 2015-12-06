@@ -12,16 +12,14 @@ import RxSwift
 class AppendableDataSource<Element> : NSObject, AppendableDataSourceType,UITableViewDataSource {
    typealias T = Element
    var items:[T]
-   private(set) var tableView:UITableView
    private let cellFactory:(UITableView, NSIndexPath, T) -> UITableViewCell
    
-   init(items:[T], tableView:UITableView ,cellFactory:(UITableView, NSIndexPath, T) -> UITableViewCell) {
+   init(items:[T], cellFactory:(UITableView, NSIndexPath, T) -> UITableViewCell) {
       self.cellFactory = cellFactory
       self.items = items
-      self.tableView = tableView
    }
    
-   func appendItems(animation:UITableViewRowAnimation)(items:[T]) {
+   func appendItems(animation:UITableViewRowAnimation, tableView:UITableView)(items:[T]) {
       if items.isEmpty {
          return
       }
@@ -29,7 +27,7 @@ class AppendableDataSource<Element> : NSObject, AppendableDataSourceType,UITable
          return NSIndexPath(forRow: i, inSection: 0)
       }
       self.items.appendContentsOf(items)
-      self.tableView.insertRowsAtIndexPaths(indexPathes, withRowAnimation:animation)
+      tableView.insertRowsAtIndexPaths(indexPathes, withRowAnimation:animation)
    }
    
    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

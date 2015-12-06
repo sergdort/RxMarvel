@@ -24,11 +24,11 @@ protocol NibProvidableClassProvider {
 protocol AppendableDataSourceType {
    typealias T
    
-   func appendItems(animation:UITableViewRowAnimation)(items:[T])
+   func appendItems(animation:UITableViewRowAnimation, tableView:UITableView)(items:[T])
 }
 
 protocol ChangeableDataSourceType {
    typealias T
    
-   func setItems(animation:UITableViewRowAnimation)(items:[T])
+   func setItems(animation:UITableViewRowAnimation, tableView:UITableView)(items:[T])
 }

@@ -29,7 +29,6 @@ class SearchTableViewControllerSpec: QuickSpec {
             let hero = Hero(id: 1, name: "name", thumbnail: Thumbnail(path: "path", pathExtension: "jpg"))
             self.tableView = TableMock()
             self.dataSource = SearchTableDataSource(items: [hero],
-               tableView: self.tableView,
                cellFactory: { _ -> UITableViewCell in
                   return UITableViewCell()
             })
@@ -50,14 +49,14 @@ class SearchTableViewControllerSpec: QuickSpec {
             let heroes = [Hero(id: 2, name: "name2", thumbnail: Thumbnail(path: "path", pathExtension: "jpg")),
                Hero(id: 2, name: "name2", thumbnail: Thumbnail(path: "path", pathExtension: "jpg"))]
             
-            self.dataSource.setItems(.None)(items: heroes);
+            self.dataSource.setItems(.None, tableView: self.tableView)(items: heroes);
             
             expect(self.dataSource.items.count).to(equal(heroes.count))
          })
          
          it("should have no items", closure: { () -> () in
             expect(self.dataSource.items.count).toNot(equal(0))
-            self.dataSource.setItems(UITableViewRowAnimation.None)(items: [])
+            self.dataSource.setItems(UITableViewRowAnimation.None, tableView: self.tableView)(items: [])
             
             
             expect(self.dataSource.items.count).to(equal(0))

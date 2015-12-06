@@ -108,13 +108,13 @@ extension HeroAPI {
    }
 }
 
-extension HeroAPI:HeroAutoLoad {
+extension HeroAPI:HeroAutoLoading {
    
    static func getItems(offset: Int = 0, limit: Int, loadNextBatch: Observable<Void>) -> Observable<[Hero]> {
       return recursiveHeroList(offset, limit: limit, loadNextBatch: loadNextBatch)
    }
    
-   static func getItems(offset: Int = 0,
+   static func searchItems(offset: Int = 0,
       limit:Int = 40,
       search:String,
       loadNextBatch: Observable<Void>) -> Observable<[Hero]> {

@@ -42,7 +42,7 @@ class TableSearchAdapter<Element, U:BindableCellViewModel> {
             return self.searchContentController.dataSource.items.isEmpty
          })
          .asDriver(onErrorJustReturn: [])
-         .driveNext(searchContentController.dataSource.appendItems(.Top))
+         .driveNext(searchContentController.dataSource.appendItems(.Top, tableView: searchContentController.tableView))
          .addDisposableTo(bag)
       
       searchSignal
@@ -50,7 +50,7 @@ class TableSearchAdapter<Element, U:BindableCellViewModel> {
             return self.searchContentController.dataSource.items.isEmpty == false
          })
          .asDriver(onErrorJustReturn: [])
-         .driveNext(searchContentController.dataSource.setItems(.Top))
+         .driveNext(searchContentController.dataSource.setItems(.Top, tableView: searchContentController.tableView))
          .addDisposableTo(bag)
       
    }

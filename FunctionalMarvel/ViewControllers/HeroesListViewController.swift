@@ -18,15 +18,14 @@ class HeroesListViewController: RxTableViewController {
    
    private(set) lazy var dataSource:AppendableDataSource<HeroListViewModel> = {
       return AppendableDataSource(items: [],
-         tableView: self.tableView,
          cellFactory: BindableCellFactory.cell)
    }()
    
    lazy var searchAdapter:TableSearchAdapter<Hero,HeroListViewModel> = {
-      return TableSearchAdapter(searchEvent: self.api.getItems, viewModelMap: HeroListViewModel.transform)
+      return TableSearchAdapter(searchEvent: self.api.searchItems, viewModelMap: HeroListViewModel.transform)
    }()
    
-   lazy var api:HeroAutoLoad.Type = HeroAPI.self
+   lazy var api:HeroAutoLoading.Type = HeroAPI.self
    
    @IBOutlet var rightBarButton: UIBarButtonItem!
    
@@ -35,9 +34,7 @@ class HeroesListViewController: RxTableViewController {
       
       setupTableView()
       loadData()
-      Segue
-         .dismissSegueFromViewController(self, triger: rightBarButton.rx_tap)
-         .addDisposableTo(disposableBag)
+      Segue.dismissSegueFromViewController(self, triger: rightBarButton.rx_tap)
    }
    
 //   MARK:Private
@@ -52,12 +49,8 @@ class HeroesListViewController: RxTableViewController {
       api.getItems(dataSource.items.count, limit: 40,loadNextBatch: tableView.rxex_nextPageTriger)
          .map(HeroListViewModel.transform)
          .asDriver(onErrorJustReturn: [])
-         .driveNext(dataSource.appendItems(.Top))
+         .driveNext(dataSource.appendItems(.Top, tableView: tableView))
          .addDisposableTo(disposableBag)
-   }
-   
-   func dismiss() {
-      self.dismissViewControllerAnimated(true, completion: nil)
    }
    
 }

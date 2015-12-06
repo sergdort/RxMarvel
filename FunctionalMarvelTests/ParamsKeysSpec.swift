@@ -11,7 +11,7 @@ import Nimble
 
 @testable import FunctionalMarvel
 
-class ParamsKeys: QuickSpec {
+class ParamsKeysSpec: QuickSpec {
     
    override func spec() {
       

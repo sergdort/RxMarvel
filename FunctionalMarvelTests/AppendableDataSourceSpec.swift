@@ -30,7 +30,6 @@ class AppendableDataSourceSpec: QuickSpec {
             let hero = Hero(id: 1, name: "name", thumbnail: Thumbnail(path: "path", pathExtension: "jpg"))
             self.tableView = TableMock()
             self.dataSource = AppendableDataSource(items: [hero],
-               tableView: self.tableView,
                cellFactory: { (_, _, _) -> UITableViewCell in
                   return UITableViewCell()
             })
@@ -49,14 +48,14 @@ class AppendableDataSourceSpec: QuickSpec {
             let heroes = [Hero(id: 2, name: "name2", thumbnail: Thumbnail(path: "path", pathExtension: "jpg")),
                           Hero(id: 2, name: "name2", thumbnail: Thumbnail(path: "path", pathExtension: "jpg"))]
             let addedCount = heroes.count
-            self.dataSource.appendItems(.None)(items: heroes)
+            self.dataSource.appendItems(.None, tableView: self.tableView)(items: heroes)
             
             expect(self.dataSource.items.count).to(equal(countBefor + addedCount))
          })
          
          it("should have same number of items", closure: { () -> () in
             let countBefor = self.dataSource.items.count
-            self.dataSource.appendItems(UITableViewRowAnimation.None)(items: [])
+            self.dataSource.appendItems(UITableViewRowAnimation.None, tableView: self.tableView)(items: [])
             expect(self.dataSource.items.count).to(equal(countBefor))
             
          })
