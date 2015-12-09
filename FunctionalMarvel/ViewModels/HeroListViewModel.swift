@@ -28,7 +28,7 @@ struct HeroListViewModel {
 }
 
 extension HeroListViewModel:VariableProvidable {
-   var variable:Variable<VariableProvidable> {
+   var variable:Variable<HeroListViewModel> {
       return Variable(self)
    }
 }
@@ -47,9 +47,8 @@ extension HeroListViewModel:NibProvidableClassProvider {
 
 extension HeroListViewModel:Hashable {
    var hashValue: Int {
-      return title.value.hash + thumbnailPath.value.hash
+      return title.value.hash ^ thumbnailPath.value.hash
    }
-   
 }
 
 func ==(lhs: HeroListViewModel, rhs: HeroListViewModel) -> Bool {

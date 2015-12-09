@@ -6,7 +6,6 @@
 //  Copyright © 2015 Sergey Shulga. All rights reserved.
 //
 
-import Foundation
 import Argo
 import Curry
 

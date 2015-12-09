@@ -21,7 +21,7 @@ class DecodeSpec: QuickSpec {
          
          it("should decode hero", closure: { () -> () in
          
-            let hero:Hero? = decode -<< (JSONFromFileName -<< "Hero")
+            let hero:Hero? = decode -<< JSONFromFileName("Hero")
             
             expect(hero).toNot(beNil())
             expect(hero?.id).to(equal(1011334))
@@ -32,7 +32,7 @@ class DecodeSpec: QuickSpec {
          })
          
          it("should decode batch", closure: { () -> () in
-            let batch:Batch? = decode -<< (JSONFromFileName -<< "Batch")
+            let batch:Batch? = decode -<< JSONFromFileName("Batch")
             
             expect(batch).toNot(beNil())
             expect(batch?.count).to(equal(1))

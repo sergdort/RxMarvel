@@ -23,5 +23,6 @@ class RxTableViewCell<ViewModelType>: UITableViewCell, BindableView {
 //         This is base class implementation
       }
    }
+   
 }
 

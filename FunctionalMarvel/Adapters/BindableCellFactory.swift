@@ -12,10 +12,13 @@ import RxSwift
 typealias BindableCellViewModel = protocol <VariableProvidable, ReuseableViewClassProvider, NibProvidableClassProvider>
 
 
-struct BindableCellFactory<CellType:RxTableViewCell<VariableProvidable>, V:BindableCellViewModel> {
-   static func cell(tableView:UITableView, indexPath:NSIndexPath, viewModel:V) -> CellType {
-      if let cell = tableView.dequeueReusableCellWithIdentifier(viewModel.reusableViewType.reuseIdentifier) as? CellType {
-         cell.rx_viewModel <~ viewModel.variable
+struct BindableCellFactory<V:BindableCellViewModel> {
+   typealias CellType = RxTableViewCell<V>
+   static func cell(tableView:UITableView, indexPath:NSIndexPath, viewModel:V) -> UITableViewCell {
+      if let cell = tableView.dequeueReusableCellWithIdentifier(viewModel.reusableViewType.reuseIdentifier) {
+         if let rxCell = cell as? CellType {
+            rxCell.rx_viewModel <~ viewModel.variable
+         }
          return cell
       } else {
          tableView.registerNib(viewModel.nibProvidableType.nib, forCellReuseIdentifier: viewModel.reusableViewType.reuseIdentifier)

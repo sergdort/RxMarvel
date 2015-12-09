@@ -9,20 +9,19 @@
 import UIKit.UITableViewCell
 import RxSwift
 
-class HeroListTableViewCell: RxTableViewCell<VariableProvidable> {
+class HeroListTableViewCell: RxTableViewCell<HeroListViewModel> {
    @IBOutlet weak var cellImageView: UIImageView!
    @IBOutlet weak var label: UILabel!
    
-   override var rx_viewModel: AnyObserver<VariableProvidable> {
+   override var rx_viewModel: AnyObserver<HeroListViewModel> {
       return AnyObserver { [weak self] event in
          MainScheduler.ensureExecutingOnScheduler()
          
          switch event {
          case .Next(let value):
-            if let strong = self,
-               vm = value as? HeroListViewModel {
-               strong.label.rx_text <~ vm.title
-               strong.cellImageView.rxex_imageURL <~ vm.thumbnailPath
+            if let strong = self {
+               strong.label.rx_text <~ value.title
+               strong.cellImageView.rxex_imageURL <~ value.thumbnailPath
             }
          default:
             break

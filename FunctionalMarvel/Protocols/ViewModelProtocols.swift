@@ -9,7 +9,7 @@
 import RxSwift
 
 protocol VariableProvidable {
-   var variable:Variable<VariableProvidable> {get}
+   var variable:Variable<Self> {get}
 }
 
 protocol ReuseableViewClassProvider {

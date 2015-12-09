@@ -25,12 +25,12 @@ class BindableCellFactorySpec: QuickSpec {
             let vm = HeroListViewModel(hero: Hero(id: 1, name: "Hero",
                thumbnail: Thumbnail(path: "path", pathExtension: "jpg")))
             
-            let cell = BindableCellFactory<HeroListTableViewCell,HeroListViewModel>.cell(self.tableView,
+            let cell = BindableCellFactory<HeroListViewModel>.cell(self.tableView,
                indexPath: NSIndexPath(forRow: 0, inSection: 0),
-               viewModel: vm)
+               viewModel: vm) as? HeroListTableViewCell
             
             expect(cell).toNot(beNil())
-            expect(cell.label.text).to(equal(vm.title.value))
+            expect(cell?.label.text).to(equal(vm.title.value))
          })
          
       }
