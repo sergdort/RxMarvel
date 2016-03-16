@@ -3,7 +3,7 @@
 //  RxCocoa
 //
 //  Created by Krunoslav Zaher on 6/15/15.
-//  Copyright (c) 2015 Krunoslav Zaher. All rights reserved.
+//  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
 import Foundation
@@ -108,7 +108,7 @@ public protocol DelegateProxyType : AnyObject {
     /**
     Returns designated delegate property for object.
     
-    Objects can have mutltiple delegate properties.
+    Objects can have multiple delegate properties.
     
     Each delegate property needs to have it's own type implementing `DelegateProxyType`.
     
@@ -120,7 +120,7 @@ public protocol DelegateProxyType : AnyObject {
     /**
     Sets designated delegate property for object.
     
-    Objects can have mutltiple delegate properties.
+    Objects can have multiple delegate properties.
     
     Each delegate property needs to have it's own type implementing `DelegateProxyType`.
     
@@ -157,7 +157,7 @@ Returns existing proxy for object or installs new instance of delegate proxy.
     extension UISearchBar {
 
         public var rx_delegate: DelegateProxy {
-            return proxyForObject(self) as RxSearchBarDelegateProxy
+            return proxyForObject(RxSearchBarDelegateProxy.self, self)
         }
         
         public var rx_text: ControlProperty<String> {
@@ -166,7 +166,7 @@ Returns existing proxy for object or installs new instance of delegate proxy.
         }
     }
 */
-public func proxyForObject<P: DelegateProxyType>(object: AnyObject) -> P {
+public func proxyForObject<P: DelegateProxyType>(type: P.Type, _ object: AnyObject) -> P {
     MainScheduler.ensureExecutingOnScheduler()
     
     let maybeProxy = P.assignedProxyFor(object) as? P
@@ -196,7 +196,7 @@ public func proxyForObject<P: DelegateProxyType>(object: AnyObject) -> P {
 func installDelegate<P: DelegateProxyType>(proxy: P, delegate: AnyObject, retainDelegate: Bool, onProxyForObject object: AnyObject) -> Disposable {
     weak var weakDelegate: AnyObject? = delegate
     
-    assert(proxy.forwardToDelegate() === nil, "There is already a set delegate \(proxy.forwardToDelegate())")
+    assert(proxy.forwardToDelegate() === nil, "There is already a delegate set -> `\(proxy.forwardToDelegate())` for object -> `\(object)`.\nMaybe delegate was already set in `xib` or `storyboard` and now it's being overwritten in code.")
     
     proxy.setForwardToDelegate(delegate, retainDelegate: retainDelegate)
     
@@ -221,12 +221,12 @@ func installDelegate<P: DelegateProxyType>(proxy: P, delegate: AnyObject, retain
 extension ObservableType {
     func subscribeProxyDataSourceForObject<P: DelegateProxyType>(object: AnyObject, dataSource: AnyObject, retainDataSource: Bool, binding: (P, Event<E>) -> Void)
         -> Disposable {
-        let proxy: P = proxyForObject(object)
+        let proxy = proxyForObject(P.self, object)
         let disposable = installDelegate(proxy, delegate: dataSource, retainDelegate: retainDataSource, onProxyForObject: object)
-        
+
         let subscription = self.asObservable()
             // source can't ever end, otherwise it will release the subscriber
-            .concat(never())
+            .concat(Observable.never())
             .subscribe { [weak object] (event: Event<E>) in
                 MainScheduler.ensureExecutingOnScheduler()
 

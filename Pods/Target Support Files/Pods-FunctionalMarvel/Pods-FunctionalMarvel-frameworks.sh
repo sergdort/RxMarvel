@@ -87,19 +87,23 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-FunctionalMarvel/Alamofire.framework"
   install_framework "Pods-FunctionalMarvel/Argo.framework"
   install_framework "Pods-FunctionalMarvel/Curry.framework"
+  install_framework "Pods-FunctionalMarvel/HexColors.framework"
   install_framework "Pods-FunctionalMarvel/Runes.framework"
   install_framework "Pods-FunctionalMarvel/RxAlamofire.framework"
   install_framework "Pods-FunctionalMarvel/RxCocoa.framework"
   install_framework "Pods-FunctionalMarvel/RxSwift.framework"
   install_framework "Pods-FunctionalMarvel/SDWebImage.framework"
+  install_framework "Pods-FunctionalMarvel/TSMessages.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-FunctionalMarvel/Alamofire.framework"
   install_framework "Pods-FunctionalMarvel/Argo.framework"
   install_framework "Pods-FunctionalMarvel/Curry.framework"
+  install_framework "Pods-FunctionalMarvel/HexColors.framework"
   install_framework "Pods-FunctionalMarvel/Runes.framework"
   install_framework "Pods-FunctionalMarvel/RxAlamofire.framework"
   install_framework "Pods-FunctionalMarvel/RxCocoa.framework"
   install_framework "Pods-FunctionalMarvel/RxSwift.framework"
   install_framework "Pods-FunctionalMarvel/SDWebImage.framework"
+  install_framework "Pods-FunctionalMarvel/TSMessages.framework"
 fi

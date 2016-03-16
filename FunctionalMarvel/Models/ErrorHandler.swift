@@ -6,14 +6,13 @@
 //  Copyright © 2015 Sergey Shulga. All rights reserved.
 //
 
-import UIKit;
+import UIKit
+import TSMessages
 
 struct ErrorHandler {
-   static func showAlert(err:ErrorType) {
-      let alert = UIAlertView(title: "Error",
-         message:  (err as NSError).localizedDescription,
-         delegate: nil,
-         cancelButtonTitle: "Dismiss")
-      alert.show()
-   }
+    static func showAlert(err:ErrorType) {
+        let error = err as NSError
+        
+        TSMessage.showNotificationWithTitle("Error", subtitle: error.localizedDescription, type: .Error)
+    }
 }

@@ -91,6 +91,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-FunctionalMarvelTests/RxAlamofire.framework"
   install_framework "Pods-FunctionalMarvelTests/RxCocoa.framework"
   install_framework "Pods-FunctionalMarvelTests/RxSwift.framework"
+  install_framework "Pods-FunctionalMarvelTests/SDWebImage.framework"
   install_framework "Pods-FunctionalMarvelTests/Nimble.framework"
   install_framework "Pods-FunctionalMarvelTests/Quick.framework"
 fi
@@ -102,6 +103,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-FunctionalMarvelTests/RxAlamofire.framework"
   install_framework "Pods-FunctionalMarvelTests/RxCocoa.framework"
   install_framework "Pods-FunctionalMarvelTests/RxSwift.framework"
+  install_framework "Pods-FunctionalMarvelTests/SDWebImage.framework"
   install_framework "Pods-FunctionalMarvelTests/Nimble.framework"
   install_framework "Pods-FunctionalMarvelTests/Quick.framework"
 fi
