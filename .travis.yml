@@ -13,5 +13,5 @@ before_install:
 #install:
 #- gem install xcpretty --no-rdoc --no-ri --no-document --quiet
 script:
-- xctool test -workspace FunctionalMarvel.xcworkspace -scheme FunctionalMarvel -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
-#- set -o pipefail && xcodebuild test -workspace FunctionalMarvel.xcworkspace -scheme FunctionalMarvel -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty -c
+#- xctool test -workspace FunctionalMarvel.xcworkspace -scheme FunctionalMarvel -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+- set -o pipefail && xcodebuild test -workspace FunctionalMarvel.xcworkspace -scheme FunctionalMarvel -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty -c
