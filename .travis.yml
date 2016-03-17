@@ -8,10 +8,11 @@ xcode_sdk: iphonesimulator9.0
 # cache: cocoapods
 # podfile: Example/Podfile
 before_install:
+- gem install xcpretty --no-rdoc --no-ri --no-document --quiet
+- brew install xctool
 #- gem install cocoapods # Since Travis is not always on latest version
 #- pod install
-#install:
-#- gem install xcpretty --no-rdoc --no-ri --no-document --quiet
 script:
-#- xctool test -workspace FunctionalMarvel.xcworkspace -scheme FunctionalMarvel -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
-- set -o pipefail && xcodebuild test -workspace FunctionalMarvel.xcworkspace -scheme FunctionalMarvel -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty -c
+- xctool -workspace FunctionalMarvel.xcworkspace -scheme FunctionalMarvel -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+- xctool test -workspace FunctionalMarvel.xcworkspace -scheme FunctionalMarvel -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+#- set -o pipefail && xcodebuild test -workspace FunctionalMarvel.xcworkspace -scheme FunctionalMarvel -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty -c
