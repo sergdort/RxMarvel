@@ -31,9 +31,8 @@ class HeroListTableViewCell: RxTableViewCell<HeroListViewModel> {
 }
 
 
-extension HeroListTableViewCell:ReusableView {
+extension HeroListTableViewCell: ReusableView {
 }
 
-extension HeroListTableViewCell:NibProvidable{
+extension HeroListTableViewCell: NibProvidable {
 }
-

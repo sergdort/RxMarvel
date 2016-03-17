@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 
 protocol ReusableView {
-   static var reuseIdentifier:String {get}
+   static var reuseIdentifier: String {get}
 }
 
 protocol BindableView {
@@ -19,22 +19,21 @@ protocol BindableView {
 }
 
 extension ReusableView {
-   static var reuseIdentifier:String {
+   static var reuseIdentifier: String {
       return "\(self)"
    }
 }
 
 protocol NibProvidable {
-   static var nibName:String {get}
-   static var nib:UINib {get}
+   static var nibName: String {get}
+   static var nib: UINib {get}
 }
 
 extension NibProvidable {
-   static var nibName:String {
+   static var nibName: String {
       return "\(self)"
    }
-   static var nib:UINib {
+   static var nib: UINib {
       return UINib(nibName: self.nibName, bundle: nil)
    }
 }
-

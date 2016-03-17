@@ -10,15 +10,15 @@ import UIKit
 
 class SearchTableDataSource<Element>: AppendableDataSource<Element> {
    
-   override init(items:[T],
-      cellFactory:(UITableView, NSIndexPath, T) -> UITableViewCell) {
+   override init(items: [T],
+      cellFactory: (UITableView, NSIndexPath, T) -> UITableViewCell) {
       super.init(items: items, cellFactory: cellFactory)
    }
 }
 
 
 extension SearchTableDataSource:ChangeableDataSourceType {
-   func setItems(animation: UITableViewRowAnimation, tableView:UITableView)(items: [T]) {
+   func setItems(animation: UITableViewRowAnimation, tableView: UITableView)(items: [T]) {
       self.items = items
       tableView.reloadData()
    }

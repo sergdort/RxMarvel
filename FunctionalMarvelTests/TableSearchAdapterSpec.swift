@@ -14,8 +14,8 @@ import RxSwift
 
 class TableSearchAdapterSpec: QuickSpec {
    
-   var adapter:TableSearchAdapter<Hero,HeroListViewModel>!
-   var foundHeroes:[Hero] = []
+   var adapter: TableSearchAdapter<Hero, HeroListViewModel>!
+   var foundHeroes: [Hero] = []
    
    override func spec() {
       
@@ -23,11 +23,16 @@ class TableSearchAdapterSpec: QuickSpec {
          
          beforeEach({ () -> () in
             
-            self.adapter = TableSearchAdapter(searchEvent: { [unowned self] (offset, limit, search, nexBatchTriger) -> Observable<[Hero]> in
+            self.adapter = TableSearchAdapter(searchEvent: {
+               [unowned self] (offset, limit, search, nexBatchTriger) -> Observable<[Hero]> in
                   return create({ (observer) -> Disposable in
                      
-                     let heroes = [Hero(id: 2, name: "name2", thumbnail: Thumbnail(path: "path", pathExtension: "jpg")),
-                        Hero(id: 2, name: "name2", thumbnail: Thumbnail(path: "path", pathExtension: "jpg"))]
+                     let heroes = [Hero(id: 2,
+                        name: "name2",
+                        thumbnail: Thumbnail(path: "path", pathExtension: "jpg")),
+                        Hero(id: 2,
+                           name: "name2",
+                           thumbnail: Thumbnail(path: "path", pathExtension: "jpg"))]
                      
                      self.foundHeroes.appendContentsOf(heroes)
                      
@@ -41,17 +46,20 @@ class TableSearchAdapterSpec: QuickSpec {
          })
          
          it("should search", closure: { () -> () in
-            self.adapter.searchController.searchBar.frame = CGRect(x: 0, y: 0, width: 320, height: 44)
+            self.adapter.searchController.searchBar.frame =
+               CGRect(x: 0, y: 0, width: 320, height: 44)
             let delegate = self.adapter.searchController.searchBar.delegate!
             
 //            Force search
             delegate.searchBar!(self.adapter.searchController.searchBar, textDidChange: "Text")
             
-            expect(self.adapter.searchContentController.dataSource.items.count).toEventually(equal(self.foundHeroes.count))
+            expect(self.adapter.searchContentController.dataSource.items.count)
+               .toEventually(equal(self.foundHeroes.count))
             
             delegate.searchBar!(self.adapter.searchController.searchBar, textDidChange: "Text")
             
-            expect(self.adapter.searchContentController.dataSource.items.count).toEventually(equal(self.foundHeroes.count))
+            expect(self.adapter.searchContentController.dataSource.items.count)
+               .toEventually(equal(self.foundHeroes.count))
             
          })
          

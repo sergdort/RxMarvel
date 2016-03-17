@@ -12,7 +12,7 @@ import Nimble
 @testable import FunctionalMarvel
 
 class BindableCellFactorySpec: QuickSpec {
-   var tableView:UITableView!
+   var tableView: UITableView!
    override func spec() {
       
       beforeEach { () -> () in

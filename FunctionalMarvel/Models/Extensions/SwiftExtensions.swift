@@ -9,18 +9,18 @@
 import Foundation
 import Runes
 
-func JSONDict(j:AnyObject) -> [String : AnyObject]? {
+func JSONDict(j: AnyObject) -> [String : AnyObject]? {
    return j as?  [String : AnyObject]
 }
 
-func JSONDict(j:AnyObject)(key:String) -> [String : AnyObject]? {
+func JSONDict(j: AnyObject)(key: String) -> [String : AnyObject]? {
    if let dict = JSONDict -<< j {
       return JSONDict -<< dict[key]
    }
    return nil
 }
 
-func JSONArray(j:AnyObject) -> Array<[String : AnyObject]>? {
+func JSONArray(j: AnyObject) -> Array<[String : AnyObject]>? {
    return j as? Array<[String : AnyObject]>
 }
 
@@ -33,13 +33,13 @@ func + <T, U>(var lhs: [T: U], rhs: [T: U]) -> [T: U] {
 }
 
 extension String {
-   var md5:String {
-      let str = self.cStringUsingEncoding(NSUTF8StringEncoding)
-      let strLen = CUnsignedInt(self.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
+   var md5: String {
+      let str = cStringUsingEncoding(NSUTF8StringEncoding) ?? []
+      let strLen = CUnsignedInt(lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
       let digestLen = Int(CC_MD5_DIGEST_LENGTH)
       let result = UnsafeMutablePointer<CUnsignedChar>.alloc(digestLen)
       
-      CC_MD5(str!, strLen, result)
+      CC_MD5(str, strLen, result)
       
       var hash = String()
       for i in 0..<digestLen {
@@ -53,7 +53,7 @@ extension String {
 }
 
 extension UIApplication {
-   static var appDelegate:AppDelegate {
+   static var appDelegate: AppDelegate {
       return UIApplication.sharedApplication().delegate as! AppDelegate
    }
 }

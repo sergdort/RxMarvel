@@ -9,13 +9,18 @@
 import RxSwift
 
 protocol HeroAutoLoading {
-   static func getItems(offset:Int, limit:Int, loadNextBatch:Observable<Void>) -> Observable<[Hero]>
-   static func searchItems(offset:Int, limit:Int, search:String, loadNextBatch:Observable<Void>) -> Observable<[Hero]>
+   static func getItems(offset: Int,
+      limit: Int,
+      loadNextBatch: Observable<Void>) -> Observable<[Hero]>
+   
+   static func searchItems(offset: Int,
+      limit: Int, search: String,
+      loadNextBatch: Observable<Void>) -> Observable<[Hero]>
 }
 
 
 
 protocol JsonGET {
-   static func getData(endpoint:EndPoint)(parameters:[String: AnyObject]?) -> Observable<AnyObject>
+   static func getData(endpoint: EndPoint)
+      (parameters: [String: AnyObject]?) -> Observable<AnyObject>
 }
-

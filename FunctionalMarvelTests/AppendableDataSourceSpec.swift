@@ -13,21 +13,23 @@ import Nimble
 
 class AppendableDataSourceSpec: QuickSpec {
    
-   private class TableMock:UITableView {
+   private class TableMock: UITableView {
       private override func cellForRowAtIndexPath(indexPath: NSIndexPath) -> UITableViewCell? {
          return self.dataSource?.tableView(self, cellForRowAtIndexPath: indexPath)
       }
    }
    
-   private var tableView:TableMock!
-   var dataSource:AppendableDataSource<Hero>!
+   private var tableView: TableMock!
+   var dataSource: AppendableDataSource<Hero>!
    
    override func spec() {
       
       describe("AppendableDataSourceSpec") { () -> Void in
          
          beforeEach({ () -> () in
-            let hero = Hero(id: 1, name: "name", thumbnail: Thumbnail(path: "path", pathExtension: "jpg"))
+            let hero = Hero(id: 1, name: "name",
+               thumbnail: Thumbnail(path: "path",
+                  pathExtension: "jpg"))
             self.tableView = TableMock()
             self.dataSource = AppendableDataSource(items: [hero],
                cellFactory: { (_, _, _) -> UITableViewCell in
@@ -45,8 +47,10 @@ class AppendableDataSourceSpec: QuickSpec {
          it("should append cell", closure: { () -> () in
             let countBefor = self.dataSource.items.count
             
-            let heroes = [Hero(id: 2, name: "name2", thumbnail: Thumbnail(path: "path", pathExtension: "jpg")),
-                          Hero(id: 2, name: "name2", thumbnail: Thumbnail(path: "path", pathExtension: "jpg"))]
+            let heroes = [Hero(id: 2, name: "name2",
+               thumbnail: Thumbnail(path: "path", pathExtension: "jpg")),
+                          Hero(id: 2, name: "name2",
+                           thumbnail: Thumbnail(path: "path", pathExtension: "jpg"))]
             let addedCount = heroes.count
             self.dataSource.appendItems(.None, tableView: self.tableView)(items: heroes)
             
@@ -55,7 +59,8 @@ class AppendableDataSourceSpec: QuickSpec {
          
          it("should have same number of items", closure: { () -> () in
             let countBefor = self.dataSource.items.count
-            self.dataSource.appendItems(UITableViewRowAnimation.None, tableView: self.tableView)(items: [])
+            self.dataSource.appendItems(UITableViewRowAnimation.None,
+               tableView: self.tableView)(items: [])
             expect(self.dataSource.items.count).to(equal(countBefor))
             
          })

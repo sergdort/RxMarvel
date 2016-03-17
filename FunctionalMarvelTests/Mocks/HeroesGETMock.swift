@@ -11,9 +11,10 @@ import RxSwift
 
 @testable import FunctionalMarvel
 
-struct HeroesGETMock : JsonGET {
-   static func getData(endpoint: EndPoint)(parameters: [String : AnyObject]?) -> Observable<AnyObject> {
-      let subject:PublishSubject<AnyObject> = PublishSubject()
+struct HeroesGETMock: JsonGET {
+   static func getData(endpoint: EndPoint)
+      (parameters: [String : AnyObject]?) -> Observable<AnyObject> {
+      let subject: PublishSubject<AnyObject> = PublishSubject()
       delay(1) { () -> () in
          subject.onNext(JSONFromFileName("Heroes")!)
       }

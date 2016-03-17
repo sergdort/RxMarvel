@@ -17,7 +17,7 @@ import RxCocoa
 class AutoLoadingSpec: QuickSpec {
    
    let bag = DisposeBag()
-   let triger:PublishSubject<Void> = PublishSubject()
+   let triger: PublishSubject<Void> = PublishSubject()
    var api = HeroAPI.self
    
    override func spec() {
@@ -34,7 +34,7 @@ class AutoLoadingSpec: QuickSpec {
       describe("Load users") { () -> Void in
          
          it("should load users", closure: { () -> () in
-            var heroes:[Hero] = []
+            var heroes: [Hero] = []
             
             self.api
                .getItems(heroes.count, limit: 1, loadNextBatch:self.triger)

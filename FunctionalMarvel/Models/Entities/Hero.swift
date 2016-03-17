@@ -10,16 +10,16 @@ import Argo
 import Curry
 
 struct Hero {
-   let id:Int
-   let name:String
-   let thumbnail:Thumbnail
+   let id: Int
+   let name: String
+   let thumbnail: Thumbnail
 }
 
 extension Hero:Decodable {
-   static func decode(j: JSON) -> Decoded<Hero> {
+   static func decode(json: JSON) -> Decoded<Hero> {
       return curry(Hero.init)
-         <^> j <| "id"
-         <*> j <| "name"
-         <*> j <| "thumbnail"
+         <^> json <| "id"
+         <*> json <| "name"
+         <*> json <| "thumbnail"
    }
 }

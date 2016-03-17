@@ -28,8 +28,9 @@ func <-> <T>(property: ControlProperty<T>, variable: Variable<T>) -> Disposable 
    let bindToVariable = property
       .subscribe(onNext: { n in
          variable.value = n
-         }, onCompleted:  {
-            bindToUIDisposable.dispose()
+         },
+      onCompleted: {
+         bindToUIDisposable.dispose()
       })
    
    return StableCompositeDisposable.create(bindToUIDisposable, bindToVariable)
@@ -48,8 +49,7 @@ func ~> <T>(variable: Variable<T>, property: AnyObserver<T>) -> Disposable {
 }
 
 extension UIImageView {
-
-   var rxex_imageURL:AnyObserver<NSURL> {
+   var rxex_imageURL: AnyObserver<NSURL> {
       return AnyObserver { [weak self] event in
          switch event {
          case .Next(let value):
@@ -57,8 +57,8 @@ extension UIImageView {
             self?.sd_setImageWithURL(value, completed: { [weak self] _ in
                let transition = CATransition()
                transition.duration = 0.3
-               
-               transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+               transition.timingFunction =
+                  CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
                self?.layer.addAnimation(transition, forKey: kCATransition)
             })
          default:
@@ -70,7 +70,7 @@ extension UIImageView {
 }
 
 extension UITableView {
-   var rxex_nextPageTriger:Observable<Void> {
+   var rxex_nextPageTriger: Observable<Void> {
       return self
          .rx_contentOffset
          .flatMapLatest { [unowned self] (offset) -> Observable<Void> in
@@ -79,4 +79,3 @@ extension UITableView {
       }
    }
 }
-

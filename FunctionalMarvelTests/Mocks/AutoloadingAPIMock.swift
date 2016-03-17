@@ -10,17 +10,18 @@ import RxSwift
 
 @testable import FunctionalMarvel
 
-struct AutoloadingAPIMock:HeroAutoLoading {
+struct AutoloadingAPIMock: HeroAutoLoading {
    
    static var getItems = [Hero]()
    static var searchItems = [Hero]()
    
-   static func getItems(offset:Int,
-      limit:Int,
-      loadNextBatch:Observable<Void>) -> Observable<[Hero]> {
+   static func getItems(offset: Int,
+      limit: Int,
+      loadNextBatch: Observable<Void>) -> Observable<[Hero]> {
          return create({ (observer) -> Disposable in
             
-            let heroes = [Hero(id: 2, name: "name2", thumbnail: Thumbnail(path: "path", pathExtension: "jpg")),
+            let heroes = [Hero(id: 2, name: "name2",
+               thumbnail: Thumbnail(path: "path", pathExtension: "jpg")),
                Hero(id: 2, name: "name2", thumbnail: Thumbnail(path: "path", pathExtension: "jpg"))]
             
             self.getItems.appendContentsOf(heroes)
@@ -32,14 +33,18 @@ struct AutoloadingAPIMock:HeroAutoLoading {
    }
    
    
-   static func searchItems(offset:Int,
-      limit:Int,
-      search:String,
-      loadNextBatch:Observable<Void>) -> Observable<[Hero]> {
+   static func searchItems(offset: Int,
+      limit: Int,
+      search: String,
+      loadNextBatch: Observable<Void>) -> Observable<[Hero]> {
          return create({ (observer) -> Disposable in
             
-            let heroes = [Hero(id: 2, name: "name2", thumbnail: Thumbnail(path: "path", pathExtension: "jpg")),
-               Hero(id: 2, name: "name2", thumbnail: Thumbnail(path: "path", pathExtension: "jpg"))]
+            let heroes = [Hero(id: 2,
+               name: "name2",
+               thumbnail: Thumbnail(path: "path", pathExtension: "jpg")),
+               Hero(id: 2,
+                  name: "name2",
+                  thumbnail: Thumbnail(path: "path", pathExtension: "jpg"))]
             
             self.searchItems.appendContentsOf(heroes)
             

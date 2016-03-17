@@ -11,17 +11,21 @@ import RxSwift
 import Argo
 
 struct HeroAPI {
-   static var getableApi:JsonGET.Type = Marvel.self
-   private static let decodeScheduler = SerialDispatchQueueScheduler(internalSerialQueueName: "com.FunctionalMarvel.HeroAPI.decode_queue")
-   typealias HeroListResult = (heroes:Decoded<[Hero]>, batch:Decoded<Batch>)
+   static var getableApi: JsonGET.Type = Marvel.self
    
-   private static func recursiveHeroSearch(loadedSoFar:[Hero],
-      offset:Int = 0,
-      limit:Int,
-      search:String,
-      loadNextBatch:Observable<Void>) -> Observable<[Hero]> {
+   private static let decodeScheduler =
+   SerialDispatchQueueScheduler(internalSerialQueueName:
+      "com.FunctionalMarvel.HeroAPI.decode_queue")
+   
+   typealias HeroListResult = (heroes: Decoded<[Hero]>, batch: Decoded<Batch>)
+   
+   private static func recursiveHeroSearch(loadedSoFar: [Hero],
+      offset: Int = 0,
+      limit: Int,
+      search: String,
+      loadNextBatch: Observable<Void>) -> Observable<[Hero]> {
          
-         let params:[String : AnyObject] = [
+         let params: [String : AnyObject] = [
             ParamKeys.limit : limit,
             ParamKeys.offset : String(offset),
             ParamKeys.searchName : search
@@ -56,11 +60,12 @@ struct HeroAPI {
          }
    }
    
-   private static func recursiveHeroList(offset:Int = 0,
-      limit:Int,
-      loadNextBatch:Observable<Void>) -> Observable<[Hero]>  {
+   private static func recursiveHeroList(offset: Int = 0,
+      limit: Int,
+      loadNextBatch: Observable<Void>) -> Observable<[Hero]> {
          
-         let params:[String : AnyObject] = [ ParamKeys.limit : limit, ParamKeys.offset : String(offset)]
+         let params: [String : AnyObject] = [ ParamKeys.limit : limit,
+            ParamKeys.offset : String(offset)]
          
       return heroListSignal(params)
          .flatMap { (tuple) -> Observable<[Hero]>  in
@@ -86,7 +91,7 @@ struct HeroAPI {
       }
    }
    
-   static func heroListSignal(params:[String:AnyObject]? = nil) -> Observable<HeroListResult> {
+   static func heroListSignal(params: [String:AnyObject]? = nil) -> Observable<HeroListResult> {
       
       return getableApi
          .getData(.Characters)(parameters: params)
@@ -98,25 +103,28 @@ struct HeroAPI {
 
 extension HeroAPI {
    struct HeroDecoder {
-      static func decode(j:AnyObject) -> HeroListResult {
-         if let dict = JSONDict(j)(key: "data"),
+      static func decode(json: AnyObject) -> HeroListResult {
+         if let dict = JSONDict(json)(key: "data"),
             let array = dict["results"] {
                return (Argo.decode(array), Argo.decode(dict))
          }
-         return (Decoded.Failure(DecodeError.Custom("Invalid JSON")), Decoded.Failure(DecodeError.Custom("Invalid JSON")))
+         return (Decoded.Failure(DecodeError.Custom("Invalid JSON")),
+            Decoded.Failure(DecodeError.Custom("Invalid JSON")))
       }
    }
 }
 
 extension HeroAPI:HeroAutoLoading {
    
-   static func getItems(offset: Int = 0, limit: Int, loadNextBatch: Observable<Void>) -> Observable<[Hero]> {
+   static func getItems(offset: Int = 0,
+      limit: Int,
+      loadNextBatch: Observable<Void>) -> Observable<[Hero]> {
       return recursiveHeroList(offset, limit: limit, loadNextBatch: loadNextBatch)
    }
    
    static func searchItems(offset: Int = 0,
-      limit:Int = 40,
-      search:String,
+      limit: Int = 40,
+      search: String,
       loadNextBatch: Observable<Void>) -> Observable<[Hero]> {
          return recursiveHeroSearch([],
             offset: offset,
@@ -125,4 +133,3 @@ extension HeroAPI:HeroAutoLoading {
             loadNextBatch: loadNextBatch)
    }
 }
-

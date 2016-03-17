@@ -9,7 +9,7 @@
 import UIKit
 
 class SearchTableViewController<T:BindableCellViewModel>: RxTableViewController {
-   lazy var dataSource:SearchTableDataSource<T> = {
+   lazy var dataSource: SearchTableDataSource<T> = {
       return SearchTableDataSource(items: [],
          cellFactory: BindableCellFactory.cell)
    }()

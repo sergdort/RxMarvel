@@ -10,7 +10,7 @@ import Foundation
 import Argo
 import Curry
 
-enum ThumbnailType:String {
+enum ThumbnailType: String {
    
  /*portrait_small	50x75px
    portrait_medium	100x150px
@@ -19,19 +19,19 @@ enum ThumbnailType:String {
    portrait_uncanny	300x450px
    portrait_incredible	216x324px*/
    
-   case portraitSmall = "portrait_small"
-   case portraitMedium = "portrait_medium"
-   case portraitXlarge = "portrait_xlarge"
-   case portraitFantastic = "portrait_fantastic"
-   case portraitUncanny = "portrait_uncanny"
-   case portraitIncredible = "portrait_incredible"
+   case PortraitSmall = "portrait_small"
+   case PortraitMedium = "portrait_medium"
+   case PortraitXlarge = "portrait_xlarge"
+   case PortraitFantastic = "portrait_fantastic"
+   case PortraitUncanny = "portrait_uncanny"
+   case PortraitIncredible = "portrait_incredible"
 }
 
 struct Thumbnail {
-   let path:String
-   let pathExtension:String
+   let path: String
+   let pathExtension: String
    
-   func pathForType(type:ThumbnailType) -> String {
+   func pathForType(type: ThumbnailType) -> String {
       return path + "/" + type.rawValue + "." + pathExtension
    }
 }

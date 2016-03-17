@@ -8,12 +8,12 @@
 
 import Foundation
 
-enum EndPoint:String {
+enum EndPoint: String {
    static let baseURL = "https://gateway.marvel.com/v1/public/"
    
    case Characters = "characters"
    
-   var path:String {
+   var path: String {
       switch self {
       case .Characters :
          return EndPoint.baseURL + self.rawValue

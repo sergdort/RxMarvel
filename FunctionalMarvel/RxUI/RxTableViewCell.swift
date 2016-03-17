@@ -11,7 +11,7 @@ import RxSwift
 
 class RxTableViewCell<ViewModelType>: UITableViewCell, BindableView {
    typealias V = ViewModelType
-   let onPrepareForReuse:Observable<Void> = PublishSubject()
+   let onPrepareForReuse: Observable<Void> = PublishSubject()
    
    override func prepareForReuse() {
       super.prepareForReuse()
@@ -25,4 +25,3 @@ class RxTableViewCell<ViewModelType>: UITableViewCell, BindableView {
    }
    
 }
-

@@ -23,13 +23,13 @@ struct Marvel {
       static let publicKey = "be23153c199affa766dc9fe6f34fd524"
    }
    
-   private static let formatter:NSDateFormatter = {
+   private static let formatter: NSDateFormatter = {
       let f = NSDateFormatter()
       f.dateFormat = "yyyyMMddHHmmss"
       return f
       }()
    
-   private static var defaultParams:[String:AnyObject] {
+   private static var defaultParams: [String:AnyObject] {
       let timeStamp = formatter.stringFromDate(NSDate())
       let hash = "\(timeStamp)\(Keys.privatKey)\(Keys.publicKey)".md5
       
@@ -41,8 +41,9 @@ struct Marvel {
    }
 }
 
-extension Marvel:JsonGET{
-   static func getData(endpoint: EndPoint)(parameters: [String : AnyObject]?) -> Observable<AnyObject> {
+extension Marvel: JsonGET {
+   static func getData(endpoint: EndPoint)
+      (parameters: [String : AnyObject]?) -> Observable<AnyObject> {
       return Alamofire
          .request(
             .GET,
@@ -51,7 +52,3 @@ extension Marvel:JsonGET{
          .rx_JSON()
    }
 }
-
-
-
-

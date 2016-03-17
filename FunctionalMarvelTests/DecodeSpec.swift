@@ -21,18 +21,19 @@ class DecodeSpec: QuickSpec {
          
          it("should decode hero", closure: { () -> () in
          
-            let hero:Hero? = decode -<< JSONFromFileName("Hero")
+            let hero: Hero? = decode -<< JSONFromFileName("Hero")
             
             expect(hero).toNot(beNil())
             expect(hero?.id).to(equal(1011334))
             expect(hero?.name).to(equal("3-D Man"))
             expect(hero?.thumbnail).toNot(beNil())
-            expect(hero?.thumbnail.path).to(equal("http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784"))
+            expect(hero?.thumbnail.path)
+               .to(equal("http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784"))
             expect(hero?.thumbnail.pathExtension).to(equal("jpg"))
          })
          
          it("should decode batch", closure: { () -> () in
-            let batch:Batch? = decode -<< JSONFromFileName("Batch")
+            let batch: Batch? = decode -<< JSONFromFileName("Batch")
             
             expect(batch).toNot(beNil())
             expect(batch?.count).to(equal(1))

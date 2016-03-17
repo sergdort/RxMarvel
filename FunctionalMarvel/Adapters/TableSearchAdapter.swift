@@ -12,16 +12,19 @@ import RxCocoa
 
 class TableSearchAdapter<Element, U:BindableCellViewModel> {
    
-   typealias SearchEvent = (offset:Int, limit:Int, search:String, nexBatchTriger:Observable<Void>) -> Observable<[Element]>
+   typealias SearchEvent = (offset: Int,
+      limit: Int,
+      search: String,
+      nexBatchTriger: Observable<Void>) -> Observable<[Element]>
    
-   lazy var searchController:UISearchController = {
+   lazy var searchController: UISearchController = {
       return UISearchController(searchResultsController: self.searchContentController)
    }()
    lazy var searchContentController = SearchTableViewController<U>(style:.Plain)
    
    let bag = DisposeBag()
    
-   init(searchEvent:SearchEvent, viewModelMap:[Element] -> [U]) {
+   init(searchEvent: SearchEvent, viewModelMap: [Element] -> [U]) {
       let searchSignal = searchController.searchBar
          .rx_text
          .throttle(0.3, MainScheduler.sharedInstance)
@@ -42,7 +45,8 @@ class TableSearchAdapter<Element, U:BindableCellViewModel> {
             return self.searchContentController.dataSource.items.isEmpty
          })
          .asDriver(onErrorJustReturn: [])
-         .driveNext(searchContentController.dataSource.appendItems(.Top, tableView: searchContentController.tableView))
+         .driveNext(searchContentController.dataSource
+            .appendItems(.Top, tableView: searchContentController.tableView))
          .addDisposableTo(bag)
       
       searchSignal
@@ -50,7 +54,8 @@ class TableSearchAdapter<Element, U:BindableCellViewModel> {
             return self.searchContentController.dataSource.items.isEmpty == false
          })
          .asDriver(onErrorJustReturn: [])
-         .driveNext(searchContentController.dataSource.setItems(.Top, tableView: searchContentController.tableView))
+         .driveNext(searchContentController.dataSource
+            .setItems(.Top, tableView: searchContentController.tableView))
          .addDisposableTo(bag)
       
    }

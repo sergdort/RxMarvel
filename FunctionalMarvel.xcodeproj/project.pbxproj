@@ -392,6 +392,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 846AE6A11BC5000F000A3739 /* Build configuration list for PBXNativeTarget "FunctionalMarvel" */;
 			buildPhases = (
+				846436DD1C9AE5670035B40D /* ShellScript */,
 				29B6EFAE5425E28C7CFCD0C9 /* Check Pods Manifest.lock */,
 				846AE6801BC5000F000A3739 /* Sources */,
 				846AE6811BC5000F000A3739 /* Frameworks */,
@@ -412,6 +413,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 846AE6A41BC5000F000A3739 /* Build configuration list for PBXNativeTarget "FunctionalMarvelTests" */;
 			buildPhases = (
+				846436DE1C9AE5720035B40D /* ShellScript */,
 				D04D3EE78A12FCB04C289A2D /* Check Pods Manifest.lock */,
 				846AE6941BC5000F000A3739 /* Sources */,
 				846AE6951BC5000F000A3739 /* Frameworks */,
@@ -521,6 +523,32 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FunctionalMarvelTests/Pods-FunctionalMarvelTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		846436DD1C9AE5670035B40D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		846436DE1C9AE5720035B40D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		B580F69B94969A82603CFC5E /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;

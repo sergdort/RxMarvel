@@ -13,14 +13,15 @@ import RxCocoa
 enum Segue {
    case ShowHeroesList
    
-   var viewControllerIdentifier:String {
+   var viewControllerIdentifier: String {
       switch self {
       case .ShowHeroesList:
          return "HeroListNavigationController"
       }
    }
    
-   func presentationSegueFromViewController(viewController:UIViewController, triger:ControlEvent<Void>) -> Disposable {
+   func presentationSegueFromViewController(viewController: UIViewController,
+      triger: ControlEvent<Void>) -> Disposable {
       
       return triger.subscribeNext { [weak viewController] in
          if let toViewController = viewController?
@@ -31,7 +32,8 @@ enum Segue {
       }
    }
    
-   static func dismissSegueFromViewController(viewController:UIViewController, triger:ControlEvent<Void>) -> Disposable {
+   static func dismissSegueFromViewController(viewController: UIViewController,
+      triger: ControlEvent<Void>) -> Disposable {
       return triger.subscribeNext { [weak viewController] in
          viewController?.dismissViewControllerAnimated(true, completion: nil)
       }

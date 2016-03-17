@@ -16,11 +16,11 @@ class RxTableViewController: UITableViewController {
    #endif
    
    private(set) var disposableBag = DisposeBag()
-   let rx_viewDidLoad:Observable<Void> = PublishSubject()
-   let rx_viewWillAppear:Observable<Void> = PublishSubject()
-   let rx_viewDidAppear:Observable<Void> = PublishSubject()
-   let rx_viewWillDisappear:Observable<Void> = PublishSubject()
-   let rx_viewDidDisappear:Observable<Void> = PublishSubject()
+   let rx_viewDidLoad: Observable<Void> = PublishSubject()
+   let rx_viewWillAppear: Observable<Void> = PublishSubject()
+   let rx_viewDidAppear: Observable<Void> = PublishSubject()
+   let rx_viewWillDisappear: Observable<Void> = PublishSubject()
+   let rx_viewDidDisappear: Observable<Void> = PublishSubject()
    
    override func viewDidLoad() {
       super.viewDidLoad()

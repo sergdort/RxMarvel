@@ -12,21 +12,23 @@ import Nimble
 @testable import FunctionalMarvel
 
 class SearchTableViewControllerSpec: QuickSpec {
-   private class TableMock:UITableView {
+   private class TableMock: UITableView {
       private override func cellForRowAtIndexPath(indexPath: NSIndexPath) -> UITableViewCell? {
          return self.dataSource?.tableView(self, cellForRowAtIndexPath: indexPath)
       }
    }
    
-   private var tableView:TableMock!
-   var dataSource:SearchTableDataSource<Hero>!
+   private var tableView: TableMock!
+   var dataSource: SearchTableDataSource<Hero>!
    
    override func spec() {
       
       describe("SearchTableViewControllerSpec") { () -> Void in
          
          beforeEach({ () -> () in
-            let hero = Hero(id: 1, name: "name", thumbnail: Thumbnail(path: "path", pathExtension: "jpg"))
+            let hero = Hero(id: 1,
+               name: "name",
+               thumbnail: Thumbnail(path: "path", pathExtension: "jpg"))
             self.tableView = TableMock()
             self.dataSource = SearchTableDataSource(items: [hero],
                cellFactory: { _ -> UITableViewCell in
@@ -46,17 +48,20 @@ class SearchTableViewControllerSpec: QuickSpec {
          it("should chenge items", closure: { () -> () in
             expect(self.dataSource.items.count).toNot(equal(0))
             
-            let heroes = [Hero(id: 2, name: "name2", thumbnail: Thumbnail(path: "path", pathExtension: "jpg")),
+            let heroes = [Hero(id: 2,
+               name: "name2",
+               thumbnail: Thumbnail(path: "path", pathExtension: "jpg")),
                Hero(id: 2, name: "name2", thumbnail: Thumbnail(path: "path", pathExtension: "jpg"))]
             
-            self.dataSource.setItems(.None, tableView: self.tableView)(items: heroes);
+            self.dataSource.setItems(.None, tableView: self.tableView)(items: heroes)
             
             expect(self.dataSource.items.count).to(equal(heroes.count))
          })
          
          it("should have no items", closure: { () -> () in
             expect(self.dataSource.items.count).toNot(equal(0))
-            self.dataSource.setItems(UITableViewRowAnimation.None, tableView: self.tableView)(items: [])
+            self.dataSource.setItems(UITableViewRowAnimation.None,
+               tableView: self.tableView)(items: [])
             
             
             expect(self.dataSource.items.count).to(equal(0))

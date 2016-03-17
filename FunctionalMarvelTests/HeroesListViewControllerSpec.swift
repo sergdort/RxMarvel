@@ -14,7 +14,7 @@ import RxSwift
 
 class HeroesListViewControllerSpec: QuickSpec {
    
-   var viewController:HeroesListViewController!
+   var viewController: HeroesListViewController!
    
    override func spec() {
       
