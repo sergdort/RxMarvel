@@ -23,7 +23,7 @@ infix operator ~> {
 // Two way binding operator between control property and variable, that's all it takes {
 
 func <-> <T>(property: ControlProperty<T>, variable: Variable<T>) -> Disposable {
-   let bindToUIDisposable = variable
+   let bindToUIDisposable = variable.asObservable()
       .bindTo(property)
    let bindToVariable = property
       .subscribe(onNext: { n in
@@ -39,12 +39,12 @@ func <-> <T>(property: ControlProperty<T>, variable: Variable<T>) -> Disposable 
 // One way binding operator
 
 func <~ <T>(property: AnyObserver<T>, variable: Variable<T>) -> Disposable {
-   return variable
+   return variable.asObservable()
       .bindTo(property)
 }
 
 func ~> <T>(variable: Variable<T>, property: AnyObserver<T>) -> Disposable {
-   return variable
+   return variable.asObservable()
       .bindTo(property)
 }
 
@@ -70,12 +70,12 @@ extension UIImageView {
 }
 
 extension UITableView {
-   var rxex_nextPageTriger: Observable<Void> {
+   var rx_nextPageTriger: Observable<Void> {
       return self
          .rx_contentOffset
          .flatMapLatest { [unowned self] (offset) -> Observable<Void> in
             let shouldTriger = offset.y + self.frame.size.height + 40 > self.contentSize.height
-            return shouldTriger ? just() : empty()
+            return shouldTriger ? Observable.just() : Observable.empty()
       }
    }
 }

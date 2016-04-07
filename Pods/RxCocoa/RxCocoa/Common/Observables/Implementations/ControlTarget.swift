@@ -3,7 +3,7 @@
 //  RxCocoa
 //
 //  Created by Krunoslav Zaher on 2/21/15.
-//  Copyright (c) 2015 Krunoslav Zaher. All rights reserved.
+//  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
 #if os(iOS) || os(tvOS) || os(OSX)
@@ -28,10 +28,10 @@ import RxSwift
 class ControlTarget: RxTarget {
     typealias Callback = (Control) -> Void
 
-    let selector: Selector = "eventHandler:"
+    let selector: Selector = #selector(ControlTarget.eventHandler(_:))
 
     weak var control: Control?
-    #if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS)
     let controlEvents: UIControlEvents
 #endif
     var callback: Callback?

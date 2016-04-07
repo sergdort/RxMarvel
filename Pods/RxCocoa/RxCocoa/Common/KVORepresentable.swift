@@ -15,7 +15,7 @@ public protocol KVORepresentable {
     /**
     Associated KVO type.
     */
-    typealias KVOType
+    associatedtype KVOType
 
     /**
     Constructs `Self` using KVO value.
@@ -24,6 +24,9 @@ public protocol KVORepresentable {
 }
 
 extension KVORepresentable {
+    /**
+    Initializes `KVORepresentable` with optional value.
+    */
     init?(KVOValue: KVOType?) {
         guard let KVOValue = KVOValue else {
             return nil

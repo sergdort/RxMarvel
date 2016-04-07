@@ -18,8 +18,11 @@ class SearchTableDataSource<Element>: AppendableDataSource<Element> {
 
 
 extension SearchTableDataSource:ChangeableDataSourceType {
-   func setItems(animation: UITableViewRowAnimation, tableView: UITableView)(items: [T]) {
-      self.items = items
-      tableView.reloadData()
+   func setItems(animation: UITableViewRowAnimation, tableView: UITableView)
+      -> (items: [T]) -> Void {
+      return { items in
+         self.items = items
+         tableView.reloadData()
+      }
    }
 }

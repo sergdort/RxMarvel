@@ -3,7 +3,7 @@
 //  Rx
 //
 //  Created by Krunoslav Zaher on 2/15/15.
-//  Copyright (c) 2015 Krunoslav Zaher. All rights reserved.
+//  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
 import Foundation
@@ -25,9 +25,7 @@ public class SingleAssignmentDisposable : DisposeBase, Disposable, Cancelable {
     - returns: A value that indicates whether the object is disposed.
     */
     public var disposed: Bool {
-        get {
-            return _disposed
-        }
+        return _disposed
     }
 
     /**
@@ -53,6 +51,7 @@ public class SingleAssignmentDisposable : DisposeBase, Disposable, Cancelable {
     }
 
     private func _setDisposable(newValue: Disposable) -> Disposable? {
+        _lock.lock(); defer { _lock.unlock() }
         if _disposableSet {
             rxFatalError("oldState.disposable != nil")
         }

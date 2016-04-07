@@ -3,7 +3,7 @@
 //  Rx
 //
 //  Created by Krunoslav Zaher on 3/12/15.
-//  Copyright (c) 2015 Krunoslav Zaher. All rights reserved.
+//  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
 import Foundation
@@ -22,9 +22,7 @@ public class SerialDisposable : DisposeBase, Cancelable {
     - returns: Was resource disposed.
     */
     public var disposed: Bool {
-        get {
-            return _disposed
-        }
+        return _disposed
     }
     
     /**

@@ -43,12 +43,15 @@ struct Marvel {
 
 extension Marvel: JsonGET {
    static func getData(endpoint: EndPoint)
-      (parameters: [String : AnyObject]?) -> Observable<AnyObject> {
-      return Alamofire
-         .request(
-            .GET,
-            endpoint.path,
-            parameters: defaultParams + (parameters ?? [:]))
-         .rx_JSON()
+      -> (parameters: [String : AnyObject]?) -> Observable<AnyObject> {
+         return { parameters in
+            return Alamofire
+               .request(
+                  .GET,
+                  endpoint.path,
+                  parameters: defaultParams + (parameters ?? [:]))
+               .rx_JSON()
+         }
+
    }
 }

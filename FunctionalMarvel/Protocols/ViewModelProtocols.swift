@@ -22,13 +22,17 @@ protocol NibProvidableClassProvider {
 
 
 protocol AppendableDataSourceType {
-   typealias T
+   associatedtype T
    
-   func appendItems(animation: UITableViewRowAnimation, tableView: UITableView)(items: [T])
+   func appendItems(animation: UITableViewRowAnimation, tableView: UITableView)
+      -> (items: [T])
+      -> Void
 }
 
 protocol ChangeableDataSourceType {
-   typealias T
+   associatedtype T
    
-   func setItems(animation: UITableViewRowAnimation, tableView: UITableView)(items: [T])
+   func setItems(animation: UITableViewRowAnimation, tableView: UITableView)
+      -> (items: [T])
+      -> Void
 }

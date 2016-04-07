@@ -5,10 +5,10 @@ use_frameworks!
 inhibit_all_warnings!
 
 target 'FunctionalMarvel' do
-pod 'RxAlamofire', '= 0.3.3'
+pod 'RxAlamofire'
 pod 'Argo'
-pod 'RxSwift', '= 2.0.0-beta.3'
-pod 'RxCocoa', '= 2.0.0-beta.3'
+pod 'RxSwift'
+pod 'RxCocoa'
 pod 'Curry'
 pod 'Runes'
 pod 'SDWebImage'
@@ -18,10 +18,10 @@ target 'FunctionalMarvelTests' do
 
 pod 'Quick'
 pod 'Nimble'
-pod 'RxAlamofire', '= 0.3.3'
+pod 'RxAlamofire'
 pod 'Argo'
-pod 'RxSwift', '= 2.0.0-beta.3'
-pod 'RxCocoa', '= 2.0.0-beta.3'
+pod 'RxSwift'
+pod 'RxCocoa'
 pod 'Curry'
 pod 'Runes'
 

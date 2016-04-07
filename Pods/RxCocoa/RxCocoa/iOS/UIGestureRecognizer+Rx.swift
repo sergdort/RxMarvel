@@ -3,7 +3,7 @@
 //  Touches
 //
 //  Created by Carlos García on 10/6/15.
-//  Copyright (c) 2015 Krunoslav Zaher. All rights reserved.
+//  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
 #if os(iOS) || os(tvOS)
@@ -18,7 +18,7 @@ import RxSwift
 class GestureTarget: RxTarget {
     typealias Callback = (UIGestureRecognizer) -> Void
     
-    let selector = Selector("eventHandler:")
+    let selector = #selector(ControlTarget.eventHandler(_:))
     
     weak var gestureRecognizer: UIGestureRecognizer?
     var callback: Callback?
@@ -57,7 +57,7 @@ extension UIGestureRecognizer {
     Reactive wrapper for gesture recognizer events.
     */
     public var rx_event: ControlEvent<UIGestureRecognizer> {
-        let source: Observable<UIGestureRecognizer> = create { [weak self] observer in
+        let source: Observable<UIGestureRecognizer> = Observable.create { [weak self] observer in
             MainScheduler.ensureExecutingOnScheduler()
 
             guard let control = self else {
@@ -73,7 +73,7 @@ extension UIGestureRecognizer {
             return observer
         }.takeUntil(rx_deallocated)
         
-        return ControlEvent(source: source)
+        return ControlEvent(events: source)
     }
     
 }

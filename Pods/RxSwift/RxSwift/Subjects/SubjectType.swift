@@ -3,7 +3,7 @@
 //  Rx
 //
 //  Created by Krunoslav Zaher on 3/1/15.
-//  Copyright (c) 2015 Krunoslav Zaher. All rights reserved.
+//  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
 import Foundation
@@ -17,7 +17,7 @@ public protocol SubjectType : ObservableType {
     
     Usually this type is type of subject itself, but it doesn't have to be.
     */
-    typealias SubjectObserverType : ObserverType
+    associatedtype SubjectObserverType : ObserverType
     
     /**
     Returns observer interface for subject.

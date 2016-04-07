@@ -25,9 +25,7 @@ public final class ConcurrentMainScheduler : SchedulerType {
     - returns: Current time.
     */
     public var now : NSDate {
-        get {
-            return _mainScheduler.now
-        }
+        return _mainScheduler.now
     }
 
     private init(mainScheduler: MainScheduler) {
@@ -38,7 +36,7 @@ public final class ConcurrentMainScheduler : SchedulerType {
     /**
     Singleton instance of `ConcurrentMainScheduler`
     */
-    public static let sharedInstance = ConcurrentMainScheduler(mainScheduler: MainScheduler.sharedInstance)
+    public static let instance = ConcurrentMainScheduler(mainScheduler: MainScheduler.instance)
 
     /**
     Schedules an action to be executed immediatelly.

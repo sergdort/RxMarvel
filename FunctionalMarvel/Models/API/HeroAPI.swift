@@ -36,7 +36,7 @@ struct HeroAPI {
                
                guard let heroes = tuple.heroes.value,
                   let batch = tuple.batch.value  else {
-                     return empty()
+                     return Observable.empty()
                }
                
                var loadedHeroes = loadedSoFar
@@ -45,12 +45,12 @@ struct HeroAPI {
                if batch.offset == batch.total
                   || batch.offset + batch.count == batch.total {
                      //                     Here we've downloaded all data
-                     return just(loadedHeroes)
+                     return Observable.just(loadedHeroes)
                }
                
                return [
-                  just(loadedHeroes),
-                  never().takeUntil(loadNextBatch),
+                  Observable.just(loadedHeroes),
+                  Observable.never().takeUntil(loadNextBatch),
                   recursiveHeroSearch(loadedHeroes,
                      offset: batch.count + batch.offset,
                      limit: batch.limit,
@@ -72,18 +72,18 @@ struct HeroAPI {
             
             guard let heroes = tuple.heroes.value,
                let batch = tuple.batch.value  else {
-                  return empty()
+                  return Observable.empty()
             }
             
             if batch.offset == batch.total
                || batch.offset + batch.count == batch.total {
                   //                     Here we've downloaded all data
-                  return just(heroes)
+                  return Observable.just(heroes)
             }
             
             return [
-               just(heroes),
-               never().takeUntil(loadNextBatch),
+               Observable.just(heroes),
+               Observable.never().takeUntil(loadNextBatch),
                recursiveHeroList(batch.count + batch.offset,
                   limit: batch.limit,
                   loadNextBatch: loadNextBatch)

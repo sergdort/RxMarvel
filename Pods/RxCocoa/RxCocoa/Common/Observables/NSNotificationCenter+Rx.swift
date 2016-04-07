@@ -3,7 +3,7 @@
 //  RxCocoa
 //
 //  Created by Krunoslav Zaher on 5/2/15.
-//  Copyright (c) 2015 Krunoslav Zaher. All rights reserved.
+//  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
 import Foundation
@@ -20,8 +20,8 @@ extension NSNotificationCenter {
     - returns: Observable sequence of posted notifications.
     */
     @warn_unused_result(message="http://git.io/rxs.uo")
-    public func rx_notification(name: String, object: AnyObject? = nil) -> Observable<NSNotification> {
-        return create { observer in
+    public func rx_notification(name: String?, object: AnyObject? = nil) -> Observable<NSNotification> {
+        return Observable.create { [weak object] observer in
             let nsObserver = self.addObserverForName(name, object: object, queue: nil) { notification in
                 observer.on(.Next(notification))
             }

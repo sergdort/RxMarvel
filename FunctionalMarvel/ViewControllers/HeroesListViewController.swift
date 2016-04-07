@@ -47,7 +47,7 @@ class HeroesListViewController: RxTableViewController {
    }
    
    private func loadData() {
-      api.getItems(dataSource.items.count, limit: 40, loadNextBatch: tableView.rxex_nextPageTriger)
+      api.getItems(dataSource.items.count, limit: 40, loadNextBatch: tableView.rx_nextPageTriger)
          .map(HeroListViewModel.transform)
          .asDriver(onErrorJustReturn: [])
          .driveNext(dataSource.appendItems(.Top, tableView: tableView))

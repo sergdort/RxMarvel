@@ -27,16 +27,16 @@ class TableSearchAdapter<Element, U:BindableCellViewModel> {
    init(searchEvent: SearchEvent, viewModelMap: [Element] -> [U]) {
       let searchSignal = searchController.searchBar
          .rx_text
-         .throttle(0.3, MainScheduler.sharedInstance)
+         .throttle(0.3, scheduler: MainScheduler.instance)
          .distinctUntilChanged()
          .flatMapLatest { [unowned self] (search) -> Observable<[U]> in
             if search.isEmpty {
-               return empty()
+               return Observable.empty()
             }
             return searchEvent(offset: 0,
                limit: 10,
                search: search,
-               nexBatchTriger:self.searchContentController.tableView.rxex_nextPageTriger)
+               nexBatchTriger:self.searchContentController.tableView.rx_nextPageTriger)
                .map(viewModelMap)
       }
       

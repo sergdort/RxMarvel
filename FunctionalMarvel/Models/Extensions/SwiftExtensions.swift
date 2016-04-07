@@ -13,23 +13,26 @@ func JSONDict(j: AnyObject) -> [String : AnyObject]? {
    return j as?  [String : AnyObject]
 }
 
-func JSONDict(j: AnyObject)(key: String) -> [String : AnyObject]? {
-   if let dict = JSONDict -<< j {
-      return JSONDict -<< dict[key]
+func JSONDict(j: AnyObject) -> (key: String) -> [String : AnyObject]? {
+   return { key in
+      if let dict = JSONDict -<< j {
+         return JSONDict -<< dict[key]
+      }
+      return nil
    }
-   return nil
 }
 
 func JSONArray(j: AnyObject) -> Array<[String : AnyObject]>? {
    return j as? Array<[String : AnyObject]>
 }
 
-func + <T, U>(var lhs: [T: U], rhs: [T: U]) -> [T: U] {
+func + <T, U>(lhs: [T: U], rhs: [T: U]) -> [T: U] {
+   var lhsCopy = lhs
    for (key, val) in rhs {
-      lhs[key] = val
+      lhsCopy[key] = val
    }
    
-   return lhs
+   return lhsCopy
 }
 
 extension String {
@@ -54,6 +57,9 @@ extension String {
 
 extension UIApplication {
    static var appDelegate: AppDelegate {
-      return UIApplication.sharedApplication().delegate as! AppDelegate
+      guard let app = UIApplication.sharedApplication().delegate as? AppDelegate else {
+         fatalError()
+      }
+      return app
    }
 }

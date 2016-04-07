@@ -14,7 +14,7 @@ protocol ReusableView {
 }
 
 protocol BindableView {
-   typealias V
+   associatedtype V
    var rx_viewModel: AnyObserver<V> {get}
 }
 

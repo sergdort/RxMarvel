@@ -3,7 +3,7 @@
 //  Rx
 //
 //  Created by Junior B. on 10/29/15.
-//  Copyright (c) 2015 Krunoslav Zaher. All rights reserved.
+//  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
 import Foundation
@@ -33,9 +33,7 @@ public class BooleanDisposable : Disposable, Cancelable {
         - returns: Was resource disposed.
      */
     public var disposed: Bool {
-        get {
-            return _disposed
-        }
+        return _disposed
     }
     
     /**

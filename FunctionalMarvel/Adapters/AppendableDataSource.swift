@@ -21,15 +21,18 @@ class AppendableDataSource<Element> : NSObject, AppendableDataSourceType, UITabl
       self.items = items
    }
    
-   func appendItems(animation: UITableViewRowAnimation, tableView: UITableView)(items: [T]) {
-      if items.isEmpty {
-         return
+   func appendItems(animation: UITableViewRowAnimation, tableView: UITableView)
+      -> (items: [T]) -> Void {
+      return { items in
+         if items.isEmpty {
+            return
+         }
+         let indexPathes = (self.items.count...(self.items.count + items.count - 1)).map { (idx) in
+            return NSIndexPath(forRow: idx, inSection: 0)
+         }
+         self.items.appendContentsOf(items)
+         tableView.insertRowsAtIndexPaths(indexPathes, withRowAnimation:animation)
       }
-      let indexPathes = (self.items.count...(self.items.count + items.count - 1)).map { (idx) in
-         return NSIndexPath(forRow: idx, inSection: 0)
-      }
-      self.items.appendContentsOf(items)
-      tableView.insertRowsAtIndexPaths(indexPathes, withRowAnimation:animation)
    }
    
    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

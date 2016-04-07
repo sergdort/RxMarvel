@@ -1,9 +1,9 @@
 //
-//  UIDatePicker.swift
+//  UIDatePicker+Rx.swift
 //  RxCocoa
 //
 //  Created by Daniel Tartaglia on 5/31/15.
-//  Copyright (c) 2015 Krunoslav Zaher. All rights reserved.
+//  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
 #if os(iOS)
@@ -20,11 +20,14 @@ extension UIDatePicker {
     Reactive wrapper for `date` property.
     */
     public var rx_date: ControlProperty<NSDate> {
-        return rx_value(getter: { [unowned self] in
-            self.date
-        }, setter: { [weak self] value in
-            self?.date = value
-        })
+        return UIControl.rx_value(
+            self,
+            getter: { datePicker in
+                datePicker.date
+            }, setter: { datePicker, value in
+                datePicker.date = value
+            }
+        )
     }
     
 }

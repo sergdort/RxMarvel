@@ -3,7 +3,7 @@
 //  Rx
 //
 //  Created by Krunoslav Zaher on 2/28/15.
-//  Copyright (c) 2015 Krunoslav Zaher. All rights reserved.
+//  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
 import Foundation
@@ -21,9 +21,9 @@ class Identity {
 
 func hash(_x: Int) -> Int {
     var x = _x
-    x = ((x >> 16) ^ x) &* 0x45d9f3b;
-    x = ((x >> 16) ^ x) &* 0x45d9f3b;
-    x = ((x >> 16) ^ x);
+    x = ((x >> 16) ^ x) &* 0x45d9f3b
+    x = ((x >> 16) ^ x) &* 0x45d9f3b
+    x = ((x >> 16) ^ x)
     return x;
 }
 
@@ -35,13 +35,11 @@ public struct BagKey : Hashable {
     let key: Int
 
     public var hashValue: Int {
-        get {
-            if let uniqueIdentity = uniqueIdentity {
-                return hash(key) ^ (unsafeAddressOf(uniqueIdentity).hashValue)
-            }
-            else {
-                return hash(key)
-            }
+        if let uniqueIdentity = uniqueIdentity {
+            return hash(key) ^ (unsafeAddressOf(uniqueIdentity).hashValue)
+        }
+        else {
+            return hash(key)
         }
     }
 }
@@ -212,9 +210,7 @@ extension Bag {
     A textual representation of `self`, suitable for debugging.
     */
     public var debugDescription : String {
-        get {
-            return "\(self.count) elements in Bag"
-        }
+        return "\(self.count) elements in Bag"
     }
 }
 

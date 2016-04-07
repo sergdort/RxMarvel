@@ -3,7 +3,7 @@
 //  RxCocoa
 //
 //  Created by Carlos García on 8/7/15.
-//  Copyright (c) 2015 Krunoslav Zaher. All rights reserved.
+//  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
 #if os(iOS)
@@ -20,11 +20,14 @@ extension UISwitch {
     Reactive wrapper for `on` property.
     */
     public var rx_value: ControlProperty<Bool> {
-        return rx_value(getter: { [unowned self] in
-            return self.on
-        }, setter: { [weak self] value in
-            self?.on = value
-        })
+        return UIControl.rx_value(
+            self,
+            getter: { uiSwitch in
+                uiSwitch.on
+            }, setter: { uiSwitch, value in
+                uiSwitch.on = value
+            }
+        )
     }
     
 }

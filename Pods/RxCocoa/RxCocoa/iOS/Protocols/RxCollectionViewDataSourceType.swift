@@ -3,7 +3,7 @@
 //  RxCocoa
 //
 //  Created by Krunoslav Zaher on 6/29/15.
-//  Copyright (c) 2015 Krunoslav Zaher. All rights reserved.
+//  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
 #if os(iOS) || os(tvOS)
@@ -22,7 +22,7 @@ public protocol RxCollectionViewDataSourceType /*: UICollectionViewDataSource*/ 
     /**
     Type of elements that can be bound to collection view.
     */
-    typealias Element
+    associatedtype Element
     
     /**
     New observable sequence event observed.

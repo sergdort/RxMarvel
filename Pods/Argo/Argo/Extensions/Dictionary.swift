@@ -1,18 +1,25 @@
 // pure merge for Dictionaries
-func + <T, U>(var lhs: [T: U], rhs: [T: U]) -> [T: U] {
+func + <T, U>(lhs: [T: U], rhs: [T: U]) -> [T: U] {
+  var merged = lhs
   for (key, val) in rhs {
-    lhs[key] = val
+    merged[key] = val
   }
 
-  return lhs
+  return merged
 }
 
 extension Dictionary {
-  func map<T>(f: Value -> T) -> [Key: T] {
-    return self.reduce([:]) { $0 + [$1.0: f($1.1)] }
+  func map<T>(@noescape f: Value -> T) -> [Key: T] {
+    var accum = Dictionary<Key, T>(minimumCapacity: self.count)
+
+    for (key, value) in self {
+      accum[key] = f(value)
+    }
+
+    return accum
   }
 }
 
-func <^> <T, U, V>(f: T -> U, x: [V: T]) -> [V: U] {
+func <^> <T, U, V>(@noescape f: T -> U, x: [V: T]) -> [V: U] {
   return x.map(f)
 }

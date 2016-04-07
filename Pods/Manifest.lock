@@ -1,21 +1,21 @@
 PODS:
-  - Alamofire (3.1.2)
-  - Argo (2.1.0)
-  - Curry (1.2.0)
-  - Nimble (3.0.0)
-  - Quick (0.8.0)
-  - Runes (3.0.0)
-  - RxAlamofire (0.3.3):
-    - RxAlamofire/Core (= 0.3.3)
-  - RxAlamofire/Core (0.3.3):
-    - Alamofire (~> 3.0)
-    - RxSwift (~> 2.0.0-beta)
-  - RxCocoa (2.0.0-beta.3):
-    - RxSwift (~> 2.0.0-beta)
-  - RxSwift (2.0.0-beta.3)
-  - SDWebImage (3.7.3):
-    - SDWebImage/Core (= 3.7.3)
-  - SDWebImage/Core (3.7.3)
+  - Alamofire (3.3.1)
+  - Argo (3.0.0)
+  - Curry (2.1.0)
+  - Nimble (4.0.0)
+  - Quick (0.9.1)
+  - Runes (3.2.0)
+  - RxAlamofire (2.2):
+    - RxAlamofire/Core (= 2.2)
+  - RxAlamofire/Core (2.2):
+    - Alamofire (~> 3.1)
+    - RxSwift (~> 2.1)
+  - RxCocoa (2.3.1):
+    - RxSwift (~> 2.3.1)
+  - RxSwift (2.3.1)
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
 
 DEPENDENCIES:
   - Argo
@@ -23,21 +23,23 @@ DEPENDENCIES:
   - Nimble
   - Quick
   - Runes
-  - RxAlamofire (= 0.3.3)
-  - RxCocoa (= 2.0.0-beta.3)
-  - RxSwift (= 2.0.0-beta.3)
+  - RxAlamofire
+  - RxCocoa
+  - RxSwift
   - SDWebImage
 
 SPEC CHECKSUMS:
-  Alamofire: 7c16ca65f3c7e681fd925fd7f2dec7747ff96855
-  Argo: f65db7f50301f7a623514cca2b15aa63e147b91a
-  Curry: d0bd819af242d78cf068e1e9e914ae9f476e84ed
-  Nimble: 4c353d43735b38b545cbb4cb91504588eb5de926
-  Quick: 563d0f6ec5f72e394645adb377708639b7dd38ab
-  Runes: b0ffeed58b9577155e53571508b4309c904ef587
-  RxAlamofire: 3ff214d5f12a1e897f9ada956062d0281bf3262f
-  RxCocoa: 1472006304b296d03c847f78b21384523cc4902e
-  RxSwift: 19fbe885b404d1d36d42ac8535134739a9b42952
-  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
+  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  Argo: 7072952d1f4de7f62137a995b7043fe6119b1f61
+  Curry: 33a0be263504a2bff75d0b3f7e9014ca28a39bbd
+  Nimble: 72bcc3e2f02242e6bfaaf8d9412ca7bfe3d8b417
+  Quick: a5221fc21788b6aeda934805e68b061839bc3165
+  Runes: ab2f892272d5165f64620f8086578b28cde98a02
+  RxAlamofire: 250b7846cedbd189d6190e4f83caa01ee1f1eceb
+  RxCocoa: a2baaf3462b989559a51dce59d78fbebb8fe0afa
+  RxSwift: 829b2843e9eddc77a02cb3f5117f0d55f8f646f1
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 3c8192218ac12ce28b8e18b8d87367defb2b8dec
+
+COCOAPODS: 1.0.0.beta.6

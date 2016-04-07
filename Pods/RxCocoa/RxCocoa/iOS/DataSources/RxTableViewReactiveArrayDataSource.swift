@@ -3,7 +3,7 @@
 //  RxCocoa
 //
 //  Created by Krunoslav Zaher on 6/26/15.
-//  Copyright (c) 2015 Krunoslav Zaher. All rights reserved.
+//  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
 #if os(iOS) || os(tvOS)
@@ -15,7 +15,9 @@ import RxSwift
 #endif
 
 // objc monkey business
-class _RxTableViewReactiveArrayDataSource: NSObject, UITableViewDataSource {
+class _RxTableViewReactiveArrayDataSource
+    : NSObject
+    , UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -30,7 +32,7 @@ class _RxTableViewReactiveArrayDataSource: NSObject, UITableViewDataSource {
     }
 
     func _tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return rxAbstractMethod()
+        rxAbstractMethod()
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -39,28 +41,27 @@ class _RxTableViewReactiveArrayDataSource: NSObject, UITableViewDataSource {
 }
 
 
-class RxTableViewReactiveArrayDataSourceSequenceWrapper<S: SequenceType> : RxTableViewReactiveArrayDataSource<S.Generator.Element>
-                                                                         , RxTableViewDataSourceType {
+class RxTableViewReactiveArrayDataSourceSequenceWrapper<S: SequenceType>
+    : RxTableViewReactiveArrayDataSource<S.Generator.Element>
+    , RxTableViewDataSourceType {
     typealias Element = S
 
     override init(cellFactory: CellFactory) {
         super.init(cellFactory: cellFactory)
     }
-    
+
     func tableView(tableView: UITableView, observedEvent: Event<S>) {
-        switch observedEvent {
-        case .Next(let value):
-            super.tableView(tableView, observedElements: Array(value))
-        case .Error(let error):
-            bindingErrorToInterface(error)
-        case .Completed:
-            break
-        }
+        UIBindingObserver(UIElement: self) { tableViewDataSource, sectionModels in
+            let sections = Array(sectionModels)
+            tableViewDataSource.tableView(tableView, observedElements: sections)
+        }.on(observedEvent)
     }
 }
 
 // Please take a look at `DelegateProxyType.swift`
-class RxTableViewReactiveArrayDataSource<Element> : _RxTableViewReactiveArrayDataSource {
+class RxTableViewReactiveArrayDataSource<Element>
+    : _RxTableViewReactiveArrayDataSource
+    , SectionedViewDataSourceType {
     typealias CellFactory = (UITableView, Int, Element) -> UITableViewCell
     
     var itemModels: [Element]? = nil
@@ -68,7 +69,15 @@ class RxTableViewReactiveArrayDataSource<Element> : _RxTableViewReactiveArrayDat
     func modelAtIndex(index: Int) -> Element? {
         return itemModels?[index]
     }
-    
+
+    func modelAtIndexPath(indexPath: NSIndexPath) throws -> Any {
+        precondition(indexPath.section == 0)
+        guard let item = itemModels?[indexPath.item] else {
+            throw RxCocoaError.ItemsNotYetBound(object: self)
+        }
+        return item
+    }
+
     let cellFactory: CellFactory
     
     init(cellFactory: CellFactory) {
