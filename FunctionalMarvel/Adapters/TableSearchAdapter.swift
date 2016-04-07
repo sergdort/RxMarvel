@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class TableSearchAdapter<Element, U:BindableCellViewModel> {
+class TableSearchAdapter<Element, ViewModel, Cell: BindableCell where Cell.V == ViewModel> {
    
    typealias SearchEvent = (offset: Int,
       limit: Int,
@@ -20,16 +20,19 @@ class TableSearchAdapter<Element, U:BindableCellViewModel> {
    lazy var searchController: UISearchController = {
       return UISearchController(searchResultsController: self.searchContentController)
    }()
-   lazy var searchContentController = SearchTableViewController<U>(style:.Plain)
+   let searchContentController: SearchTableViewController<Cell, ViewModel>
    
    let bag = DisposeBag()
    
-   init(searchEvent: SearchEvent, viewModelMap: [Element] -> [U]) {
+   init(searchContentController: SearchTableViewController<Cell, ViewModel>,
+        searchEvent: SearchEvent,
+        viewModelMap: [Element] -> [ViewModel]) {
+      self.searchContentController = searchContentController
       let searchSignal = searchController.searchBar
          .rx_text
          .throttle(0.3, scheduler: MainScheduler.instance)
          .distinctUntilChanged()
-         .flatMapLatest { [unowned self] (search) -> Observable<[U]> in
+         .flatMapLatest { [unowned self] (search) -> Observable<[ViewModel]> in
             if search.isEmpty {
                return Observable.empty()
             }
@@ -41,18 +44,18 @@ class TableSearchAdapter<Element, U:BindableCellViewModel> {
       }
       
       searchSignal
-         .filter({ [unowned self] items -> Bool in
+         .filter { [unowned self] items -> Bool in
             return self.searchContentController.dataSource.items.isEmpty
-         })
+         }
          .asDriver(onErrorJustReturn: [])
          .driveNext(searchContentController.dataSource
             .appendItems(.Top, tableView: searchContentController.tableView))
          .addDisposableTo(bag)
       
       searchSignal
-         .filter({ [unowned self] items -> Bool in
+         .filter { [unowned self] items -> Bool in
             return self.searchContentController.dataSource.items.isEmpty == false
-         })
+         }
          .asDriver(onErrorJustReturn: [])
          .driveNext(searchContentController.dataSource
             .setItems(.Top, tableView: searchContentController.tableView))

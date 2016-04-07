@@ -14,59 +14,59 @@ struct HeroAPI {
    static var getableApi: JsonGET.Type = Marvel.self
    
    private static let decodeScheduler =
-   SerialDispatchQueueScheduler(internalSerialQueueName:
-      "com.FunctionalMarvel.HeroAPI.decode_queue")
+      SerialDispatchQueueScheduler(internalSerialQueueName:
+         "com.FunctionalMarvel.HeroAPI.decode_queue")
    
    typealias HeroListResult = (heroes: Decoded<[Hero]>, batch: Decoded<Batch>)
    
    private static func recursiveHeroSearch(loadedSoFar: [Hero],
-      offset: Int = 0,
-      limit: Int,
-      search: String,
-      loadNextBatch: Observable<Void>) -> Observable<[Hero]> {
-         
-         let params: [String : AnyObject] = [
-            ParamKeys.limit : limit,
-            ParamKeys.offset : String(offset),
-            ParamKeys.searchName : search
-         ]
-         
-         return heroListSignal(params)
-            .flatMap { (tuple) -> Observable<[Hero]>  in
-               
-               guard let heroes = tuple.heroes.value,
-                  let batch = tuple.batch.value  else {
-                     return Observable.empty()
-               }
-               
-               var loadedHeroes = loadedSoFar
-               loadedHeroes.appendContentsOf(heroes)
-               
-               if batch.offset == batch.total
-                  || batch.offset + batch.count == batch.total {
-                     //                     Here we've downloaded all data
-                     return Observable.just(loadedHeroes)
-               }
-               
-               return [
-                  Observable.just(loadedHeroes),
-                  Observable.never().takeUntil(loadNextBatch),
-                  recursiveHeroSearch(loadedHeroes,
-                     offset: batch.count + batch.offset,
-                     limit: batch.limit,
-                     search: search,
-                     loadNextBatch: loadNextBatch),
-                  ].concat()
-         }
+                                           offset: Int = 0,
+                                           limit: Int,
+                                           search: String,
+                                           loadNextBatch: Observable<Void>) -> Observable<[Hero]> {
+      
+      let params: [String : AnyObject] = [
+         ParamKeys.limit : limit,
+         ParamKeys.offset : String(offset),
+         ParamKeys.searchName : search
+      ]
+      
+      return heroListSignal(params)
+         .flatMap { (tuple) -> Observable<[Hero]>  in
+            
+            guard let heroes = tuple.heroes.value,
+               let batch = tuple.batch.value  else {
+                  return Observable.empty()
+            }
+            
+            var loadedHeroes = loadedSoFar
+            loadedHeroes.appendContentsOf(heroes)
+            
+            if batch.offset == batch.total
+               || batch.offset + batch.count == batch.total {
+               //                     Here we've downloaded all data
+               return Observable.just(loadedHeroes)
+            }
+            
+            return [
+               Observable.just(loadedHeroes),
+               Observable.never().takeUntil(loadNextBatch),
+               recursiveHeroSearch(loadedHeroes,
+                  offset: batch.count + batch.offset,
+                  limit: batch.limit,
+                  search: search,
+                  loadNextBatch: loadNextBatch),
+               ].concat()
+      }
    }
    
    private static func recursiveHeroList(offset: Int = 0,
-      limit: Int,
-      loadNextBatch: Observable<Void>) -> Observable<[Hero]> {
-         
-         let params: [String : AnyObject] = [ ParamKeys.limit : limit,
-            ParamKeys.offset : String(offset)]
-         
+                                         limit: Int,
+                                         loadNextBatch: Observable<Void>) -> Observable<[Hero]> {
+      
+      let params: [String : AnyObject] = [ ParamKeys.limit : limit,
+                                           ParamKeys.offset : String(offset)]
+      
       return heroListSignal(params)
          .flatMap { (tuple) -> Observable<[Hero]>  in
             
@@ -77,8 +77,8 @@ struct HeroAPI {
             
             if batch.offset == batch.total
                || batch.offset + batch.count == batch.total {
-                  //                     Here we've downloaded all data
-                  return Observable.just(heroes)
+               //                     Here we've downloaded all data
+               return Observable.just(heroes)
             }
             
             return [
@@ -106,10 +106,10 @@ extension HeroAPI {
       static func decode(json: AnyObject) -> HeroListResult {
          if let dict = JSONDict(json)(key: "data"),
             let array = dict["results"] {
-               return (Argo.decode(array), Argo.decode(dict))
+            return (Argo.decode(array), Argo.decode(dict))
          }
          return (Decoded.Failure(DecodeError.Custom("Invalid JSON")),
-            Decoded.Failure(DecodeError.Custom("Invalid JSON")))
+                 Decoded.Failure(DecodeError.Custom("Invalid JSON")))
       }
    }
 }
@@ -117,19 +117,19 @@ extension HeroAPI {
 extension HeroAPI:HeroAutoLoading {
    
    static func getItems(offset: Int = 0,
-      limit: Int,
-      loadNextBatch: Observable<Void>) -> Observable<[Hero]> {
+                        limit: Int,
+                        loadNextBatch: Observable<Void>) -> Observable<[Hero]> {
       return recursiveHeroList(offset, limit: limit, loadNextBatch: loadNextBatch)
    }
    
    static func searchItems(offset: Int = 0,
-      limit: Int = 40,
-      search: String,
-      loadNextBatch: Observable<Void>) -> Observable<[Hero]> {
-         return recursiveHeroSearch([],
-            offset: offset,
-            limit: limit,
-            search: search,
-            loadNextBatch: loadNextBatch)
+                           limit: Int = 40,
+                           search: String,
+                           loadNextBatch: Observable<Void>) -> Observable<[Hero]> {
+      return recursiveHeroSearch([],
+                                 offset: offset,
+                                 limit: limit,
+                                 search: search,
+                                 loadNextBatch: loadNextBatch)
    }
 }

@@ -18,7 +18,7 @@ struct AutoloadingAPIMock: HeroAutoLoading {
    static func getItems(offset: Int,
       limit: Int,
       loadNextBatch: Observable<Void>) -> Observable<[Hero]> {
-         return create({ (observer) -> Disposable in
+         return Observable.create({ (observer) -> Disposable in
             
             let heroes = [Hero(id: 2, name: "name2",
                thumbnail: Thumbnail(path: "path", pathExtension: "jpg")),
@@ -37,7 +37,7 @@ struct AutoloadingAPIMock: HeroAutoLoading {
       limit: Int,
       search: String,
       loadNextBatch: Observable<Void>) -> Observable<[Hero]> {
-         return create({ (observer) -> Disposable in
+         return Observable.create({ (observer) -> Disposable in
             
             let heroes = [Hero(id: 2,
                name: "name2",

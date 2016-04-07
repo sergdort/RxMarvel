@@ -9,30 +9,22 @@
 import UIKit.UITableViewCell
 import RxSwift
 
-class HeroListTableViewCell: RxTableViewCell<HeroListViewModel> {
+class HeroListTableViewCell: RxTableViewCell, ReusableView, NibProvidable {
    @IBOutlet weak var cellImageView: UIImageView!
    @IBOutlet weak var label: UILabel!
+}
+
+
+extension HeroListTableViewCell: BindableView {
+   typealias V = HeroListViewModel
    
-   override var rx_viewModel: AnyObserver<HeroListViewModel> {
-      return AnyObserver { [weak self] event in
-         MainScheduler.ensureExecutingOnScheduler()
-         
-         switch event {
-         case .Next(let value):
-            if let strong = self {
-               strong.label.rx_text <~ value.title
-               strong.cellImageView.rxex_imageURL <~ value.thumbnailPath
-            }
-         default:
-            break
-         }
-      }
+   func bindViewModel(viewModel: V) {
+      _ = viewModel.title.asObservable()
+         .takeUntil(onPrepareForReuse)
+         .bindTo(label.rx_text)
+      _ = viewModel.thumbnailURL
+         .asObservable()
+         .takeUntil(onPrepareForReuse)
+         .bindTo(cellImageView.rxex_imageURL)
    }
-}
-
-
-extension HeroListTableViewCell: ReusableView {
-}
-
-extension HeroListTableViewCell: NibProvidable {
 }

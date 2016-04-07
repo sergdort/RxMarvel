@@ -9,19 +9,11 @@
 import UIKit
 import RxSwift
 
-class RxTableViewCell<ViewModelType>: UITableViewCell, BindableView {
-   typealias V = ViewModelType
+class RxTableViewCell: UITableViewCell {
    let onPrepareForReuse: Observable<Void> = PublishSubject()
    
    override func prepareForReuse() {
       super.prepareForReuse()
       (self.onPrepareForReuse as? PublishSubject<Void>)?.on(.Next())
    }
-   
-   var rx_viewModel: AnyObserver<V> {
-      return AnyObserver { event in
-//         This is base class implementation
-      }
-   }
-   
 }

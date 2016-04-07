@@ -14,7 +14,7 @@ import RxSwift
 
 class TableSearchAdapterSpec: QuickSpec {
    
-   var adapter: TableSearchAdapter<Hero, HeroListViewModel>!
+   var adapter: TableSearchAdapter<Hero, HeroListViewModel, HeroListTableViewCell>!
    var foundHeroes: [Hero] = []
    
    override func spec() {
@@ -22,10 +22,15 @@ class TableSearchAdapterSpec: QuickSpec {
       describe("TableSearchAdapterSpec") { () -> Void in
          
          beforeEach({ () -> () in
+            let dataSource: SearchTableDataSource<HeroListViewModel> =
+               SearchTableDataSource(items: [],
+                  cellFactory: HeroesListViewController.cellFactory)
             
-            self.adapter = TableSearchAdapter(searchEvent: {
-               [unowned self] (offset, limit, search, nexBatchTriger) -> Observable<[Hero]> in
-                  return create({ (observer) -> Disposable in
+            let searchController: SearchTableViewController<HeroListTableViewCell, HeroListViewModel>
+               = SearchTableViewController(dataSource: dataSource)
+            self.adapter = TableSearchAdapter(searchContentController: searchController,
+               searchEvent: { _ -> Observable<[Hero]> in
+                  return Observable.create({ (observer) -> Disposable in
                      
                      let heroes = [Hero(id: 2,
                         name: "name2",
@@ -40,9 +45,9 @@ class TableSearchAdapterSpec: QuickSpec {
                      
                      return NopDisposable.instance
                   })
+
                },
-               viewModelMap: HeroListViewModel.transform)
-            
+               viewModelMap: HeroListViewModel.transform)            
          })
          
          it("should search", closure: { () -> () in

@@ -14,45 +14,26 @@ struct HeroListViewModel {
    
    let title: Variable<String>
    let thumbnailType = ThumbnailType.PortraitSmall
-   let thumbnailPath: Variable<NSURL>
+   let thumbnailURL: Variable<NSURL>
    
    init(hero: Hero) {
       self.title = Variable(hero.name)
-      self.thumbnailPath = Variable(NSURL(string:hero.thumbnail.pathForType(thumbnailType))!)
+      self.thumbnailURL = Variable(NSURL(string:hero.thumbnail.pathForType(thumbnailType))!)
    }
    
    static func transform(heroes: [Hero]) -> [HeroListViewModel] {
       return heroes.map(HeroListViewModel.init)
    }
-   
-}
-
-extension HeroListViewModel: VariableProvidable {
-   var variable: Variable<HeroListViewModel> {
-      return Variable(self)
-   }
-}
-
-extension HeroListViewModel: ReuseableViewClassProvider {
-   var reusableViewType: ReusableView.Type {
-      return HeroListTableViewCell.self
-   }
-}
-
-extension HeroListViewModel: NibProvidableClassProvider {
-   var nibProvidableType: NibProvidable.Type {
-      return HeroListTableViewCell.self
-   }
 }
 
 extension HeroListViewModel: Hashable {
    var hashValue: Int {
-      return title.value.hash ^ thumbnailPath.value.hash
+      return title.value.hash ^ thumbnailURL.value.hash
    }
 }
 
 func == (lhs: HeroListViewModel, rhs: HeroListViewModel) -> Bool {
-   return lhs.thumbnailPath.value == rhs.thumbnailPath.value
+   return lhs.thumbnailURL.value == rhs.thumbnailURL.value
       && lhs.title.value == rhs.title.value
       && lhs.thumbnailType == rhs.thumbnailType
 }

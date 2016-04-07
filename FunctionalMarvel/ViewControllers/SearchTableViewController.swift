@@ -8,15 +8,12 @@
 
 import UIKit
 
-class SearchTableViewController<T:BindableCellViewModel>: RxTableViewController {
-   lazy var dataSource: SearchTableDataSource<T> = {
-      return SearchTableDataSource(items: [],
-         cellFactory: BindableCellFactory.cell)
-   }()
+class SearchTableViewController<Cell: BindableCell, T where  Cell.V == T>: RxTableViewController {
+   let dataSource: SearchTableDataSource<T>
    
-   override init(style: UITableViewStyle) {
+   init(style: UITableViewStyle = .Plain, dataSource: SearchTableDataSource<T>) {
+      self.dataSource = dataSource
       super.init(style: style)
-      edgesForExtendedLayout = .All
    }
    
    override func viewDidLoad() {

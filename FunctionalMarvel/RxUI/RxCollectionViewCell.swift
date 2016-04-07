@@ -9,18 +9,12 @@
 import UIKit
 import RxSwift
 
-class RxCollectionViewCell<ViewModelType>: UICollectionViewCell, BindableView {
+class RxCollectionViewCell<ViewModelType>: UICollectionViewCell {
    typealias V = ViewModelType
    let onPrepareForReuse: Observable<Void> = PublishSubject()
    
    override func prepareForReuse() {
       super.prepareForReuse()
       (self.onPrepareForReuse as? PublishSubject<Void>)?.on(.Next())
-   }
-   
-   var rx_viewModel: AnyObserver<V> {
-      return AnyObserver { event in
-         // This is base class implementation
-      }
    }
 }

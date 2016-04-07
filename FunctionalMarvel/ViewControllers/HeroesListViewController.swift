@@ -15,15 +15,24 @@ class HeroesListViewController: RxTableViewController {
    #if TRACE_RESOURCES
    private let startResourceCount = RxSwift.resourceCount
    #endif
+   static let cellFactory = BindableCellFactory<HeroListTableViewCell, HeroListViewModel>.createCell
    
    private(set) lazy var dataSource: AppendableDataSource<HeroListViewModel> = {
       return AppendableDataSource(items: [],
-         cellFactory: BindableCellFactory.cell)
+         cellFactory: HeroesListViewController.cellFactory)
    }()
    
-   lazy var searchAdapter: TableSearchAdapter<Hero, HeroListViewModel> = {
-      return TableSearchAdapter(searchEvent: self.api.searchItems,
-         viewModelMap: HeroListViewModel.transform)
+   lazy var searchAdapter: TableSearchAdapter<Hero, HeroListViewModel, HeroListTableViewCell> = {
+      let dataSource: SearchTableDataSource<HeroListViewModel> =
+         SearchTableDataSource(items: [],
+                               cellFactory: HeroesListViewController.cellFactory)
+      
+      let searchController: SearchTableViewController<HeroListTableViewCell, HeroListViewModel>
+         = SearchTableViewController(dataSource: dataSource)
+      
+      return TableSearchAdapter(searchContentController: searchController,
+                                       searchEvent: self.api.searchItems,
+                                       viewModelMap: HeroListViewModel.transform)
    }()
    
    lazy var api: HeroAutoLoading.Type = HeroAPI.self
@@ -38,10 +47,12 @@ class HeroesListViewController: RxTableViewController {
       Segue.dismissSegueFromViewController(self, triger: rightBarButton.rx_tap)
    }
    
+}
+
 //   MARK:Private
-   
+
+extension HeroesListViewController {
    private func setupTableView() {
-      tableView.delegate = nil
       tableView.dataSource = dataSource
       tableView.tableHeaderView = searchAdapter.searchController.searchBar
    }
@@ -53,5 +64,4 @@ class HeroesListViewController: RxTableViewController {
          .driveNext(dataSource.appendItems(.Top, tableView: tableView))
          .addDisposableTo(disposableBag)
    }
-   
 }

@@ -11,7 +11,6 @@
 		695B12A185140C96DFA180D7 /* Pods_FunctionalMarvelTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 943EE2E495A501E010DEA6CB /* Pods_FunctionalMarvelTests.framework */; };
 		84062B331C070E55009A44B9 /* Heroes.json in Resources */ = {isa = PBXBuildFile; fileRef = 84062B321C070E55009A44B9 /* Heroes.json */; };
 		84062B351C070E71009A44B9 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84062B341C070E71009A44B9 /* TestHelpers.swift */; };
-		84062B421C0717B9009A44B9 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE0591BFFCACA00D12856 /* ErrorHandler.swift */; };
 		84062B451C071907009A44B9 /* HeroesGETMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84062B441C071907009A44B9 /* HeroesGETMock.swift */; };
 		84062B511C074F2A009A44B9 /* DecodeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84062B501C074F29009A44B9 /* DecodeSpec.swift */; };
 		84062B531C074FA2009A44B9 /* Hero.json in Resources */ = {isa = PBXBuildFile; fileRef = 84062B521C074FA2009A44B9 /* Hero.json */; };
@@ -112,7 +111,6 @@
 		847BE0511BFFB28800D12856 /* RxTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxTableViewController.swift; sourceTree = "<group>"; };
 		847BE0531BFFB91E00D12856 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		847BE0561BFFB99600D12856 /* Segue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Segue.swift; sourceTree = "<group>"; };
-		847BE0591BFFCACA00D12856 /* ErrorHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		847BE07E1C00C73200D12856 /* RxCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxCollectionViewCell.swift; sourceTree = "<group>"; };
 		847BE0801C00CA3A00D12856 /* RxCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxCollectionReusableView.swift; sourceTree = "<group>"; };
 		84BE9EBC1C107D2B00573ED9 /* SearchTableViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewControllerSpec.swift; sourceTree = "<group>"; };
@@ -244,7 +242,7 @@
 		846AE6A81BC50202000A3739 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				847BE0581BFFCAAA00D12856 /* Servises */,
+				847BE0581BFFCAAA00D12856 /* Services */,
 				846AE6C01BC51738000A3739 /* API */,
 				846AE6BB1BC50CDE000A3739 /* Entities */,
 				846AE6B21BC502BF000A3739 /* Extensions */,
@@ -338,12 +336,11 @@
 			path = Navigation;
 			sourceTree = "<group>";
 		};
-		847BE0581BFFCAAA00D12856 /* Servises */ = {
+		847BE0581BFFCAAA00D12856 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				847BE0591BFFCACA00D12856 /* ErrorHandler.swift */,
 			);
-			name = Servises;
+			name = Services;
 			sourceTree = "<group>";
 		};
 		84BE9EC51C10912300573ED9 /* Specs */ = {
@@ -624,7 +621,6 @@
 				847BE0471BFF550800D12856 /* HeroListTableViewCell.swift in Sources */,
 				846AE6881BC5000F000A3739 /* AppDelegate.swift in Sources */,
 				847BE07F1C00C73200D12856 /* RxCollectionViewCell.swift in Sources */,
-				84062B421C0717B9009A44B9 /* ErrorHandler.swift in Sources */,
 				84BE9ECD1C118F8900573ED9 /* AppendableDataSource.swift in Sources */,
 				846AE6B41BC502DE000A3739 /* SwiftExtensions.swift in Sources */,
 				846AE6D01BC64E18000A3739 /* HeroListViewModel.swift in Sources */,

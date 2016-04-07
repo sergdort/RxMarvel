@@ -9,27 +9,23 @@
 import UIKit
 import RxSwift
 
-typealias BindableCellViewModel = protocol <VariableProvidable,
-   ReuseableViewClassProvider,
-   NibProvidableClassProvider>
+typealias BindableCell = protocol<ReusableView, BindableView, NibProvidable>
 
-
-struct BindableCellFactory<V:BindableCellViewModel> {
-   typealias CellType = RxTableViewCell<V>
+struct BindableCellFactory<Cell: BindableCell, ViewModel where Cell.V == ViewModel> {
    
-   static func cell(tableView: UITableView,
-      indexPath: NSIndexPath,
-      viewModel: V) -> UITableViewCell {
-      if let cell = tableView
-         .dequeueReusableCellWithIdentifier(viewModel.reusableViewType.reuseIdentifier) {
-         if let rxCell = cell as? CellType {
-            rxCell.rx_viewModel <~ viewModel.variable
-         }
-         return cell
-      } else {
-         tableView.registerNib(viewModel.nibProvidableType.nib,
-            forCellReuseIdentifier: viewModel.reusableViewType.reuseIdentifier)
-         return cell(tableView, indexPath: indexPath, viewModel: viewModel)
+}
+
+extension BindableCellFactory where Cell: UITableViewCell {
+   
+   static func createCell(tableView: UITableView,
+                         indexPath: NSIndexPath,
+                         viewModel: ViewModel) -> UITableViewCell {
+      guard let cell: Cell = tableView.dequeueReusableCell() else {
+         tableView.registerNib(Cell.nib, forCellReuseIdentifier: Cell.reuseIdentifier)
+         return createCell(tableView, indexPath: indexPath, viewModel: viewModel)
       }
+      cell.bindViewModel(viewModel)
+      
+      return cell
    }
 }

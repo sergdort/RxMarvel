@@ -8,19 +8,6 @@
 
 import RxSwift
 
-protocol VariableProvidable {
-   var variable: Variable<Self> {get}
-}
-
-protocol ReuseableViewClassProvider {
-   var reusableViewType: ReusableView.Type {get}
-}
-
-protocol NibProvidableClassProvider {
-   var nibProvidableType: NibProvidable.Type {get}
-}
-
-
 protocol AppendableDataSourceType {
    associatedtype T
    

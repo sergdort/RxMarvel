@@ -15,7 +15,7 @@ protocol ReusableView {
 
 protocol BindableView {
    associatedtype V
-   var rx_viewModel: AnyObserver<V> {get}
+   func bindViewModel(viewModel: V)
 }
 
 extension ReusableView {
@@ -36,4 +36,23 @@ extension NibProvidable {
    static var nib: UINib {
       return UINib(nibName: self.nibName, bundle: nil)
    }
+}
+
+extension UITableView {
+   
+   func dequeueReusableCell<T: UITableViewCell where T: ReusableView>(forIndexPath
+      indexPath: NSIndexPath)
+      -> T {
+      guard let cell = dequeueReusableCellWithIdentifier(T.reuseIdentifier, forIndexPath: indexPath)
+         as? T else {
+         fatalError("Could not dequeue cell with identifier: \(T.reuseIdentifier)")
+      }
+      
+      return cell
+   }
+   
+   func dequeueReusableCell<T: UITableViewCell where T: ReusableView>() -> T? {
+      return dequeueReusableCellWithIdentifier(T.reuseIdentifier) as? T
+   }
+   
 }
