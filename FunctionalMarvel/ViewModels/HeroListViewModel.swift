@@ -2,38 +2,34 @@
 //  HeroListViewModel.swift
 //  FunctionalMarvel
 //
-//  Created by Segii Shulga on 10/8/15.
-//  Copyright © 2015 Sergey Shulga. All rights reserved.
+//  Created by Segii Shulga on 4/19/16.
+//  Copyright © 2016 Sergey Shulga. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import RxSwift
-import RxCocoa
 
-struct HeroListViewModel {
+class HeroListViewModel {
    
-   let title: Variable<String>
-   let thumbnailType = ThumbnailType.PortraitSmall
-   let thumbnailURL: Variable<NSURL>
+   let mainTableItems: Observable<[Hero]>
+   let searchTableItems: Observable<[Hero]>
+   let dismissTrigger: Observable<Void>
    
-   init(hero: Hero) {
-      self.title = Variable(hero.name)
-      self.thumbnailURL = Variable(NSURL(string:hero.thumbnail.pathForType(thumbnailType))!)
+   init(uiTriggers: (searchQuery: Observable<String>,
+      nextPageTrigger: Observable<Void>,
+      searchNextPageTrigger: Observable<Void>,
+      dismissTrigger: Observable<Void>), remoteProvider: RemoteItemProvider<Hero>) {
+      
+      mainTableItems = remoteProvider.paginateItems(endPoint: EndPoint.Characters,
+                                                    nextBatchTrigger: uiTriggers.nextPageTrigger)
+    searchTableItems = uiTriggers.searchQuery
+         .filter { !$0.isEmpty }
+         .throttle(0.3, scheduler: MainScheduler.instance)
+         .flatMapLatest {
+            return remoteProvider.searchItems($0,
+               endPoint: EndPoint.Characters,
+               nextBatchTrigger: uiTriggers.searchNextPageTrigger)
+        }
+      dismissTrigger = uiTriggers.dismissTrigger
    }
-   
-   static func transform(heroes: [Hero]) -> [HeroListViewModel] {
-      return heroes.map(HeroListViewModel.init)
-   }
-}
-
-extension HeroListViewModel: Hashable {
-   var hashValue: Int {
-      return title.value.hash ^ thumbnailURL.value.hash
-   }
-}
-
-func == (lhs: HeroListViewModel, rhs: HeroListViewModel) -> Bool {
-   return lhs.thumbnailURL.value == rhs.thumbnailURL.value
-      && lhs.title.value == rhs.title.value
-      && lhs.thumbnailType == rhs.thumbnailType
 }

@@ -22,16 +22,16 @@ class BindableCellFactorySpec: QuickSpec {
       describe("BindableCellFactorySpec") { () -> Void in
          
          it("should configure cell", closure: { () -> () in
-            let vm = HeroListViewModel(hero: Hero(id: 1, name: "Hero",
+            let vm = HeroCellData(hero: Hero(id: 1, name: "Hero",
                thumbnail: Thumbnail(path: "path", pathExtension: "jpg")))
             
-            let cell = BindableCellFactory<HeroListTableViewCell, HeroListViewModel>
+            let cell = BindableCellFactory<HeroListTableViewCell, HeroCellData>
                .createCell(self.tableView,
                   indexPath: NSIndexPath(forRow: 0, inSection: 0),
                   viewModel: vm) as? HeroListTableViewCell
             
             expect(cell).toNot(beNil())
-            expect(cell?.label.text).to(equal(vm.title.value))
+            expect(cell?.label.text).to(equal(vm.title))
          })
          
       }

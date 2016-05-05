@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import protocol Alamofire.URLStringConvertible
 
 enum EndPoint: String {
    static let baseURL = "https://gateway.marvel.com/v1/public/"
@@ -20,4 +21,12 @@ enum EndPoint: String {
       }
    }
    
+
+   
+}
+
+extension EndPoint: URLStringConvertible {
+   var URLString: String {
+      return path
+   }
 }

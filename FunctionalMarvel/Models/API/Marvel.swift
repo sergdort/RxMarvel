@@ -29,7 +29,7 @@ struct Marvel {
       return f
       }()
    
-   private static var defaultParams: [String:AnyObject] {
+   static var defaultParams: [String: AnyObject] {
       let timeStamp = formatter.stringFromDate(NSDate())
       let hash = "\(timeStamp)\(Keys.privatKey)\(Keys.publicKey)".md5
       
@@ -38,20 +38,5 @@ struct Marvel {
          ParamKeys.hash : hash,
          ParamKeys.timeStamp : timeStamp
       ]
-   }
-}
-
-extension Marvel: JsonGET {
-   static func getData(endpoint: EndPoint)
-      -> (parameters: [String : AnyObject]?) -> Observable<AnyObject> {
-         return { parameters in
-            return Alamofire
-               .request(
-                  .GET,
-                  endpoint.path,
-                  parameters: defaultParams + (parameters ?? [:]))
-               .rx_JSON()
-         }
-
    }
 }

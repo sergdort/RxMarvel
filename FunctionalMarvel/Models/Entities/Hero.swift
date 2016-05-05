@@ -15,11 +15,24 @@ struct Hero {
    let thumbnail: Thumbnail
 }
 
-extension Hero:Decodable {
+extension Hero: Decodable {
    static func decode(json: JSON) -> Decoded<Hero> {
       return curry(Hero.init)
          <^> json <| "id"
          <*> json <| "name"
          <*> json <| "thumbnail"
+   }
+}
+
+extension Hero: JSONParsable {
+   static func parse(json: AnyObject) -> Decoded<Hero> {
+      return Argo.decode(json)
+   }
+   static func parse(json: AnyObject) -> Decoded<[Hero]> {
+      if let dict = JSONDict(json)(key: "data"),
+         let array = dict["results"] {
+         return Argo.decode(array)
+      }
+      return Decoded.Failure(DecodeError.Custom("Invalid JSON"))
    }
 }

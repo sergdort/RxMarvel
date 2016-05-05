@@ -7,20 +7,21 @@
 //
 
 import RxSwift
+import Alamofire
+import Argo
 
-protocol HeroAutoLoading {
-   static func getItems(offset: Int,
-      limit: Int,
-      loadNextBatch: Observable<Void>) -> Observable<[Hero]>
+protocol HttpClient {
    
-   static func searchItems(offset: Int,
-      limit: Int, search: String,
-      loadNextBatch: Observable<Void>) -> Observable<[Hero]>
+   func request(method: Alamofire.Method,
+   _ URLString: URLStringConvertible,
+   parameters: [String: AnyObject]?,
+   encoding: ParameterEncoding,
+   headers: [String: String]? ) -> Observable<AnyObject>
+   
 }
 
-
-
-protocol JsonGET {
-   static func getData(endpoint: EndPoint) ->
-      (parameters: [String: AnyObject]?) -> Observable<AnyObject>
+protocol JSONParsable {
+   static func parse(json: AnyObject) -> Decoded<Self>
+   static func parse(json: AnyObject) -> Decoded<[Self]>
 }
+

@@ -26,3 +26,20 @@ extension Batch:Decodable {
       <*> json <| "count"
    }
 }
+
+extension Batch {
+   var hasNextPage: Bool {
+      return !(offset == total || offset + count == total)
+   }
+}
+
+extension Batch {
+   static var initial: Batch {
+      return Batch(offset: 0, limit: 30, total: Int.max, count: Int.max)
+   }
+   
+   func next() -> Batch {
+      return Batch(offset: offset + count, limit: limit, total: total, count: count)
+   }
+   
+}

@@ -9,42 +9,38 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import Alamofire
 
 
 class HeroesListViewController: RxTableViewController {
    #if TRACE_RESOURCES
    private let startResourceCount = RxSwift.resourceCount
    #endif
-   static let cellFactory = BindableCellFactory<HeroListTableViewCell, HeroListViewModel>.createCell
+   static let cellFactory = BindableCellFactory<HeroListTableViewCell, HeroCellData>.createCell
    
-   private(set) lazy var dataSource: AppendableDataSource<HeroListViewModel> = {
+   private(set) lazy var dataSource: AppendableDataSource<HeroCellData> = {
       return AppendableDataSource(items: [],
-         cellFactory: HeroesListViewController.cellFactory)
+                                  cellFactory: HeroesListViewController.cellFactory)
    }()
    
-   lazy var searchAdapter: TableSearchAdapter<Hero, HeroListViewModel, HeroListTableViewCell> = {
-      let dataSource: SearchTableDataSource<HeroListViewModel> =
-         SearchTableDataSource(items: [],
-                               cellFactory: HeroesListViewController.cellFactory)
-      
-      let searchController: SearchTableViewController<HeroListTableViewCell, HeroListViewModel>
-         = SearchTableViewController(dataSource: dataSource)
-      
-      return TableSearchAdapter(searchContentController: searchController,
-                                       searchEvent: self.api.searchItems,
-                                       viewModelMap: HeroListViewModel.transform)
+   lazy var searchDataSource = SearchTableDataSource<HeroCellData>(items: [],
+                                                              cellFactory: HeroesListViewController.cellFactory)
+   
+   lazy var searchContentController: SearchTableViewController<HeroListTableViewCell, HeroCellData> = {
+      return SearchTableViewController(dataSource: self.searchDataSource)
    }()
    
-   lazy var api: HeroAutoLoading.Type = HeroAPI.self
+   lazy var searchCotroller: UISearchController = {
+      return UISearchController(searchResultsController: self.searchContentController)
+   }()
+   
+   var remoteProvider = RemoteItemProvider<Hero>(paramsProvider: HeroesParamsProvider.self)
    
    @IBOutlet var rightBarButton: UIBarButtonItem!
    
    override func viewDidLoad() {
       super.viewDidLoad()
-      
-      setupTableView()
-      loadData()
-      Segue.dismissSegueFromViewController(self, triger: rightBarButton.rx_tap)
+      setupBindings()
    }
    
 }
@@ -52,16 +48,37 @@ class HeroesListViewController: RxTableViewController {
 //   MARK:Private
 
 extension HeroesListViewController {
-   private func setupTableView() {
-      tableView.dataSource = dataSource
-      tableView.tableHeaderView = searchAdapter.searchController.searchBar
-   }
    
-   private func loadData() {
-      api.getItems(dataSource.items.count, limit: 40, loadNextBatch: tableView.rx_nextPageTriger)
-         .map(HeroListViewModel.transform)
+   private func setupBindings() {
+      tableView.dataSource = dataSource
+      tableView.tableHeaderView = searchCotroller.searchBar
+      
+      let viewModel = HeroListViewModel(uiTriggers:
+         (searchQuery: searchCotroller.searchBar.rx_text.asObservable(),
+         nextPageTrigger: tableView.rx_nextPageTriger,
+            searchNextPageTrigger: searchContentController.tableView.rx_nextPageTriger,
+            dismissTrigger: rightBarButton.rx_tap.asObservable()),
+                                        remoteProvider: remoteProvider)
+      
+      viewModel.mainTableItems
+         .map(HeroCellData.transform)
          .asDriver(onErrorJustReturn: [])
          .driveNext(dataSource.appendItems(.Top, tableView: tableView))
          .addDisposableTo(disposableBag)
+      
+      viewModel.searchTableItems
+         .map(HeroCellData.transform)
+         .asDriver(onErrorJustReturn: [])
+         .driveNext(searchContentController.dataSource
+            .setItems(.Top,
+               tableView: searchContentController.tableView))
+         .addDisposableTo(disposableBag)
+      
+      viewModel.dismissTrigger.asDriver(onErrorJustReturn: ())
+         .driveNext { [weak self] in
+            self?.dismissViewControllerAnimated(true, completion: nil)
+         }
+         .addDisposableTo(disposableBag)
    }
+   
 }

@@ -16,13 +16,11 @@ class HeroListTableViewCell: RxTableViewCell, ReusableView, NibProvidable {
 
 
 extension HeroListTableViewCell: BindableView {
-   typealias V = HeroListViewModel
+   typealias V = HeroCellData
    
    func bindViewModel(viewModel: V) {
-      _ = viewModel.title.asObservable()
-         .takeUntil(onPrepareForReuse)
-         .bindTo(label.rx_text)
-      _ = viewModel.thumbnailURL
+      label.text = viewModel.title
+      _ = Observable.just(viewModel.thumbnailURL)
          .asObservable()
          .takeUntil(onPrepareForReuse)
          .bindTo(cellImageView.rxex_imageURL)

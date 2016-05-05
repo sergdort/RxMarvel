@@ -1,6 +1,0 @@
-excluded:
-- Pods/
-disabled_rules:
-- trailing_whitespace
-- variable_name
-force_cast: warning
