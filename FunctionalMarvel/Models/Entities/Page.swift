@@ -24,20 +24,19 @@ struct Page<Element>: PageType {
    let batch: Batch
 }
 
-extension ObservableType where E: PageType {
-   
-   @warn_unused_result(message="http://git.io/rxs.uo")
-   func paginate(nextPageTrigger: Observable<Void>,
-                 nextPageFactory: (Batch) -> Observable<E.T>) -> Observable<E.T> {
-      return self.flatMap { [weak nextPageTrigger] page -> Observable<E.T> in
-         if !page.batch.hasNextPage {
-            return Observable.just(page.item)
+extension ObservableType {
+   func paginate<O: ObservableType>(nextPageTrigger: O,
+                 hasNextPage: E -> Bool,
+                 nextPageFactory: E -> Observable<E>) -> Observable<E> {
+      return flatMap { page -> Observable<E> in
+         if !hasNextPage(page) {
+            return Observable.just(page)
          }
          return [
-            Observable.just(page.item),
-            Observable.never().takeUntil(nextPageTrigger ?? Observable.empty()),
-            nextPageFactory(page.batch)
-            ].concat()
+            Observable.just(page),
+            Observable.never().takeUntil(nextPageTrigger),
+            nextPageFactory(page)
+         ].concat()
       }
    }
 }

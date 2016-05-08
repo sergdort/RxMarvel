@@ -20,16 +20,21 @@ class HeroListViewModel {
       searchNextPageTrigger: Observable<Void>,
       dismissTrigger: Observable<Void>), remoteProvider: RemoteItemProvider<Hero>) {
       
-      mainTableItems = remoteProvider.paginateItems(endPoint: EndPoint.Characters,
-                                                    nextBatchTrigger: uiTriggers.nextPageTrigger)
-    searchTableItems = uiTriggers.searchQuery
+      mainTableItems = remoteProvider
+         .paginateItems(endPoint: EndPoint.Characters,
+            nextBatchTrigger: uiTriggers.nextPageTrigger)
+         .map { $0.item }
+      
+      searchTableItems = uiTriggers.searchQuery
          .filter { !$0.isEmpty }
          .throttle(0.3, scheduler: MainScheduler.instance)
          .flatMapLatest {
             return remoteProvider.searchItems($0,
                endPoint: EndPoint.Characters,
                nextBatchTrigger: uiTriggers.searchNextPageTrigger)
-        }
+         }
+         .map { $0.item }
+      
       dismissTrigger = uiTriggers.dismissTrigger
    }
 }
