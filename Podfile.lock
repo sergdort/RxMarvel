@@ -12,6 +12,9 @@ PODS:
     - RxSwift (~> 2.1)
   - RxCocoa (2.3.1):
     - RxSwift (~> 2.3.1)
+  - RxDataSources (0.8.1):
+    - RxCocoa (~> 2.2)
+    - RxSwift (~> 2.2)
   - RxSwift (2.3.1)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
@@ -25,6 +28,7 @@ DEPENDENCIES:
   - Runes
   - RxAlamofire
   - RxCocoa
+  - RxDataSources
   - RxSwift
   - SDWebImage
 
@@ -37,9 +41,10 @@ SPEC CHECKSUMS:
   Runes: ab2f892272d5165f64620f8086578b28cde98a02
   RxAlamofire: 250b7846cedbd189d6190e4f83caa01ee1f1eceb
   RxCocoa: a2baaf3462b989559a51dce59d78fbebb8fe0afa
+  RxDataSources: 4a87345847d66ef84ecc10bdfa189190f3cd6b12
   RxSwift: 829b2843e9eddc77a02cb3f5117f0d55f8f646f1
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
 
-PODFILE CHECKSUM: 3c8192218ac12ce28b8e18b8d87367defb2b8dec
+PODFILE CHECKSUM: 74a3ae8c047da03e3d2899a745a9a960571f2382
 
-COCOAPODS: 1.0.0.beta.6
+COCOAPODS: 1.0.1

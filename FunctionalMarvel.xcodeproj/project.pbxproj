@@ -18,6 +18,7 @@
 		84062B5A1C07567A009A44B9 /* ParamsKeysSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84062B591C07567A009A44B9 /* ParamsKeysSpec.swift */; };
 		84062B621C086E11009A44B9 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84062B611C086E11009A44B9 /* SearchTableViewController.swift */; };
 		84062B6B1C0DEBEB009A44B9 /* AppendableDataSourceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84062B6A1C0DEBEB009A44B9 /* AppendableDataSourceSpec.swift */; };
+		844C692E1D04B0DD00B3F400 /* HeroAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C692D1D04B0DD00B3F400 /* HeroAPI.swift */; };
 		845FA2441CB7E7DA004D20EE /* RemoteItemProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845FA2431CB7E7DA004D20EE /* RemoteItemProvider.swift */; };
 		846338261CC12ECB00EAF1F2 /* PagingDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846338251CC12ECB00EAF1F2 /* PagingDecoder.swift */; };
 		846338331CC531DD00EAF1F2 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846338321CC531DD00EAF1F2 /* Page.swift */; };
@@ -83,6 +84,7 @@
 		84062B591C07567A009A44B9 /* ParamsKeysSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParamsKeysSpec.swift; sourceTree = "<group>"; };
 		84062B611C086E11009A44B9 /* SearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		84062B6A1C0DEBEB009A44B9 /* AppendableDataSourceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppendableDataSourceSpec.swift; sourceTree = "<group>"; };
+		844C692D1D04B0DD00B3F400 /* HeroAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroAPI.swift; sourceTree = "<group>"; };
 		845FA2431CB7E7DA004D20EE /* RemoteItemProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteItemProvider.swift; sourceTree = "<group>"; };
 		846338251CC12ECB00EAF1F2 /* PagingDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingDecoder.swift; sourceTree = "<group>"; };
 		846338321CC531DD00EAF1F2 /* Page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 				84D6355B1CB7D8FC001A4498 /* Manager+Rx.swift */,
 				845FA2431CB7E7DA004D20EE /* RemoteItemProvider.swift */,
 				846338251CC12ECB00EAF1F2 /* PagingDecoder.swift */,
+				844C692D1D04B0DD00B3F400 /* HeroAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -397,12 +400,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 846AE6A11BC5000F000A3739 /* Build configuration list for PBXNativeTarget "FunctionalMarvel" */;
 			buildPhases = (
-				B297E136C9B61EF4CADF53E2 /* 📦 Check Pods Manifest.lock */,
+				B297E136C9B61EF4CADF53E2 /* [CP] Check Pods Manifest.lock */,
 				846AE6801BC5000F000A3739 /* Sources */,
 				846AE6811BC5000F000A3739 /* Frameworks */,
 				846AE6821BC5000F000A3739 /* Resources */,
-				BA8CA943F626679D837D3B6C /* 📦 Embed Pods Frameworks */,
-				9BF5D0B42FD8D238A07DDA4B /* 📦 Copy Pods Resources */,
+				BA8CA943F626679D837D3B6C /* [CP] Embed Pods Frameworks */,
+				9BF5D0B42FD8D238A07DDA4B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -417,12 +420,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 846AE6A41BC5000F000A3739 /* Build configuration list for PBXNativeTarget "FunctionalMarvelTests" */;
 			buildPhases = (
-				7F70D43077696F8250BA1277 /* 📦 Check Pods Manifest.lock */,
+				7F70D43077696F8250BA1277 /* [CP] Check Pods Manifest.lock */,
 				846AE6941BC5000F000A3739 /* Sources */,
 				846AE6951BC5000F000A3739 /* Frameworks */,
 				846AE6961BC5000F000A3739 /* Resources */,
-				C21BC59FAC843AFE92D57BB4 /* 📦 Embed Pods Frameworks */,
-				E5CCE6CBEE14F1DDA0C073A6 /* 📦 Copy Pods Resources */,
+				C21BC59FAC843AFE92D57BB4 /* [CP] Embed Pods Frameworks */,
+				E5CCE6CBEE14F1DDA0C073A6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -497,14 +500,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7F70D43077696F8250BA1277 /* 📦 Check Pods Manifest.lock */ = {
+		7F70D43077696F8250BA1277 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -512,14 +515,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		9BF5D0B42FD8D238A07DDA4B /* 📦 Copy Pods Resources */ = {
+		9BF5D0B42FD8D238A07DDA4B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -527,14 +530,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FunctionalMarvel/Pods-FunctionalMarvel-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B297E136C9B61EF4CADF53E2 /* 📦 Check Pods Manifest.lock */ = {
+		B297E136C9B61EF4CADF53E2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -542,14 +545,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		BA8CA943F626679D837D3B6C /* 📦 Embed Pods Frameworks */ = {
+		BA8CA943F626679D837D3B6C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -557,14 +560,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FunctionalMarvel/Pods-FunctionalMarvel-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C21BC59FAC843AFE92D57BB4 /* 📦 Embed Pods Frameworks */ = {
+		C21BC59FAC843AFE92D57BB4 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -572,14 +575,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FunctionalMarvelTests/Pods-FunctionalMarvelTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E5CCE6CBEE14F1DDA0C073A6 /* 📦 Copy Pods Resources */ = {
+		E5CCE6CBEE14F1DDA0C073A6 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -602,6 +605,7 @@
 				846AE6881BC5000F000A3739 /* AppDelegate.swift in Sources */,
 				847BE07F1C00C73200D12856 /* RxCollectionViewCell.swift in Sources */,
 				84BE9ECD1C118F8900573ED9 /* AppendableDataSource.swift in Sources */,
+				844C692E1D04B0DD00B3F400 /* HeroAPI.swift in Sources */,
 				846AE6B41BC502DE000A3739 /* SwiftExtensions.swift in Sources */,
 				846AE6D01BC64E18000A3739 /* HeroCellData.swift in Sources */,
 				84E037121C044FC900AADF10 /* ModelProtocols.swift in Sources */,

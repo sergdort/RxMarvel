@@ -9,14 +9,36 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxDataSources
 
-struct HeroCellData {
+struct HeroCellSection: AnimatableSectionModelType {
+   typealias Item = HeroCellData
+   
+   var items: [Item]
+   var title: String = "Heroes"
+   
+   var identity: String {
+      return title
+   }
+   
+   init(items: [Item]) {
+      self.items = items
+   }
+   
+   init(original: HeroCellSection, items: [Item]) {
+      self.items = items
+   }
+}
+
+struct HeroCellData: IdentifiableType {
    
    let title: String
    let thumbnailType = ThumbnailType.PortraitSmall
    let thumbnailURL: NSURL
+   let identity: Int
    
    init(hero: Hero) {
+      identity = hero.id
       title = hero.name
       thumbnailURL = NSURL(string:hero.thumbnail.pathForType(thumbnailType))!
    }

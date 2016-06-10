@@ -10,6 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 import Alamofire
+import RxDataSources
 
 
 class HeroesListViewController: RxTableViewController {
@@ -18,17 +19,11 @@ class HeroesListViewController: RxTableViewController {
    #endif
    static let cellFactory = BindableCellFactory<HeroListTableViewCell, HeroCellData>.createCell
    
-   private(set) lazy var dataSource: AppendableDataSource<HeroCellData> = {
-      return AppendableDataSource(items: [],
-                                  cellFactory: HeroesListViewController.cellFactory)
-   }()
+   lazy var searchDataSource = RxTableViewSectionedReloadDataSource<HeroCellSection>()
    
-   lazy var searchDataSource = SearchTableDataSource<HeroCellData>(items: [],
-                                                              cellFactory: HeroesListViewController.cellFactory)
+   lazy var searchContentController = UITableViewController()
    
-   lazy var searchContentController: SearchTableViewController<HeroListTableViewCell, HeroCellData> = {
-      return SearchTableViewController(dataSource: self.searchDataSource)
-   }()
+   lazy var dataSource = RxTableViewSectionedReloadDataSource<HeroCellSection>()
    
    lazy var searchCotroller: UISearchController = {
       return UISearchController(searchResultsController: self.searchContentController)
@@ -40,6 +35,7 @@ class HeroesListViewController: RxTableViewController {
    
    override func viewDidLoad() {
       super.viewDidLoad()
+      setupDataSource()
       setupBindings()
    }
    
@@ -50,28 +46,23 @@ class HeroesListViewController: RxTableViewController {
 extension HeroesListViewController {
    
    private func setupBindings() {
-      tableView.dataSource = dataSource
       tableView.tableHeaderView = searchCotroller.searchBar
       
       let viewModel = HeroListViewModel(uiTriggers:
          (searchQuery: searchCotroller.searchBar.rx_text.asObservable(),
          nextPageTrigger: tableView.rx_nextPageTriger,
             searchNextPageTrigger: searchContentController.tableView.rx_nextPageTriger,
-            dismissTrigger: rightBarButton.rx_tap.asObservable()),
-                                        remoteProvider: remoteProvider)
+            dismissTrigger: rightBarButton.rx_tap.asDriver()),
+                                        api: DefaultHeroAPI(paramsProvider: HeroesParamsProvider.self))
       
+      tableView.dataSource = nil
+      searchContentController.tableView.dataSource = nil
       viewModel.mainTableItems
-         .map(HeroCellData.transform)
-         .asDriver(onErrorJustReturn: [])
-         .driveNext(dataSource.appendItems(.Top, tableView: tableView))
+         .drive(tableView.rx_itemsWithDataSource(dataSource))
          .addDisposableTo(disposableBag)
       
       viewModel.searchTableItems
-         .map(HeroCellData.transform)
-         .asDriver(onErrorJustReturn: [])
-         .driveNext(searchContentController.dataSource
-            .setItems(.Top,
-               tableView: searchContentController.tableView))
+         .drive(searchContentController.tableView.rx_itemsWithDataSource(searchDataSource))
          .addDisposableTo(disposableBag)
       
       viewModel.dismissTrigger.asDriver(onErrorJustReturn: ())
@@ -79,6 +70,13 @@ extension HeroesListViewController {
             self?.dismissViewControllerAnimated(true, completion: nil)
          }
          .addDisposableTo(disposableBag)
+   }
+   
+   func setupDataSource() {
+      dataSource.configureCell = BindableCellFactory<HeroListTableViewCell, HeroCellData>.configureCell
+      searchDataSource.configureCell = BindableCellFactory<HeroListTableViewCell, HeroCellData>.configureCell
+      tableView.dataSource = nil
+      searchContentController.tableView.dataSource = nil
    }
    
 }

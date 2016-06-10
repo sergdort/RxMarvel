@@ -37,9 +37,9 @@ class RemoteItemProvider<T: JSONParsable> {
                      return page.batch.next().hasNextPage
          }) { [weak self] (page) -> Observable<Page<[T]>> in
             return self?.paginateItems(page.batch.next(),
-                                      endPoint: endPoint,
-                                      nextBatchTrigger: nextBatchTrigger) ?? Observable.empty()
-         }
+                                       endPoint: endPoint,
+                                       nextBatchTrigger: nextBatchTrigger) ?? Observable.empty()
+      }
    }
    
    func searchItems(query: String,
@@ -55,15 +55,16 @@ class RemoteItemProvider<T: JSONParsable> {
             encoding: .URL,
             headers: nil)
          .map(PagingParser<T>.parse)
-            .paginate(nextBatchTrigger,
-               hasNextPage: { (page) -> Bool in
-                  return page.batch.next().hasNextPage
-               },
-               nextPageFactory: { [weak self] (page) -> Observable<Page<[T]>> in
-                  return self?.searchItems(query,
-                     batch: page.batch.next(),
-                     endPoint: endPoint,
-                     nextBatchTrigger: nextBatchTrigger) ?? Observable.empty()
-            })   }
+         .paginate(nextBatchTrigger,
+                   hasNextPage: { (page) -> Bool in
+                     return page.batch.next().hasNextPage
+            },
+                   nextPageFactory: { [weak self] (page) -> Observable<Page<[T]>> in
+                     return self?.searchItems(query,
+                        batch: page.batch.next(),
+                        endPoint: endPoint,
+                        nextBatchTrigger: nextBatchTrigger) ?? Observable.empty()
+            })
+    }
    
 }

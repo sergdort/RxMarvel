@@ -8,33 +8,54 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 class HeroListViewModel {
    
-   let mainTableItems: Observable<[Hero]>
-   let searchTableItems: Observable<[Hero]>
-   let dismissTrigger: Observable<Void>
+   let mainTableItems: Driver<[HeroCellSection]>
+   let searchTableItems: Driver<[HeroCellSection]>
+   let dismissTrigger: Driver<Void>
    
    init(uiTriggers: (searchQuery: Observable<String>,
       nextPageTrigger: Observable<Void>,
       searchNextPageTrigger: Observable<Void>,
-      dismissTrigger: Observable<Void>), remoteProvider: RemoteItemProvider<Hero>) {
+      dismissTrigger: Driver<Void>), api: HeroAPI) {
       
-      mainTableItems = remoteProvider
-         .paginateItems(endPoint: EndPoint.Characters,
+      mainTableItems = api
+        .paginateItems(Batch.initial, endPoint: EndPoint.Characters,
             nextBatchTrigger: uiTriggers.nextPageTrigger)
-         .map { $0.item }
-      
+        .map {
+            return $0.item.map(HeroCellData.init)
+        }
+        .scan([HeroCellData]()) {
+            return $0.0 + $0.1
+        }
+        .map {
+            return [HeroCellSection(items: $0)]
+        }
+        .asDriver(onErrorJustReturn: [])
+
+    
       searchTableItems = uiTriggers.searchQuery
          .filter { !$0.isEmpty }
          .throttle(0.3, scheduler: MainScheduler.instance)
          .flatMapLatest {
-            return remoteProvider.searchItems($0,
-               endPoint: EndPoint.Characters,
-               nextBatchTrigger: uiTriggers.searchNextPageTrigger)
+            return api.searchItems($0,
+                batch: Batch.initial,
+                endPoint: EndPoint.Characters,
+                nextBatchTrigger: uiTriggers.searchNextPageTrigger)
          }
-         .map { $0.item }
-      
+        .map {
+            return $0.item.map(HeroCellData.init)
+        }
+        .scan([HeroCellData]()) {
+            return $0.0 + $0.1
+        }
+        .map {
+            return [HeroCellSection(items: $0)]
+        }
+        .asDriver(onErrorJustReturn: [])
+    
       dismissTrigger = uiTriggers.dismissTrigger
    }
 }

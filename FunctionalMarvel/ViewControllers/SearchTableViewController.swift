@@ -8,17 +8,11 @@
 
 import UIKit
 
-class SearchTableViewController<Cell: BindableCell, T where  Cell.V == T>: RxTableViewController {
-   let dataSource: SearchTableDataSource<T>
-   
-   init(style: UITableViewStyle = .Plain, dataSource: SearchTableDataSource<T>) {
-      self.dataSource = dataSource
-      super.init(style: style)
-   }
+class SearchTableViewController: UITableViewController {
    
    override func viewDidLoad() {
       super.viewDidLoad()
-      tableView.dataSource = dataSource
+      tableView.dataSource = nil
    }
    
 }
