@@ -19,7 +19,7 @@ protocol HeroAPI {
     func searchItems(query: String,
     batch: Batch,
     endPoint: EndPoint,
-    nextBatchTrigger: Observable<Void>) -> Observable<Page<[Hero]>>
+    nextBatchTrigger: Observable<Void>) -> Observable<[Hero]>
 }
 
 class DefaultHeroAPI: HeroAPI {
@@ -57,9 +57,22 @@ class DefaultHeroAPI: HeroAPI {
     func searchItems(query: String,
                      batch: Batch = Batch.initial,
                      endPoint: EndPoint,
+                     nextBatchTrigger: Observable<Void>) -> Observable<[Hero]> {
+        return recursivelySearch(query,
+            endPoint: endPoint,
+            nextBatchTrigger: nextBatchTrigger)
+            .scan([], accumulator: { (items, page) in
+                return items + page.item
+            })
+    }
+    
+    private func recursivelySearch(query: String,
+                     batch: Batch = Batch.initial,
+                     endPoint: EndPoint,
                      nextBatchTrigger: Observable<Void>) -> Observable<Page<[Hero]>> {
+      
         let params = paramsProvider.pagingListSearchParamsForQuery(query, batch: batch)
-        
+      
         return httpClient
             .request(.GET,
                 endPoint,
@@ -73,11 +86,11 @@ class DefaultHeroAPI: HeroAPI {
                         return page.batch.next().hasNextPage
                 },
                       nextPageFactory: { [weak self] (page) -> Observable<Page<[Hero]>> in
-                        return self?.searchItems(query,
+                        return self?.recursivelySearch(query,
                             batch: page.batch.next(),
                             endPoint: endPoint,
                             nextBatchTrigger: nextBatchTrigger) ?? Observable.empty()
-                })
+            })
     }
 
 }

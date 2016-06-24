@@ -20,7 +20,29 @@ class HeroListViewModel {
       nextPageTrigger: Observable<Void>,
       searchNextPageTrigger: Observable<Void>,
       dismissTrigger: Driver<Void>), api: HeroAPI) {
-      
+    
+    
+    searchTableItems = uiTriggers.searchQuery
+        .filter { !$0.isEmpty }//1
+        .throttle(0.3, scheduler: MainScheduler.instance)//2
+        .flatMapLatest { //3
+            return api.searchItems($0,
+                batch: Batch.initial,
+                endPoint: EndPoint.Characters,
+                nextBatchTrigger: uiTriggers.searchNextPageTrigger)
+               .catchError { _ in
+                  return Observable.empty()
+               }
+        }
+        .map { //4
+            return $0.map(HeroCellData.init)
+        }
+        .map {//5
+            return [HeroCellSection(items: $0)]
+        }
+        .asDriver(onErrorJustReturn: [])
+    
+
       mainTableItems = api
         .paginateItems(Batch.initial, endPoint: EndPoint.Characters,
             nextBatchTrigger: uiTriggers.nextPageTrigger)
@@ -35,26 +57,6 @@ class HeroListViewModel {
         }
         .asDriver(onErrorJustReturn: [])
 
-    
-      searchTableItems = uiTriggers.searchQuery
-         .filter { !$0.isEmpty }
-         .throttle(0.3, scheduler: MainScheduler.instance)
-         .flatMapLatest {
-            return api.searchItems($0,
-                batch: Batch.initial,
-                endPoint: EndPoint.Characters,
-                nextBatchTrigger: uiTriggers.searchNextPageTrigger)
-         }
-        .map {
-            return $0.item.map(HeroCellData.init)
-        }
-        .scan([HeroCellData]()) {
-            return $0.0 + $0.1
-        }
-        .map {
-            return [HeroCellSection(items: $0)]
-        }
-        .asDriver(onErrorJustReturn: [])
     
       dismissTrigger = uiTriggers.dismissTrigger
    }

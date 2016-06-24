@@ -14,22 +14,12 @@ import RxDataSources
 
 
 class HeroesListViewController: RxTableViewController {
-   #if TRACE_RESOURCES
-   private let startResourceCount = RxSwift.resourceCount
-   #endif
-   static let cellFactory = BindableCellFactory<HeroListTableViewCell, HeroCellData>.createCell
-   
    lazy var searchDataSource = RxTableViewSectionedReloadDataSource<HeroCellSection>()
-   
-   lazy var searchContentController = UITableViewController()
-   
    lazy var dataSource = RxTableViewSectionedReloadDataSource<HeroCellSection>()
-   
+   lazy var searchContentController = UITableViewController()
    lazy var searchCotroller: UISearchController = {
       return UISearchController(searchResultsController: self.searchContentController)
    }()
-   
-   var remoteProvider = RemoteItemProvider<Hero>(paramsProvider: HeroesParamsProvider.self)
    
    @IBOutlet var rightBarButton: UIBarButtonItem!
    
@@ -54,9 +44,7 @@ extension HeroesListViewController {
             searchNextPageTrigger: searchContentController.tableView.rx_nextPageTriger,
             dismissTrigger: rightBarButton.rx_tap.asDriver()),
                                         api: DefaultHeroAPI(paramsProvider: HeroesParamsProvider.self))
-      
-      tableView.dataSource = nil
-      searchContentController.tableView.dataSource = nil
+    
       viewModel.mainTableItems
          .drive(tableView.rx_itemsWithDataSource(dataSource))
          .addDisposableTo(disposableBag)
@@ -72,7 +60,7 @@ extension HeroesListViewController {
          .addDisposableTo(disposableBag)
    }
    
-   func setupDataSource() {
+   private func setupDataSource() {
       dataSource.configureCell = BindableCellFactory<HeroListTableViewCell, HeroCellData>.configureCell
       searchDataSource.configureCell = BindableCellFactory<HeroListTableViewCell, HeroCellData>.configureCell
       tableView.dataSource = nil
