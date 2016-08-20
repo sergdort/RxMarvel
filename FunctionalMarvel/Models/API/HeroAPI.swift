@@ -14,7 +14,7 @@ import Alamofire
 protocol HeroAPI {
     func paginateItems(batch: Batch,
     endPoint: EndPoint,
-    nextBatchTrigger: Observable<Void>) -> Observable<Page<[Hero]>>
+    nextBatchTrigger: Observable<Void>) -> Observable<[Hero]>
     
     func searchItems(query: String,
     batch: Batch,
@@ -27,15 +27,24 @@ class DefaultHeroAPI: HeroAPI {
     let paramsProvider: ParamsProvider.Type
     static let decodeScheduler = SerialDispatchQueueScheduler(internalSerialQueueName: "com.RxMarvel.DefaultHeroAPI.decodeQueue")
     
-    init(httpClient: HttpClient = Manager.sharedInstance, paramsProvider: ParamsProvider.Type) {
+    init(httpClient: HttpClient = Manager.sharedInstance,
+         paramsProvider: ParamsProvider.Type = HeroesParamsProvider.self) {
         self.httpClient = httpClient
         self.paramsProvider = paramsProvider
     }
     
     func paginateItems(batch: Batch = Batch.initial,
                        endPoint: EndPoint,
-                       nextBatchTrigger: Observable<Void>) -> Observable<Page<[Hero]>> {
-        
+                       nextBatchTrigger: Observable<Void>) -> Observable<[Hero]> {
+        return recursivelyPaginateItems(batch, endPoint: endPoint, nextBatchTrigger: nextBatchTrigger)
+            .scan([], accumulator: { (acum, page) in
+                return acum + page.item
+            })
+    }
+    
+    private func recursivelyPaginateItems(batch: Batch,
+                                  endPoint: EndPoint,
+                                  nextBatchTrigger: Observable<Void>) -> Observable<Page<[Hero]>> {
         let params = paramsProvider.pagingListParamsForBatch(batch)
         return httpClient
             .request(.GET, endPoint,
@@ -48,10 +57,10 @@ class DefaultHeroAPI: HeroAPI {
                       hasNextPage: { (page) -> Bool in
                         return page.batch.next().hasNextPage
             }) { [weak self] (page) -> Observable<Page<[Hero]>> in
-                return self?.paginateItems(page.batch.next(),
+                return self?.recursivelyPaginateItems(page.batch.next(),
                                            endPoint: endPoint,
                                            nextBatchTrigger: nextBatchTrigger) ?? Observable.empty()
-        }
+            }
     }
     
     func searchItems(query: String,

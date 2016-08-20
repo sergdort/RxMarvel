@@ -17,25 +17,14 @@ struct BindableCellFactory<Cell: BindableCell, ViewModel where Cell.V == ViewMod
 
 extension BindableCellFactory where Cell: UITableViewCell {
    
-   static func createCell(tableView: UITableView,
-                          indexPath: NSIndexPath,
-                          viewModel: ViewModel) -> UITableViewCell {
-      guard let cell: Cell = tableView.dequeueReusableCell() else {
-         tableView.registerNib(Cell.nib, forCellReuseIdentifier: Cell.reuseIdentifier)
-         return createCell(tableView, indexPath: indexPath, viewModel: viewModel)
-      }
-      cell.bindViewModel(viewModel)
-      
-      return cell
-   }
    
-   static func configureCell(dataSource: UITableViewDataSource,
+   static func configureCellFromNib(dataSource: UITableViewDataSource,
                              tableView: UITableView,
                              indexPath: NSIndexPath,
                              viewModel: ViewModel) -> UITableViewCell {
       guard let cell: Cell = tableView.dequeueReusableCell() else {
          tableView.registerNib(Cell.nib, forCellReuseIdentifier: Cell.reuseIdentifier)
-         return createCell(tableView, indexPath: indexPath, viewModel: viewModel)
+         return configureCellFromNib(dataSource, tableView: tableView, indexPath: indexPath, viewModel: viewModel)
       }
       cell.bindViewModel(viewModel)
       

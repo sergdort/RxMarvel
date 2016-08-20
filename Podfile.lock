@@ -1,24 +1,26 @@
 PODS:
-  - Alamofire (3.3.1)
-  - Argo (3.0.0)
-  - Curry (2.1.0)
-  - Nimble (4.0.0)
-  - Quick (0.9.1)
-  - Runes (3.2.0)
-  - RxAlamofire (2.2):
-    - RxAlamofire/Core (= 2.2)
-  - RxAlamofire/Core (2.2):
-    - Alamofire (~> 3.1)
-    - RxSwift (~> 2.1)
-  - RxCocoa (2.3.1):
-    - RxSwift (~> 2.3.1)
-  - RxDataSources (0.8.1):
+  - Alamofire (3.4.1)
+  - Argo (3.1.0)
+  - Curry (2.3.3)
+  - Nimble (4.1.0)
+  - Quick (0.9.3)
+  - Runes (3.2.1)
+  - RxAlamofire (2.5):
+    - RxAlamofire/Core (= 2.5)
+  - RxAlamofire/Core (2.5):
+    - Alamofire (~> 3.4)
+    - RxSwift (~> 2.5)
+  - RxCocoa (2.6.0):
+    - RxSwift (~> 2.5)
+  - RxDataSources (0.9):
     - RxCocoa (~> 2.2)
     - RxSwift (~> 2.2)
-  - RxSwift (2.3.1)
-  - SDWebImage (3.7.5):
-    - SDWebImage/Core (= 3.7.5)
-  - SDWebImage/Core (3.7.5)
+  - RxSwift (2.6.0)
+  - RxTests (2.6.0):
+    - RxSwift (~> 2.5)
+  - SDWebImage (3.8.1):
+    - SDWebImage/Core (= 3.8.1)
+  - SDWebImage/Core (3.8.1)
 
 DEPENDENCIES:
   - Argo
@@ -30,21 +32,23 @@ DEPENDENCIES:
   - RxCocoa
   - RxDataSources
   - RxSwift
+  - RxTests
   - SDWebImage
 
 SPEC CHECKSUMS:
-  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
-  Argo: 7072952d1f4de7f62137a995b7043fe6119b1f61
-  Curry: 33a0be263504a2bff75d0b3f7e9014ca28a39bbd
-  Nimble: 72bcc3e2f02242e6bfaaf8d9412ca7bfe3d8b417
-  Quick: a5221fc21788b6aeda934805e68b061839bc3165
-  Runes: ab2f892272d5165f64620f8086578b28cde98a02
-  RxAlamofire: 250b7846cedbd189d6190e4f83caa01ee1f1eceb
-  RxCocoa: a2baaf3462b989559a51dce59d78fbebb8fe0afa
-  RxDataSources: 4a87345847d66ef84ecc10bdfa189190f3cd6b12
-  RxSwift: 829b2843e9eddc77a02cb3f5117f0d55f8f646f1
-  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  Argo: bb0e94e309d6ceb8fa58910205c8968be101e429
+  Curry: 37223f4467e4802a08b6a414b526dcd919a4a777
+  Nimble: 97a0a4cae5124c117115634b2d055d8c97d0af19
+  Quick: 13a2a2b19a5d8e3ed4fd0c36ee46597fd77ebf71
+  Runes: 9b2b636779f8bd0aa80c61f69032f83ae24b4e2f
+  RxAlamofire: b4572a077b6b2410c8732a27266299df4c00736e
+  RxCocoa: 89ab00d5753502520227940e3a0e0a0413683c6b
+  RxDataSources: e169bba94a7be584df7c1e1487fa56edc8753ae6
+  RxSwift: 77f3a0b15324baa7a1c9bfa9f199648a82424e26
+  RxTests: cdcc379c70e80089a8bc2c99515223339d1c3b81
+  SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
 
-PODFILE CHECKSUM: 74a3ae8c047da03e3d2899a745a9a960571f2382
+PODFILE CHECKSUM: c0e15138c004be17b76087684d376d2257c3e1df
 
 COCOAPODS: 1.0.1

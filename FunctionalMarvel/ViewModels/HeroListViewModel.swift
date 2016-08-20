@@ -11,25 +11,28 @@ import RxSwift
 import RxCocoa
 
 class HeroListViewModel {
-   
+    struct Input {
+        let searchQuery: Observable<String>
+        let nextPageTrigger: Observable<Void>
+        let searchNextPageTrigger: Observable<Void>
+        let dismissTrigger: Driver<Void>
+    }
    let mainTableItems: Driver<[HeroCellSection]>
    let searchTableItems: Driver<[HeroCellSection]>
    let dismissTrigger: Driver<Void>
    
-   init(uiTriggers: (searchQuery: Observable<String>,
-      nextPageTrigger: Observable<Void>,
-      searchNextPageTrigger: Observable<Void>,
-      dismissTrigger: Driver<Void>), api: HeroAPI) {
+    init(input: Input, api: HeroAPI, scheduler: SchedulerType = MainScheduler.instance) {
     
     
-    searchTableItems = uiTriggers.searchQuery
-        .filter { !$0.isEmpty }//1
-        .throttle(0.3, scheduler: MainScheduler.instance)//2
+    searchTableItems = input.searchQuery
+        .filter { !$0.isEmpty }.debug("filter")
+        .throttle(0.3, scheduler: scheduler)//2
+        .debug("throttle")
         .flatMapLatest { //3
             return api.searchItems($0,
                 batch: Batch.initial,
                 endPoint: EndPoint.Characters,
-                nextBatchTrigger: uiTriggers.searchNextPageTrigger)
+                nextBatchTrigger: input.searchNextPageTrigger)
                .catchError { _ in
                   return Observable.empty()
                }
@@ -44,20 +47,15 @@ class HeroListViewModel {
     
 
       mainTableItems = api
-        .paginateItems(Batch.initial, endPoint: EndPoint.Characters,
-            nextBatchTrigger: uiTriggers.nextPageTrigger)
+        .paginateItems(Batch.initial,
+            endPoint: EndPoint.Characters,
+            nextBatchTrigger: input.nextPageTrigger)
         .map {
-            return $0.item.map(HeroCellData.init)
-        }
-        .scan([HeroCellData]()) {
-            return $0.0 + $0.1
-        }
-        .map {
-            return [HeroCellSection(items: $0)]
+            return [HeroCellSection(items: $0.map(HeroCellData.init))]
         }
         .asDriver(onErrorJustReturn: [])
 
     
-      dismissTrigger = uiTriggers.dismissTrigger
+      dismissTrigger = input.dismissTrigger
    }
 }

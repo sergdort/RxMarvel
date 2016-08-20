@@ -37,13 +37,12 @@ extension HeroesListViewController {
    
    private func setupBindings() {
       tableView.tableHeaderView = searchCotroller.searchBar
-      
-      let viewModel = HeroListViewModel(uiTriggers:
-         (searchQuery: searchCotroller.searchBar.rx_text.asObservable(),
-         nextPageTrigger: tableView.rx_nextPageTriger,
-            searchNextPageTrigger: searchContentController.tableView.rx_nextPageTriger,
-            dismissTrigger: rightBarButton.rx_tap.asDriver()),
-                                        api: DefaultHeroAPI(paramsProvider: HeroesParamsProvider.self))
+      let input = HeroListViewModel.Input(searchQuery: searchCotroller.searchBar.rx_text.asObservable(),
+                                          nextPageTrigger: tableView.rx_nextPageTriger,
+                                          searchNextPageTrigger: searchContentController.tableView.rx_nextPageTriger,
+                                          dismissTrigger: rightBarButton.rx_tap.asDriver())
+    let viewModel = HeroListViewModel(input: input,
+                                        api: DefaultHeroAPI())
     
       viewModel.mainTableItems
          .drive(tableView.rx_itemsWithDataSource(dataSource))
@@ -61,8 +60,8 @@ extension HeroesListViewController {
    }
    
    private func setupDataSource() {
-      dataSource.configureCell = BindableCellFactory<HeroListTableViewCell, HeroCellData>.configureCell
-      searchDataSource.configureCell = BindableCellFactory<HeroListTableViewCell, HeroCellData>.configureCell
+      dataSource.configureCell = BindableCellFactory<HeroListTableViewCell, HeroCellData>.configureCellFromNib
+      searchDataSource.configureCell = BindableCellFactory<HeroListTableViewCell, HeroCellData>.configureCellFromNib
       tableView.dataSource = nil
       searchContentController.tableView.dataSource = nil
    }

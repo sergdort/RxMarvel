@@ -21,7 +21,6 @@ extension HeroListTableViewCell: BindableView {
    func bindViewModel(viewModel: V) {
       label.text = viewModel.title
       _ = Observable.just(viewModel.thumbnailURL)
-         .asObservable()
          .takeUntil(onPrepareForReuse)
          .bindTo(cellImageView.rxex_imageURL)
    }

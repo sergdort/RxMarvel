@@ -7,17 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		253CE0651D671ECE00A5A0A1 /* RxTestsExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253CE0641D671ECE00A5A0A1 /* RxTestsExt.swift */; };
+		259D78071D622E20002895B0 /* HeroListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259D78061D622E20002895B0 /* HeroListViewModelTests.swift */; };
+		259D780A1D659583002895B0 /* TestScheduler+MarbleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259D78091D659583002895B0 /* TestScheduler+MarbleTests.swift */; };
+		259D780C1D659606002895B0 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259D780B1D659606002895B0 /* TestHelpers.swift */; };
 		690524FC08F1EB680747F9B2 /* Pods_FunctionalMarvel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D9388D7CF5B91CFF67F5261 /* Pods_FunctionalMarvel.framework */; };
 		695B12A185140C96DFA180D7 /* Pods_FunctionalMarvelTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 943EE2E495A501E010DEA6CB /* Pods_FunctionalMarvelTests.framework */; };
 		84062B331C070E55009A44B9 /* Heroes.json in Resources */ = {isa = PBXBuildFile; fileRef = 84062B321C070E55009A44B9 /* Heroes.json */; };
-		84062B351C070E71009A44B9 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84062B341C070E71009A44B9 /* TestHelpers.swift */; };
 		84062B511C074F2A009A44B9 /* DecodeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84062B501C074F29009A44B9 /* DecodeSpec.swift */; };
 		84062B531C074FA2009A44B9 /* Hero.json in Resources */ = {isa = PBXBuildFile; fileRef = 84062B521C074FA2009A44B9 /* Hero.json */; };
 		84062B561C07538B009A44B9 /* Batch.json in Resources */ = {isa = PBXBuildFile; fileRef = 84062B551C07538B009A44B9 /* Batch.json */; };
 		84062B581C07557E009A44B9 /* EndPointSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84062B571C07557E009A44B9 /* EndPointSpec.swift */; };
 		84062B5A1C07567A009A44B9 /* ParamsKeysSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84062B591C07567A009A44B9 /* ParamsKeysSpec.swift */; };
 		84062B621C086E11009A44B9 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84062B611C086E11009A44B9 /* SearchTableViewController.swift */; };
-		84062B6B1C0DEBEB009A44B9 /* AppendableDataSourceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84062B6A1C0DEBEB009A44B9 /* AppendableDataSourceSpec.swift */; };
 		844C692E1D04B0DD00B3F400 /* HeroAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C692D1D04B0DD00B3F400 /* HeroAPI.swift */; };
 		845FA2441CB7E7DA004D20EE /* RemoteItemProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845FA2431CB7E7DA004D20EE /* RemoteItemProvider.swift */; };
 		846338261CC12ECB00EAF1F2 /* PagingDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846338251CC12ECB00EAF1F2 /* PagingDecoder.swift */; };
@@ -49,8 +51,6 @@
 		847BE07F1C00C73200D12856 /* RxCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE07E1C00C73200D12856 /* RxCollectionViewCell.swift */; };
 		847BE0811C00CA3A00D12856 /* RxCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE0801C00CA3A00D12856 /* RxCollectionReusableView.swift */; };
 		84BE9EC31C10909700573ED9 /* BindableCellFactorySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE9EC11C10909700573ED9 /* BindableCellFactorySpec.swift */; };
-		84BE9ECC1C118F8900573ED9 /* SearchTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE9EC91C118F8900573ED9 /* SearchTableDataSource.swift */; };
-		84BE9ECD1C118F8900573ED9 /* AppendableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE9ECA1C118F8900573ED9 /* AppendableDataSource.swift */; };
 		84BE9ECE1C118F8900573ED9 /* BindableCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE9ECB1C118F8900573ED9 /* BindableCellFactory.swift */; };
 		84BE9ED21C1190F600573ED9 /* HeroesListViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE9ED11C1190F600573ED9 /* HeroesListViewControllerSpec.swift */; };
 		84D6355C1CB7D8FC001A4498 /* Manager+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D6355B1CB7D8FC001A4498 /* Manager+Rx.swift */; };
@@ -70,20 +70,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		253CE0641D671ECE00A5A0A1 /* RxTestsExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxTestsExt.swift; sourceTree = "<group>"; };
+		259D78061D622E20002895B0 /* HeroListViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroListViewModelTests.swift; sourceTree = "<group>"; };
+		259D78091D659583002895B0 /* TestScheduler+MarbleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TestScheduler+MarbleTests.swift"; sourceTree = "<group>"; };
+		259D780B1D659606002895B0 /* TestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		2D9388D7CF5B91CFF67F5261 /* Pods_FunctionalMarvel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FunctionalMarvel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3984DA2BC3C5D1AC18448E76 /* Pods-FunctionalMarvel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FunctionalMarvel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FunctionalMarvel/Pods-FunctionalMarvel.debug.xcconfig"; sourceTree = "<group>"; };
 		49C43B762B71C4E242A6FF3F /* Pods-FunctionalMarvelTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FunctionalMarvelTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FunctionalMarvelTests/Pods-FunctionalMarvelTests.release.xcconfig"; sourceTree = "<group>"; };
 		697069B2733F3B548AA22BF7 /* Pods-FunctionalMarvelTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FunctionalMarvelTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FunctionalMarvelTests/Pods-FunctionalMarvelTests.debug.xcconfig"; sourceTree = "<group>"; };
 		818CEB2CF2A2E3435D1C885A /* Pods-FunctionalMarvel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FunctionalMarvel.release.xcconfig"; path = "Pods/Target Support Files/Pods-FunctionalMarvel/Pods-FunctionalMarvel.release.xcconfig"; sourceTree = "<group>"; };
 		84062B321C070E55009A44B9 /* Heroes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Heroes.json; sourceTree = "<group>"; };
-		84062B341C070E71009A44B9 /* TestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		84062B501C074F29009A44B9 /* DecodeSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecodeSpec.swift; sourceTree = "<group>"; };
 		84062B521C074FA2009A44B9 /* Hero.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Hero.json; sourceTree = "<group>"; };
 		84062B551C07538B009A44B9 /* Batch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Batch.json; sourceTree = "<group>"; };
 		84062B571C07557E009A44B9 /* EndPointSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPointSpec.swift; sourceTree = "<group>"; };
 		84062B591C07567A009A44B9 /* ParamsKeysSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParamsKeysSpec.swift; sourceTree = "<group>"; };
 		84062B611C086E11009A44B9 /* SearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
-		84062B6A1C0DEBEB009A44B9 /* AppendableDataSourceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppendableDataSourceSpec.swift; sourceTree = "<group>"; };
 		844C692D1D04B0DD00B3F400 /* HeroAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroAPI.swift; sourceTree = "<group>"; };
 		845FA2431CB7E7DA004D20EE /* RemoteItemProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteItemProvider.swift; sourceTree = "<group>"; };
 		846338251CC12ECB00EAF1F2 /* PagingDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingDecoder.swift; sourceTree = "<group>"; };
@@ -120,8 +122,6 @@
 		847BE07E1C00C73200D12856 /* RxCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxCollectionViewCell.swift; sourceTree = "<group>"; };
 		847BE0801C00CA3A00D12856 /* RxCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxCollectionReusableView.swift; sourceTree = "<group>"; };
 		84BE9EC11C10909700573ED9 /* BindableCellFactorySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindableCellFactorySpec.swift; sourceTree = "<group>"; };
-		84BE9EC91C118F8900573ED9 /* SearchTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableDataSource.swift; sourceTree = "<group>"; };
-		84BE9ECA1C118F8900573ED9 /* AppendableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppendableDataSource.swift; sourceTree = "<group>"; };
 		84BE9ECB1C118F8900573ED9 /* BindableCellFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindableCellFactory.swift; sourceTree = "<group>"; };
 		84BE9ED11C1190F600573ED9 /* HeroesListViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroesListViewControllerSpec.swift; sourceTree = "<group>"; };
 		84D6355B1CB7D8FC001A4498 /* Manager+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Manager+Rx.swift"; sourceTree = "<group>"; };
@@ -158,6 +158,15 @@
 				943EE2E495A501E010DEA6CB /* Pods_FunctionalMarvelTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		259D78081D659532002895B0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				259D78091D659583002895B0 /* TestScheduler+MarbleTests.swift */,
+				253CE0641D671ECE00A5A0A1 /* RxTestsExt.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		84062B431C0718DA009A44B9 /* Mocks */ = {
@@ -230,6 +239,8 @@
 		846AE69B1BC5000F000A3739 /* FunctionalMarvelTests */ = {
 			isa = PBXGroup;
 			children = (
+				259D780B1D659606002895B0 /* TestHelpers.swift */,
+				259D78081D659532002895B0 /* Extensions */,
 				84BE9EC51C10912300573ED9 /* Specs */,
 				84062B541C074FBA009A44B9 /* Resources */,
 				84062B431C0718DA009A44B9 /* Mocks */,
@@ -363,20 +374,17 @@
 			children = (
 				84BE9EC11C10909700573ED9 /* BindableCellFactorySpec.swift */,
 				84062B501C074F29009A44B9 /* DecodeSpec.swift */,
-				84062B341C070E71009A44B9 /* TestHelpers.swift */,
 				84062B571C07557E009A44B9 /* EndPointSpec.swift */,
 				84062B591C07567A009A44B9 /* ParamsKeysSpec.swift */,
-				84062B6A1C0DEBEB009A44B9 /* AppendableDataSourceSpec.swift */,
 				84BE9ED11C1190F600573ED9 /* HeroesListViewControllerSpec.swift */,
+				259D78061D622E20002895B0 /* HeroListViewModelTests.swift */,
 			);
-			name = Specs;
+			path = Specs;
 			sourceTree = "<group>";
 		};
 		84BE9EC81C118F0D00573ED9 /* Adapters */ = {
 			isa = PBXGroup;
 			children = (
-				84BE9EC91C118F8900573ED9 /* SearchTableDataSource.swift */,
-				84BE9ECA1C118F8900573ED9 /* AppendableDataSource.swift */,
 				84BE9ECB1C118F8900573ED9 /* BindableCellFactory.swift */,
 			);
 			path = Adapters;
@@ -604,7 +612,6 @@
 				847BE0471BFF550800D12856 /* HeroListTableViewCell.swift in Sources */,
 				846AE6881BC5000F000A3739 /* AppDelegate.swift in Sources */,
 				847BE07F1C00C73200D12856 /* RxCollectionViewCell.swift in Sources */,
-				84BE9ECD1C118F8900573ED9 /* AppendableDataSource.swift in Sources */,
 				844C692E1D04B0DD00B3F400 /* HeroAPI.swift in Sources */,
 				846AE6B41BC502DE000A3739 /* SwiftExtensions.swift in Sources */,
 				846AE6D01BC64E18000A3739 /* HeroCellData.swift in Sources */,
@@ -620,7 +627,6 @@
 				847BE0521BFFB28800D12856 /* RxTableViewController.swift in Sources */,
 				84062B621C086E11009A44B9 /* SearchTableViewController.swift in Sources */,
 				84D6355C1CB7D8FC001A4498 /* Manager+Rx.swift in Sources */,
-				84BE9ECC1C118F8900573ED9 /* SearchTableDataSource.swift in Sources */,
 				845FA2441CB7E7DA004D20EE /* RemoteItemProvider.swift in Sources */,
 				846AE6C61BC51E20000A3739 /* EndPoint.swift in Sources */,
 				847BE0501BFFAECF00D12856 /* RxViewController.swift in Sources */,
@@ -638,13 +644,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84062B6B1C0DEBEB009A44B9 /* AppendableDataSourceSpec.swift in Sources */,
 				84062B511C074F2A009A44B9 /* DecodeSpec.swift in Sources */,
 				84BE9ED21C1190F600573ED9 /* HeroesListViewControllerSpec.swift in Sources */,
 				84BE9EC31C10909700573ED9 /* BindableCellFactorySpec.swift in Sources */,
 				84062B5A1C07567A009A44B9 /* ParamsKeysSpec.swift in Sources */,
+				259D780A1D659583002895B0 /* TestScheduler+MarbleTests.swift in Sources */,
 				84062B581C07557E009A44B9 /* EndPointSpec.swift in Sources */,
-				84062B351C070E71009A44B9 /* TestHelpers.swift in Sources */,
+				259D78071D622E20002895B0 /* HeroListViewModelTests.swift in Sources */,
+				259D780C1D659606002895B0 /* TestHelpers.swift in Sources */,
+				253CE0651D671ECE00A5A0A1 /* RxTestsExt.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

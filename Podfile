@@ -23,6 +23,8 @@ pod 'RxAlamofire'
 pod 'Argo'
 pod 'RxSwift'
 pod 'RxCocoa'
+pod 'RxDataSources'
+pod 'RxTests'
 pod 'Curry'
 pod 'Runes'
 

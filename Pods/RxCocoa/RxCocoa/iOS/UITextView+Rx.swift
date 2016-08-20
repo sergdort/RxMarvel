@@ -16,7 +16,7 @@ import RxSwift
 
     
     
-extension UITextView {
+extension UITextView : RxTextInput {
     
     /**
     Factory method that enables subclasses to implement their own `rx_delegate`.
@@ -50,11 +50,15 @@ extension UITextView {
             
             return textChanged
                 .startWith(text)
-                .distinctUntilChanged()
         }
 
         let bindingObserver = UIBindingObserver(UIElement: self) { (textView, text: String) in
-            textView.text = text
+            // This check is important because setting text value always clears control state
+            // including marked text selection which is imporant for proper input 
+            // when IME input method is used.
+            if textView.text != text {
+                textView.text = text
+            }
         }
         
         return ControlProperty(values: source, valueSink: bindingObserver)
