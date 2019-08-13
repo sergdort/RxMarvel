@@ -17,7 +17,7 @@ class HeroesListViewController: RxTableViewController {
    lazy var searchDataSource = RxTableViewSectionedReloadDataSource<HeroCellSection>()
    lazy var dataSource = RxTableViewSectionedReloadDataSource<HeroCellSection>()
    lazy var searchContentController = UITableViewController()
-   lazy var searchCotroller: UISearchController = {
+   lazy var searchController: UISearchController = {
       return UISearchController(searchResultsController: self.searchContentController)
    }()
    
@@ -36,7 +36,7 @@ class HeroesListViewController: RxTableViewController {
 extension HeroesListViewController {
    
    private func setupBindings() {
-      tableView.tableHeaderView = searchCotroller.searchBar
+      tableView.tableHeaderView = searchController.searchBar
       let input = HeroListViewModel.Input(searchQuery: searchCotroller.searchBar.rx_text.asObservable(),
                                           nextPageTrigger: tableView.rx_nextPageTriger,
                                           searchNextPageTrigger: searchContentController.tableView.rx_nextPageTriger,
